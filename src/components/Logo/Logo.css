@@ -1,0 +1,10 @@
+.logo {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Roboto';
+    color: #ffff;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
