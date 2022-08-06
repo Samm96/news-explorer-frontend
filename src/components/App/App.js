@@ -5,7 +5,6 @@ const App = () => {
   return (
     <div className="page">
       <div className="page-wrapper">
-        
       </div>
     </div>
   );
