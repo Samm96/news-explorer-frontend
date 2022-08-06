@@ -1,6 +1,5 @@
 import "./Logo.css";
 import { Link } from "react-router-dom";
-import logo from "../../images/logo/NewsExplorer-logo_svg.svg";
 
 /** Logo Component
  *
@@ -10,8 +9,8 @@ import logo from "../../images/logo/NewsExplorer-logo_svg.svg";
 
 const Logo = () => {
   return (
-    <Link to="/">
-      <p className="logo">NewsExplorer</p>
+    <Link to="/" className="logo">
+      <p className="logo__text">NewsExplorer</p>
     </Link>
   );
 };
