@@ -1,63 +1,57 @@
 @font-face {
-    font-family: 'Inter-Normal' ;
-    font-weight: 400;
-    font-style: 'Normal';
-    src: url('inter-400-regular.woff') format('woff'),
-         url('inter-400-regular.woff2') format('woff2');
+  font-family: "Inter-Normal";
+  font-weight: 400;
+  font-style: "Normal";
+  src: url("inter-400-regular.woff") format("woff"),
+    url("inter-400-regular.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: 'Inter-Medium';
-    font-weight: 500;
-    font-style: 'medium';
-    src: url('inter-500.woff') format('woff'),
-         url('inter-500.woff2') format('woff2');
+  font-family: "Inter-Medium";
+  font-weight: 500;
+  font-style: "medium";
+  src: url("inter-500.woff") format("woff"),
+    url("inter-500.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: 'Roboto-Normal';
-    font-weight: 400;
-    font-style: 'normal';
-    src: url('roboto-400-regular.woff'),
-         url('roboto-400-regular.woff2');
+  font-family: "Roboto-Normal";
+  font-weight: 400;
+  font-style: "normal";
+  src: url("roboto-400-regular.woff"), url("roboto-400-regular.woff2");
 }
 
 @font-face {
-    font-family: 'Roboto-Medium';
-    font-weight: 500;
-    font-style: 'medium';
-    src: url('roboto-500.woff'),
-         url('roboto-500.woff2');
+  font-family: "Roboto-Medium";
+  font-weight: 500;
+  font-style: "medium";
+  src: url("roboto-500.woff"), url("roboto-500.woff2");
 }
 
 @font-face {
-    font-family: 'Roboto-Bold';
-    font-weight: 700;
-    font-style: 'bold';
-    src: url('roboto-700.woff'),
-         url('roboto-700.woff2');
+  font-family: "Roboto-Bold";
+  font-weight: 700;
+  font-style: "bold";
+  src: url("roboto-700.woff"), url("roboto-700.woff2");
 }
 
 @font-face {
-    font-family: 'Roboto-Black-Heavy';
-    font-weight: 900;
-    font-style: 'black-heavy';
-    src: url('roboto-900.woff'),
-         url('roboto-900.woff2');
+  font-family: "Roboto-Black-Heavy";
+  font-weight: 900;
+  font-style: "black-heavy";
+  src: url("roboto-900.woff"), url("roboto-900.woff2");
 }
 
 @font-face {
-    font-family: 'Roboto-Slab-Normal';
-    font-weight: 400;
-    font-style: 'normal';
-    src: url('roboto-slab-400-regular.woff'),
-         url('roboto-slab-400-regular.woff2');
+  font-family: "Roboto-Slab-Normal";
+  font-weight: 400;
+  font-style: "normal";
+  src: url("roboto-slab-400-regular.woff"), url("roboto-slab-400-regular.woff2");
 }
 
 @font-face {
-    font-family: 'Roboto-Slab-Bold';
-    font-weight: 700;
-    font-style: 'bold';
-    src: url('roboto-slab-700.woff'),
-         url('roboto-slab-700.woff2');
+  font-family: "Roboto-Slab-Bold";
+  font-weight: 700;
+  font-style: "bold";
+  src: url("roboto-slab-700.woff"), url("roboto-slab-700.woff2");
 }
