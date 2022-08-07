@@ -8,7 +8,7 @@ const Header = ({isLoggedIn, userName}) => {
         <div className="header">
             <div className="header__container">
                 <Logo />
-                <Navigation />
+                <Navigation isLoggedIn={isLoggedIn}/>
             </div>
         </div>
     )
