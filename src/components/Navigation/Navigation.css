@@ -1,0 +1,121 @@
+.navigation {
+  max-width: fit-content;
+  width: 100%;
+  height: 48px;
+  font-family: "Roboto";
+}
+
+.navigation__container {
+  display: grid;
+  justify-items: center;
+  grid-gap: 42px;
+  grid-template-columns: 70px 1fr;
+  padding: 0;
+  margin: 0;
+  width: fit-content;
+  list-style: none;
+}
+
+.navigation__container_type_signedin {
+  grid-template-columns: 70px 178px 1fr;
+}
+
+.navigation__link {
+  width: fit-content;
+  margin: 12px 0;
+}
+
+/* when background is black */
+.navigation__home {
+  width: 63px;
+  margin: 0 0 0 9px;
+  color: #ffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* underline is under the `home` button */
+.navigation__home_type_selected {
+  padding: 0 9px 23px;
+  border-bottom: 3px solid #ffff;
+  color: #ffff;
+}
+
+/* underline is under the `home` button : when page is white */
+.navigation__home_type_selected-page {
+  border-color: #1a1b22;
+}
+
+/* when background is black */
+.navigation__saved-articles {
+  width: 114px;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #ffff;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+/* underline is under the `Saved articles` button */
+.navigation__saved-articles_type_selected {
+  padding: 0 32px 23px;
+  border-bottom: 3px solid #ffff;
+  color: #ffff;
+}
+
+/* underline is under the `Saved articles` button : when page is white */
+.navigation__saved-articles_type_selected-page {
+  border-color: #1a1b22;
+}
+
+/* when background is black */
+.navigation__button {
+  width: 176px;
+  max-height: 48px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #ffff;
+  background-color: transparent;
+  color: #ffff;
+  font-weight: 500;
+  border-radius: 100px;
+  font-size: 18px;
+  line-height: 24px;
+  display: grid;
+  grid-template-columns: fit-content 1fr;
+  grid-column: 1;
+}
+
+/* when background is white */
+.navigation__button_type_page {
+  border-color: #1a1b22;
+  color: #1a1b22;
+}
+
+.navigation__button-img {
+  width: 18px;
+  height: 16px;
+  padding-top: 4px;
+  grid-column: 2;
+  justify-self: center;
+}
+
+.navigation__button-img:hover {
+  cursor: pointer;
+}
+
+.navigation__home:hover,
+.navigation__home_type_selected:hover,
+.navigation__home_type_selected-page:hover,
+.navigation__saved-articles:hover,
+.navigation__saved-articles_type_selected:hover,
+.navigation__saved-articles_type_selected-page:hover,
+.navigation__button:hover,
+.navigation__button_type_page:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

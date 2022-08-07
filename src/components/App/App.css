@@ -4,10 +4,11 @@
   min-height: 100vh;
   margin: 0 auto;
   color: #1A1B22;
+  /* background-color: black; */
   background-color: #ffff;
   box-sizing: border-box;
 }
 
 .page-wrapper {
-  padding: 22px 40px 18px;
+  padding: 19px 40px 18px;
 }
