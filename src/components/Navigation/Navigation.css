@@ -6,11 +6,18 @@
 }
 
 .navigation__container {
+  display: grid;
+  justify-items: center;
+  grid-gap: 42px;
+  grid-template-columns: 70px 1fr;
   padding: 0;
   margin: 0;
   width: fit-content;
-  display: flex;
   list-style: none;
+}
+
+.navigation__container_type_signedin {
+  grid-template-columns: 70px 178px 1fr;
 }
 
 .navigation__link {
@@ -21,7 +28,7 @@
 /* when background is black */
 .navigation__home {
   width: 63px;
-  margin: 0 42px 0 9px;
+  margin: 0 0 0 9px;
   color: #ffff;
   text-decoration: none;
   font-weight: 500;
@@ -31,10 +38,9 @@
 
 /* underline is under the `home` button */
 .navigation__home_type_selected {
-  margin: 0 42px 0 0;
   padding: 0 9px 23px;
   border-bottom: 3px solid #ffff;
-  color: #1a1b22;
+  color: #ffff;
 }
 
 /* underline is under the `home` button : when page is white */
@@ -56,10 +62,9 @@
 
 /* underline is under the `Saved articles` button */
 .navigation__saved-articles_type_selected {
-  margin: 0 32px 0 0;
   padding: 0 32px 23px;
   border-bottom: 3px solid #ffff;
-  color: #1a1b22;
+  color: #ffff;
 }
 
 /* underline is under the `Saved articles` button : when page is white */
