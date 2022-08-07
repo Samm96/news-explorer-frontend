@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import Navigation from '../Navigation/Navigation';
+import Header from '../Header/Header';
 
 const App = () => {
   // placeholder
@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="page">
       <div className="page-wrapper">
-        <Navigation isLoggedIn={isLoggedIn}/>
+        <Header isLoggedIn={isLoggedIn}/>
       </div>
     </div>
   );
