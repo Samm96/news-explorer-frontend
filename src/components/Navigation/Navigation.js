@@ -11,7 +11,11 @@ const Navigation = (isLoggedIn, userName) => {
       {isLoggedIn ? (
         <ul className="navigation__container">
           <li className="navigation__link">
-            <NavLink to="/" className="navigation__home" aria-label="nav link">
+            <NavLink
+              to="/"
+              className="navigation__home navigation__home_type_selected"
+              aria-label="nav link"
+            >
               Home
             </NavLink>
           </li>
