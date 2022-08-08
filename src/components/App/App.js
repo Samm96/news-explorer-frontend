@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import NothingFound from "../NothingFound/NothingFound";
 import About from "../About/About";
+import NewsCard from "../NewsCard/NewsCard";
 import Footer from "../Footer/Footer";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Header isLoggedIn={isLoggedIn} />
       </SearchForm>
       <About />
+      <NewsCard />
       <Footer />
     </div>
   );
