@@ -3,12 +3,8 @@
   max-width: 100%;
   min-height: 100vh;
   margin: 0 auto;
-  color: #1A1B22;
+  color: #1a1b22;
   /* background-color: black; */
   background-color: #ffff;
   box-sizing: border-box;
-}
-
-.page-wrapper {
-  padding: 19px 40px 18px;
 }
