@@ -11,9 +11,8 @@ const NothingFound = () => {
           alt="Not Found Icon"
         />
         <p className="not-found__text">Nothing found</p>
-        <p className="not-found__subtext">
-          Sorry, but nothing matched your search terms.
-        </p>
+        <p className="not-found__subtext">Sorry, but nothing matched</p>
+        <p className="not-found__subtext">your search terms.</p>
       </div>
     </div>
   );
