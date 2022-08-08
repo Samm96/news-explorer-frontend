@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
+import NothingFound from "../NothingFound/NothingFound";
 import Footer from "../Footer/Footer";
 
 const App = () => {
