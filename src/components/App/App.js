@@ -14,7 +14,6 @@ const App = () => {
       <SearchForm>
         <Header isLoggedIn={isLoggedIn} />
       </SearchForm>
-      <NothingFound />
       <Footer />
     </div>
   );
