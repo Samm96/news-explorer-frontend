@@ -16,7 +16,6 @@ const App = () => {
       <SearchForm>
         <Header isLoggedIn={isLoggedIn} />
       </SearchForm>
-      <SearchResults />
       <About />
       <Footer />
     </div>
