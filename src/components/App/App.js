@@ -16,8 +16,10 @@ const App = () => {
       <SearchForm>
         <Header isLoggedIn={isLoggedIn} />
       </SearchForm>
-      <About />
-      <Footer />
+      <div className="page-wrapper">
+        <About />
+        <Footer />
+      </div>
     </div>
   );
 };
