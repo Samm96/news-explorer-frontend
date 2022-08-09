@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import NothingFound from "../NothingFound/NothingFound";
 import About from "../About/About";
-import NewsCard from "../NewsCard/NewsCard";
+import SearchResults from "../SearchResults/SearchResults";
 import Footer from "../Footer/Footer";
 
 const App = () => {
