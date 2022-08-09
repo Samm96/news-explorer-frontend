@@ -6,7 +6,7 @@ import placeholderImg from "../../images/card-placeholder.png";
  * card template.
  */
 
-const NewsCard = () => {
+const NewsCard = ({ buttonType }) => {
   const placeholderCard = {
     image: placeholderImg,
     date: "November 4, 2020",
@@ -15,21 +15,29 @@ const NewsCard = () => {
     source: "TreeHugger",
   };
 
+  /** write a handler that switches between these when the save button / trash button are hovered over */
+  const signIn = "Sign in to save articles";
+  const removeSaved = "Remove from saved";
+
   return (
     <div className="news-card">
       <div className="news-card__container">
-      <span className="auth-error auth-error_hidden">Sign in to save articles</span>
-      <button className="save-button"></button>
-      <img
-        className="news-card__image"
-        src={placeholderCard.image}
-        alt="Card"
-      />
-      <div className="news-card__text-container">
-        <p className="news-card__date">{placeholderCard.date}</p>
-        <p className="news-card__title">{placeholderCard.title}</p>
-        <p className="news-card__text">{placeholderCard.text}</p>
-        <p className="news-card__source">{placeholderCard.source.toUpperCase()}</p>
+        <span className="news-card__warning news-card__warning_hidden">
+          {signIn || removeSaved}
+        </span>
+        <button className={`${buttonType}-button`}></button>
+        <img
+          className="news-card__image"
+          src={placeholderCard.image}
+          alt="Card"
+        />
+        <div className="news-card__text-container">
+          <p className="news-card__date">{placeholderCard.date}</p>
+          <p className="news-card__title">{placeholderCard.title}</p>
+          <p className="news-card__text">{placeholderCard.text}</p>
+          <p className="news-card__source">
+            {placeholderCard.source.toUpperCase()}
+          </p>
         </div>
       </div>
     </div>

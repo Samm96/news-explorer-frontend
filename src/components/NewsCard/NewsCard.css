@@ -13,7 +13,7 @@
     position: relative;
 }
 
-.auth-error {
+.news-card__warning {
     margin: 0;
     padding: 13px 35px;
     max-width: 182px;
@@ -30,7 +30,7 @@
     line-height: 14px;
 }
 
-.auth-error_hidden {
+.news-card__warning_hidden {
     display: none;
 }
 
@@ -60,6 +60,25 @@
 .save-button__active:hover {
     cursor: pointer;
     opacity: 0.6;
+}
+
+.delete-button {
+    background-image: url('../../images/Delete-Button/trash-button_default.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    width: 40px;
+    height: 40px;
+    border: none;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+.delete-button:hover {
+    background-image: url('../../images/Delete-Button/trash-bin_hover.svg');
+    cursor: pointer;
 }
 
 .news-card__image {

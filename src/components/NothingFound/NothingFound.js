@@ -1,5 +1,5 @@
 import "./NothingFound.css";
-import notFoundIcon from "../../images/not-found_icon.png";
+import notFoundIcon from "../../images/Icons/not-found_icon.png";
 
 const NothingFound = () => {
   return (
