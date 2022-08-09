@@ -17,7 +17,6 @@ const App = () => {
         <Header isLoggedIn={isLoggedIn} />
       </SearchForm>
       <About />
-      <NewsCard />
       <Footer />
     </div>
   );

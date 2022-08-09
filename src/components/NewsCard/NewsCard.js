@@ -1,6 +1,11 @@
 import "./NewsCard.css";
 import placeholderImg from "../../images/card-placeholder.png";
 
+/** NewsCard Component
+ * takes the data from the news API and places it in correct place.
+ * card template.
+ */
+
 const NewsCard = () => {
   const placeholderCard = {
     image: placeholderImg,
@@ -22,7 +27,7 @@ const NewsCard = () => {
         <p className="news-card__date">{placeholderCard.date}</p>
         <p className="news-card__title">{placeholderCard.title}</p>
         <p className="news-card__text">{placeholderCard.text}</p>
-        <p className="news-card__source">{placeholderCard.source}</p>
+        <p className="news-card__source">{placeholderCard.source.toUpperCase()}</p>
         </div>
       </div>
     </div>
