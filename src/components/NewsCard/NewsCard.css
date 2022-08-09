@@ -10,6 +10,35 @@
     padding: 0;
     border-radius: 4%;
     background-color: #ffff;
+    position: relative;
+}
+
+.save-button {
+    background-image: url('../../images/Save-Button/Save_default.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    width: 40px;
+    height: 40px;
+    border: none;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+.save-button_active {
+    background-image: url('../../images/Save-Button/Save_active.png');
+}
+
+.save-button:hover {
+    background-image: url('../../images/Save-Button/Save_hover.png');
+    cursor: pointer;
+}
+
+.save-button__active:hover {
+    cursor: pointer;
+    opacity: 0.6;
 }
 
 .news-card__image {

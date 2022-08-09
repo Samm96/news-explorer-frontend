@@ -18,6 +18,7 @@ const NewsCard = () => {
   return (
     <div className="news-card">
       <div className="news-card__container">
+      <button className="save-button"></button>
       <img
         className="news-card__image"
         src={placeholderCard.image}
