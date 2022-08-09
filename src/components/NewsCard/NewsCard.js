@@ -29,7 +29,7 @@ const NewsCard = ({ buttonType }) => {
         <span className="news-card__keyword news-card__keyword_hidden">
           {placeholderCard.key}
         </span>
-        <button className={`${buttonType}-button`}></button>
+        <button className={ "save-button" || (`${buttonType}-button`)}></button>
         <img
           className="news-card__image"
           src={placeholderCard.image}

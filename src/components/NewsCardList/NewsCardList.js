@@ -1,14 +1,16 @@
-import './NewsCardList.css';
-import NewsCard from '../NewsCard/NewsCard';
+import "./NewsCardList.css";
+import NewsCard from "../NewsCard/NewsCard";
 
 const NewsCardList = () => {
-    return (
-        <section className="card-list">
-            <NewsCard />
-            <NewsCard />
-            <NewsCard />
-        </section>
-    )
-}
+  return (
+    <div className="card-list">
+      <div className="card-list__container">
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+      </div>
+    </div>
+  );
+};
 
 export default NewsCardList;

@@ -1,0 +1,11 @@
+.card-list {
+    margin: 0 auto 0;
+    width: 1232px;
+}
+
+.card-list__container {
+    display: grid;
+    grid-template-columns: repeat(3, 400px);
+    grid-gap: 16px;
+    justify-content: center;
+}
