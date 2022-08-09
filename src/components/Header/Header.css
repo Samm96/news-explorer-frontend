@@ -5,8 +5,9 @@
 }
 
 .header__container {
+    width: 1220px;
     height: 100%;
-    margin: 0 104px 0;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
 }

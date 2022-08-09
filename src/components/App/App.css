@@ -8,3 +8,8 @@
   background-color: #ffff;
   box-sizing: border-box;
 }
+
+.page-wrapper {
+  margin: 0 auto;
+  width: 1220px;
+}
