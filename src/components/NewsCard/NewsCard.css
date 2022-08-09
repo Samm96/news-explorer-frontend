@@ -13,6 +13,27 @@
     position: relative;
 }
 
+.auth-error {
+    margin: 0;
+    padding: 13px 35px;
+    max-width: 182px;
+    background-color: #ffff;
+    border-radius: 10px;
+    position: absolute;
+    top: 24px;
+    right: 70px;
+    text-align: center;
+
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.auth-error_hidden {
+    display: none;
+}
+
 .save-button {
     background-image: url('../../images/Save-Button/Save_default.png');
     background-size: cover;
