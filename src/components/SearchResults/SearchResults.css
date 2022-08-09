@@ -1,0 +1,35 @@
+.results {
+    background-color: #F5F6F7;
+    height: 974px;
+}
+
+.results__container {
+    margin: 0 auto 0;
+    max-width: 1220px;  
+}
+
+.results__title {
+    margin: 0 0 64px;
+    padding: 80px 0 0;
+
+    font-family: 'Roboto Slab';
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 46px;
+}
+
+.results__button {
+    background-color: #ffff;
+    width: 288px;
+    height: 64px;
+    border: none;
+    border-radius: 50px;
+
+    margin: 64px 39%;
+    padding: 0;
+}
+
+.results__button:hover {
+    cursor: pointer;
+    background-color: #E8E8E8;
+}
