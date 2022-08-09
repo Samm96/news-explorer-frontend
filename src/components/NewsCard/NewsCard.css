@@ -13,6 +13,7 @@
     position: relative;
 }
 
+/** Disallows users to save articles if not signed in. Warning message **/
 .news-card__warning {
     margin: 0;
     padding: 13px 35px;
@@ -31,6 +32,28 @@
 }
 
 .news-card__warning_hidden {
+    display: none;
+}
+
+/** Info card that displays article's keyword **/
+.news-card__keyword {
+    margin: 0;
+    padding: 8px 22px;
+    max-width: 182px;
+    background-color: #ffff;
+    border-radius: 10px;
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    text-align: center;
+
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;  
+}
+
+.news-card__keyword_hidden {
     display: none;
 }
 

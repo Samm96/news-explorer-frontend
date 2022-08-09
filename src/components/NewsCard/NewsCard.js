@@ -13,6 +13,7 @@ const NewsCard = ({ buttonType }) => {
     title: "Everyone Needs a Special 'Sit Spot' in Nature",
     text: 'Ever since I read Richard Louv\'s influential book, "Last Child in the Woods," the idea of having a special "sit spot" has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...',
     source: "TreeHugger",
+    key: "Nature",
   };
 
   /** write a handler that switches between these when the save button / trash button are hovered over */
@@ -24,6 +25,9 @@ const NewsCard = ({ buttonType }) => {
       <div className="news-card__container">
         <span className="news-card__warning news-card__warning_hidden">
           {signIn || removeSaved}
+        </span>
+        <span className="news-card__keyword news-card__keyword_hidden">
+          {placeholderCard.key}
         </span>
         <button className={`${buttonType}-button`}></button>
         <img
