@@ -1,12 +1,16 @@
 .news-card {
     margin: 0;
     padding: 0;
-
     max-width: 400px;
-    width: 100%;
-    /* background-color: #ffff; */
-    background-color: gray;
+    width: 100%;   
+}
+
+.news-card__container {
+    margin: 0;
+    padding: 0;
     border-radius: 4%;
+     /* background-color: #ffff; */
+     background-color: gray;
 }
 
 .news-card__image {
@@ -15,13 +19,14 @@
 
     width: 400px;
     height: 272px;
+    object-fit: cover;
     border-top-left-radius: 4%;
     border-top-right-radius: 4%;
 }
 
-.news-card__container {
-    margin: 0;
-    padding: 20px 24px 24px;
+.news-card__text-container {
+    margin: 17px 0 0;
+    padding: 0 24px 24px;
 }
 
 .news-card__date {

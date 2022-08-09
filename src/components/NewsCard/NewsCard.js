@@ -12,16 +12,18 @@ const NewsCard = () => {
 
   return (
     <div className="news-card">
+      <div className="news-card__container">
       <img
         className="news-card__image"
         src={placeholderCard.image}
         alt="Card"
       />
-      <div className="news-card__container">
+      <div className="news-card__text-container">
         <p className="news-card__date">{placeholderCard.date}</p>
         <p className="news-card__title">{placeholderCard.title}</p>
         <p className="news-card__text">{placeholderCard.text}</p>
         <p className="news-card__source">{placeholderCard.source}</p>
+        </div>
       </div>
     </div>
   );
