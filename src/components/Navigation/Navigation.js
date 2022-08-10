@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import blackIcon from "../../images/Icons/button-icon.svg";
 import whiteIcon from "../../images/Icons/button-icon-white.svg";
 
-const Navigation = ({ isLoggedIn, userName, homePage }) => {
+const Navigation = ({ isLoggedIn, userName }) => {
   const placeholderUser = "Samantha";
 
   const whiteText = {
@@ -36,11 +36,7 @@ const Navigation = ({ isLoggedIn, userName, homePage }) => {
           <li className="navigation__link">
             <NavLink
               to="/"
-              className={
-                homePage
-                  ? `${blackText.homeButton} ${blackTextSelected.homeButton}`
-                  : `${whiteText.homeButton} ${whiteTextSelected.homeButton}`
-              }
+              className={`${whiteText.homeButton} ${whiteTextSelected.homeButton}`}
               aria-label="nav link"
             >
               Home
@@ -49,11 +45,7 @@ const Navigation = ({ isLoggedIn, userName, homePage }) => {
           <li className="navigation__link">
             <NavLink
               to="/saved-news"
-              className={
-                homePage
-                  ? `${blackText.savedArticles}`
-                  : `${whiteText.savedArticles}`
-              }
+              className={`${whiteText.savedArticles}`}
               aria-label="nav link"
             >
               Saved articles
@@ -61,16 +53,12 @@ const Navigation = ({ isLoggedIn, userName, homePage }) => {
           </li>
           <li>
             <button
-              className={
-                homePage
-                  ? `${blackText.signInButton}`
-                  : `${whiteText.signInButton}`
-              }
+              className={`${whiteText.signInButton}`}
             >
               {placeholderUser || userName}
               <img
                 className="navigation__button-img"
-                src={homePage ? whiteIcon : blackIcon}
+                src={blackIcon}
                 alt="signout"
               />
             </button>

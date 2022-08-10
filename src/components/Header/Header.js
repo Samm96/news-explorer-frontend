@@ -8,7 +8,7 @@ const Header = ({isLoggedIn, logoColor, homePage, userName}) => {
         <div className="header">
             <div className="header__container">
                 <Logo logoColor={logoColor}/>
-                <Navigation homePage={homePage} isLoggedIn={isLoggedIn}/>
+                <Navigation isLoggedIn={isLoggedIn}/>
             </div>
         </div>
     )
