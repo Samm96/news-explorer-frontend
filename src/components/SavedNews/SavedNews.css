@@ -52,7 +52,7 @@
     margin: 0 auto 0;
 
     display: grid;
-    grid-template-columns: repeat(3, 224px);
+    grid-template-columns: repeat(3, 400px);
     grid-template-rows: auto;
     grid-gap: 8px;
 }
