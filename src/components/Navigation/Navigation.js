@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import blackIcon from "../../images/Icons/button-icon.svg";
 import whiteIcon from "../../images/Icons/button-icon-white.svg";
 
-const Navigation = ({ isLoggedIn, userName }) => {
+const Navigation = ({ isLoggedIn, userName, textColor }) => {
   const placeholderUser = "Samantha";
 
   const whiteText = {
@@ -14,19 +14,19 @@ const Navigation = ({ isLoggedIn, userName }) => {
   };
 
   const blackText = {
-    signInButton: `${whiteText.signInButton} navigation__button_type_page`,
-    homeButton: `${whiteText.homeButton} navigation__home_type_page`,
-    savedArticles: `${whiteText.savedArticles} navigation__saved-articles_type_page`,
+    signInButton: "navigation__button_type_page",
+    homeButton: "navigation__home_type_page",
+    savedArticles: "navigation__saved-articles_type_page",
   };
 
   const whiteTextSelected = {
-    savedArticles: `${whiteText.savedArticles} navigation__saved-articles_type_selected`,
-    homeButton: `${whiteText.homeButton} navigation__home navigation__home_type_selected`,
+    savedArticles: "navigation__saved-articles_type_selected",
+    homeButton: "navigation__home navigation__home_type_selected",
   };
 
   const blackTextSelected = {
-    savedArticles: `${blackText.savedArticles} navigation__saved-articles_type_selected-page`,
-    homeButton: `${blackText.homeButton} navigation__home_type_selected-page`,
+    savedArticles: "navigation__saved-articles_type_selected-page",
+    homeButton: "navigation__home_type_selected-page",
   };
 
   return (
@@ -36,7 +36,11 @@ const Navigation = ({ isLoggedIn, userName }) => {
           <li className="navigation__link">
             <NavLink
               to="/"
-              className={`${whiteText.homeButton} ${whiteTextSelected.homeButton}`}
+              className={
+                textColor === "black"
+                  ? `${whiteText.homeButton} ${blackText.homeButton}`
+                  : `${whiteText.homeButton}`
+              }
               aria-label="nav link"
             >
               Home
@@ -45,7 +49,11 @@ const Navigation = ({ isLoggedIn, userName }) => {
           <li className="navigation__link">
             <NavLink
               to="/saved-news"
-              className={`${whiteText.savedArticles}`}
+              className={
+                textColor === "black"
+                  ? `${whiteText.savedArticles} ${blackText.savedArticles}`
+                  : `${whiteText.savedArticles}`
+              }
               aria-label="nav link"
             >
               Saved articles
@@ -53,12 +61,16 @@ const Navigation = ({ isLoggedIn, userName }) => {
           </li>
           <li>
             <button
-              className={`${whiteText.signInButton}`}
+              className={
+                textColor === "black"
+                  ? `${whiteText.signInButton} ${blackText.signInButton}`
+                  : `${whiteText.signInButton}`
+              }
             >
               {placeholderUser || userName}
               <img
                 className="navigation__button-img"
-                src={blackIcon}
+                src={textColor === "black" ? blackIcon : whiteIcon}
                 alt="signout"
               />
             </button>
@@ -69,14 +81,26 @@ const Navigation = ({ isLoggedIn, userName }) => {
           <li className="navigation__link">
             <NavLink
               to="/"
-              className={`${whiteText.homeButton} ${whiteTextSelected.homeButton}`}
+              className={
+                textColor === "black"
+                  ? `${whiteText.homeButton} ${blackText.homeButton}`
+                  : `${whiteText.homeButton}`
+              }
               aria-label="nav link"
             >
               Home
             </NavLink>
           </li>
           <li>
-            <button className="navigation__button">Sign in</button>
+            <button
+              className={
+                textColor === "black"
+                  ? `${whiteText.signInButton} ${blackText.signInButton}`
+                  : `${whiteText.signInButton}`
+              }
+            >
+              Sign in
+            </button>
           </li>
         </ul>
       )}
