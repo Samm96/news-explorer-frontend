@@ -33,6 +33,7 @@ const SavedNews = ({ userName }) => {
           <NewsCard />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

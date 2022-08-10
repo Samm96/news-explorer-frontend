@@ -42,7 +42,6 @@ const App = () => {
                 textColor={"black"}
               />
               <SavedNews />
-              <Footer />
             </>
           }
         />
