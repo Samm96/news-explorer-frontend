@@ -6,6 +6,7 @@ import NothingFound from "../NothingFound/NothingFound";
 import About from "../About/About";
 import SearchResults from "../SearchResults/SearchResults";
 import Footer from "../Footer/Footer";
+import SavedNews from "../SavedNews/SavedNews";
 
 const App = () => {
   // placeholder
@@ -13,11 +14,12 @@ const App = () => {
 
   return (
     <div className="page">
-      <SearchForm>
+      {/* <SearchForm>
         <Header isLoggedIn={isLoggedIn} />
       </SearchForm>
       <About />
-      <Footer />
+      <Footer /> */}
+      <SavedNews />
     </div>
   );
 };
