@@ -2,7 +2,7 @@ import './Header.css';
 import Navigation from '../Navigation/Navigation';
 import Logo from '../Logo/Logo';
 
-const Header = ({isLoggedIn, logoColor, homePage, userName}) => {
+const Header = ({isLoggedIn, logoColor, userName}) => {
 
     return (
         <div className="header">
