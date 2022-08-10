@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import "./NewsCard.css";
 import placeholderImg from "../../images/card-placeholder.png";
 
@@ -6,7 +8,36 @@ import placeholderImg from "../../images/card-placeholder.png";
  * card template.
  */
 
-const NewsCard = ({ buttonType }) => {
+const NewsCard = ({
+  buttonType,
+  message,
+  isLoggedIn,
+  onSaveClick,
+  onDeleteClick,
+}) => {
+  const [isShown, setIsShown] = useState("_hidden");
+
+  switch (buttonType) {
+    case "save":
+      message = "Sign in to save articles";
+      break;
+    case "delete":
+      message = "Remove from saved";
+      break;
+    default:
+      message = "Sign in to save articles";
+  }
+
+  const handleDeleteClick = () => {
+    console.log("I should be deleted!");
+    // onDeleteClick(cardData);
+  };
+
+  const handleSaveClick = () => {
+    console.log("I'm saved!");
+    //   onSaveClick(cardData);
+  };
+
   const placeholderCard = {
     image: placeholderImg,
     date: "November 4, 2020",
@@ -16,20 +47,31 @@ const NewsCard = ({ buttonType }) => {
     key: "Nature",
   };
 
-  /** write a handler that switches between these when the save button / trash button are hovered over */
-  const signIn = "Sign in to save articles";
-  const removeSaved = "Remove from saved";
-
   return (
     <div className="news-card">
       <div className="news-card__container">
-        <span className="news-card__warning news-card__warning_hidden">
-          {signIn || removeSaved}
-        </span>
+        <span className={`news-card__warning${isShown}`}>{message}</span>
         <span className="news-card__keyword news-card__keyword_hidden">
           {placeholderCard.key}
         </span>
-        <button className={ "save-button" || (`${buttonType}-button`)}></button>
+        {isLoggedIn ? (
+          <button
+            onClick={
+              buttonType === "save" ? handleSaveClick : handleDeleteClick
+            }
+            onMouseEnter={() => {
+              buttonType === "save" ? setIsShown("_hidden") : setIsShown("");
+            }}
+            onMouseLeave={() => setIsShown("_hidden")}
+            className={"save-button" || `${buttonType}-button`}
+          ></button>
+        ) : (
+          <button
+            onMouseEnter={() => setIsShown("")}
+            onMouseLeave={() => setIsShown("_hidden")}
+            className={"save-button" || `${buttonType}-button`}
+          ></button>
+        )}
         <img
           className="news-card__image"
           src={placeholderCard.image}
