@@ -36,6 +36,10 @@
   line-height: 24px;
 }
 
+.navigation__home_type_page {
+  color: #1a1b22;
+}
+
 /* underline is under the `home` button */
 .navigation__home_type_selected {
   padding: 0 9px 23px;
@@ -58,6 +62,10 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
+}
+
+.navigation__saved-articles_type_page {
+  color: #1a1b22;
 }
 
 /* underline is under the `Saved articles` button */

@@ -15,3 +15,7 @@
 .logo__text:hover {
     cursor: url('../../images/cursor_hover.svg');
 }
+
+.logo__text_black {
+    color: #1A1B22;
+}

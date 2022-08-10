@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
  *
  */
 
-const Logo = () => {
+const Logo = ({logoColor}) => {
   return (
     <Link to="/" className="logo">
-      <p className="logo__text">NewsExplorer</p>
+      <p className={"logo__text" || (`logo__text_${logoColor}`)}>NewsExplorer</p>
     </Link>
   );
 };
