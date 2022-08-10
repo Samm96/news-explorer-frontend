@@ -46,3 +46,13 @@
 
     background-color: #F5F6F7;
 }
+
+.saved-news__cards {
+    width: 1220px;
+    margin: 0 auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 224px);
+    grid-template-rows: auto;
+    grid-gap: 8px;
+}
