@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import blackIcon from "../../images/Icons/button-icon.svg";
