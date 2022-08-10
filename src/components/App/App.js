@@ -8,44 +8,47 @@ import About from "../About/About";
 import SearchResults from "../SearchResults/SearchResults";
 import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   return (
     <div className="page">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <SearchForm>
-                <Header
-                  isLoggedIn={isLoggedIn}
-                  logoColor={"white"}
-                  textColor={""}
-                />
-              </SearchForm>
-              <About />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/saved-news"
-          element={
-            <>
-              <Header
-                isLoggedIn={true}
-                logoColor={"black"}
-                textColor={"black"}
-              />
-              <SavedNews />
-            </>
-          }
-        />
-      </Routes>
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <>
+                <SearchForm>
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    logoColor={"white"}
+                    textColor={""}
+                  />
+                </SearchForm>
+                <About />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/saved-news"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Header logoColor={"black"} textColor={"black"} />
+                <SavedNews />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </CurrentUserContext.Provider>
     </div>
   );
 };
