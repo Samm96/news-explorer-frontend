@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
@@ -14,13 +15,37 @@ const App = () => {
 
   return (
     <div className="page">
-      <SearchForm>
-        <Header isLoggedIn={isLoggedIn} textColor={""} />
-      </SearchForm>
-      <About />
-      <Footer />
-
-      {/* <SavedNews /> */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <SearchForm>
+                <Header
+                  isLoggedIn={isLoggedIn}
+                  logoColor={"white"}
+                  textColor={""}
+                />
+              </SearchForm>
+              <About />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/saved-news"
+          element={
+            <>
+              <Header
+                isLoggedIn={true}
+                logoColor={"black"}
+                textColor={"black"}
+              />
+              <SavedNews />
+            </>
+          }
+        />
+      </Routes>
     </div>
   );
 };

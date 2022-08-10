@@ -1,6 +1,4 @@
 import "./SavedNews.css";
-import NewsCardList from "../NewsCardList/NewsCardList";
-import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
 
@@ -15,7 +13,6 @@ const SavedNews = ({ userName }) => {
 
   return (
     <div className="saved-news">
-      <Header isLoggedIn={true} logoColor={"black"} textColor={"black"} />
       <div className="saved-news__text-container">
         <p className="saved-news__title">Saved articles</p>
         <p className="saved-news__saved">
