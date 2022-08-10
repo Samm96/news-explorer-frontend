@@ -18,7 +18,7 @@ const SavedNews = ({userName}) => {
             <div className="saved-news__text-container">
                 <p className="saved-news__title">Saved articles</p>
                 <p className="saved-news__saved">{placeholder || userName}, you have {placeholderData.savedArticles} saved articles</p>
-                <p className="saved-news__keywords">By keywords: {placeholderData.keywords}</p>
+                <p className="saved-news__keywords">By keywords: <b>{placeholderData.keywords}</b></p>
             </div>
             <div className="saved-news__news-container">
                 <NewsCardList />

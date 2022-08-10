@@ -59,7 +59,7 @@
 .navigation__saved-articles_type_page {
   padding: 0 32px 23px;
   border-bottom: 3px solid #1a1b22;
-  color: #1a1b22;
+  color: rgba(26, 27, 34, 0.5);
 }
 
 /* when background is black */
