@@ -1,6 +1,4 @@
 import "./SavedNews.css";
-import NewsCardList from "../NewsCardList/NewsCardList";
-import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
 
