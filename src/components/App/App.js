@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
@@ -9,10 +9,11 @@ import SearchResults from "../SearchResults/SearchResults";
 import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../Protected/Protected";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
           <Route
+            exact
             path="/"
             element={
               <>
@@ -36,16 +38,13 @@ const App = () => {
             }
           />
           <Route
+            exact
             path="/saved-news"
             element={
-              <>
-                <Header
-                  isLoggedIn={true}
-                  logoColor={"black"}
-                  textColor={"black"}
-                />
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Header logoColor={"black"} textColor={"black"} />
                 <SavedNews />
-              </>
+              </ProtectedRoute>
             }
           />
         </Routes>
