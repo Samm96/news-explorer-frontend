@@ -15,7 +15,6 @@ const SavedNews = ({ userName }) => {
 
   return (
     <div className="saved-news">
-      <Header isLoggedIn={true} logoColor={"black"} textColor={"black"} />
       <div className="saved-news__text-container">
         <p className="saved-news__title">Saved articles</p>
         <p className="saved-news__saved">
@@ -34,7 +33,6 @@ const SavedNews = ({ userName }) => {
           <NewsCard />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
