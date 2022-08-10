@@ -14,12 +14,13 @@ const App = () => {
 
   return (
     <div className="page">
-      {/* <SearchForm>
+      <SearchForm>
         <Header isLoggedIn={isLoggedIn} textColor={""} />
       </SearchForm>
       <About />
-      <Footer /> */}
-      <SavedNews />
+      <Footer />
+
+      {/* <SavedNews /> */}
     </div>
   );
 };
