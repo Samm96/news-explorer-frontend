@@ -34,22 +34,14 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
+
+  padding: 0 9px 23px;
+  border-bottom: 3px solid #ffff;
 }
 
 .navigation__home_type_page {
   color: #1a1b22;
-}
-
-/* underline is under the `home` button */
-.navigation__home_type_selected {
-  padding: 0 9px 23px;
-  border-bottom: 3px solid #ffff;
-  color: #ffff;
-}
-
-/* underline is under the `home` button : when page is white */
-.navigation__home_type_selected-page {
-  border-color: #1a1b22;
+  border: none;
 }
 
 /* when background is black */
@@ -58,26 +50,16 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: #ffff;
+  color: #B6BCBF;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
 }
 
 .navigation__saved-articles_type_page {
-  color: #1a1b22;
-}
-
-/* underline is under the `Saved articles` button */
-.navigation__saved-articles_type_selected {
   padding: 0 32px 23px;
-  border-bottom: 3px solid #ffff;
-  color: #ffff;
-}
-
-/* underline is under the `Saved articles` button : when page is white */
-.navigation__saved-articles_type_selected-page {
-  border-color: #1a1b22;
+  border-bottom: 3px solid #1a1b22;
+  color: #1a1b22;
 }
 
 /* when background is black */

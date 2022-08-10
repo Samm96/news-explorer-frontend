@@ -19,16 +19,6 @@ const Navigation = ({ isLoggedIn, userName, textColor }) => {
     savedArticles: "navigation__saved-articles_type_page",
   };
 
-  const whiteTextSelected = {
-    savedArticles: "navigation__saved-articles_type_selected",
-    homeButton: "navigation__home navigation__home_type_selected",
-  };
-
-  const blackTextSelected = {
-    savedArticles: "navigation__saved-articles_type_selected-page",
-    homeButton: "navigation__home_type_selected-page",
-  };
-
   return (
     <nav className="navigation">
       {isLoggedIn ? (

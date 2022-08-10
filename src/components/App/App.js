@@ -10,12 +10,12 @@ import SavedNews from "../SavedNews/SavedNews";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <div className="page">
       {/* <SearchForm>
-        <Header isLoggedIn={isLoggedIn} />
+        <Header isLoggedIn={isLoggedIn} textColor={""} />
       </SearchForm>
       <About />
       <Footer /> */}

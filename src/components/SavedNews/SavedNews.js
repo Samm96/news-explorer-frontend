@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 const SavedNews = () => {
      return (
         <div className="saved-news">
-            <Header logoColor={"black"} textColor={"black"} />
+            <Header isLoggedIn={true} logoColor={"black"} textColor={"black"} />
             <div className="saved-news__text-container">
 
             </div>
