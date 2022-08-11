@@ -1,0 +1,82 @@
+.modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity ease-out 0.5s, visibility 0s ease-out 0.5s;
+}
+
+.modal__container {
+    background-color: #ffff;
+    width: 430px;
+    max-height: 458px;
+
+    position: relative;
+}
+
+.close-button {
+    background-image: url('../../images/Icons/close-png.png');
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border: none;
+
+    position: absolute;
+    right: -45px;
+    top: -45px;
+}
+
+.close-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.modal__title {
+    font-family: 'Roboto';
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.modal__button {
+    width: 360px;
+    height: 64px;
+    margin: 0;
+    padding: 0;
+    background-color: #2F71E5;
+    color: #ffff;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 0 5px 15px 0 #1A1B22;
+}
+
+.modal__button_disabled {
+    background-color: #E6E8EB;
+    color: #B6BCBF;
+}
+
+.modal__link {
+
+}
+
+.modal_open {
+    display: flex;
+    
+    opacity: 1;
+    height: auto;
+    visibility: visible;
+    transition: opacity 0.5s ease-out, visibility 0s ease-out;
+}
