@@ -1,13 +1,13 @@
 import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
 
-const NewsCardList = () => {
+const NewsCardList = ({buttonType}) => {
   return (
     <div className="card-list">
       <div className="card-list__container">
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
+        <NewsCard buttonType={buttonType} />
+        <NewsCard buttonType={buttonType} />
+        <NewsCard buttonType={buttonType}/>
       </div>
     </div>
   );

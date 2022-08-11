@@ -25,10 +25,10 @@ const SavedNews = ({ userName }) => {
       </div>
       <div className="saved-news__news-container">
         <div className="saved-news__cards">
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
+          <NewsCard buttonType={"delete"}/>
+          <NewsCard buttonType={"delete"}/>
+          <NewsCard buttonType={"delete"}/>
+          <NewsCard buttonType={"delete"}/>
         </div>
       </div>
       <Footer />

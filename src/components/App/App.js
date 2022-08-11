@@ -13,7 +13,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
 
   return (
@@ -42,7 +42,7 @@ const App = () => {
             path="/saved-news"
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <Header logoColor={"black"} textColor={"black"} />
+                <Header isLoggedIn={isLoggedIn} logoColor={"black"} textColor={"black"} />
                 <SavedNews />
               </ProtectedRoute>
             }
