@@ -1,13 +1,17 @@
-import './ModalWithForm.css';
+import "./ModalWithForm.css";
+import Modal from "../Modal/Modal";
 
-const ModalWithForm = () => {
-    return (
-        <div className="modal">
-            <div className="modal__container">
-                {/* <p className="modal__title">{modalTitle}</p> */}
-            </div>
-        </div>
-    )
-}
+const ModalWithForm = ({ isOpen, modalTitle, buttonText }) => {
+  return (
+    <Modal
+      isOpen={isOpen}
+      modalTitle={modalTitle}
+      isButton={true}
+      buttonText={buttonText}
+    >
+        
+    </Modal>
+  );
+};
 
 export default ModalWithForm;

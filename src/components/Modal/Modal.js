@@ -5,8 +5,8 @@ const Modal = ({
   modalTitle,
   isButton,
   buttonText,
-  // linkText,
-  // openModal,
+  linkText,
+  openModal,
   children,
 }) => {
   return (
@@ -20,13 +20,12 @@ const Modal = ({
         ) : (
           ""
         )}
-
-        {/* <p className="modal__text">
+        <p className="modal__text">
           or{" "}
           <button className="modal__link" onClick={openModal}>
             {"link" || linkText}
           </button>
-        </p> */}
+        </p>
       </div>
     </div>
   );

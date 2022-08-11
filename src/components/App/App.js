@@ -19,6 +19,7 @@ const App = () => {
 
   return (
     <div className="page">
+      <ModalWithForm isOpen={true}/>
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
           <Route

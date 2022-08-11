@@ -70,13 +70,12 @@
 .modal__button {
     width: 360px;
     height: 64px;
-    margin: 24px auto 16px;
+    margin: 24px auto 0;
     padding: 0;
     background-color: #2F71E5;
     color: #ffff;
     border: none;
     border-radius: 100px;
-    box-shadow: 0 5px 15px 0 #1A1B22;
 }
 
 .modal__button_disabled {
@@ -84,7 +83,7 @@
     color: #B6BCBF;
 }
 
-/* .modal__text {
+.modal__text {
     margin: 16px auto 28px;
     font-family: 'Inter';
     font-weight: 400;
@@ -109,4 +108,4 @@
 .modal__link:hover {
     opacity: 0.6;
     cursor: pointer;
-} */
+}
