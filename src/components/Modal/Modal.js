@@ -7,6 +7,7 @@ const Modal = ({
   buttonText,
   linkText,
   openModal,
+  modalType,
   children,
 }) => {
   return (
@@ -20,7 +21,7 @@ const Modal = ({
         ) : (
           ""
         )}
-        <p className="modal__text">
+        <p className={`modal__text ${modalType}`}>
           or{" "}
           <button className="modal__link" onClick={openModal}>
             {"link" || linkText}
