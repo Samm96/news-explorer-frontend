@@ -3,11 +3,6 @@ import "./Modal.css";
 const Modal = ({
   isOpen,
   modalTitle,
-  isButton,
-  buttonText,
-  linkText,
-  openModal,
-  modalType,
   children,
 }) => {
   return (
@@ -16,17 +11,6 @@ const Modal = ({
         <button className="close-button"></button>
         <p className="modal__title">{"title" || modalTitle}</p>
         {children}
-        {isButton ? (
-        <button className="modal__button">{"button" || buttonText}</button>
-        ) : (
-          ""
-        )}
-        <p className={`modal__text ${modalType}`}>
-          or{" "}
-          <button className="modal__link" onClick={openModal}>
-            {"link" || linkText}
-          </button>
-        </p>
       </div>
     </div>
   );

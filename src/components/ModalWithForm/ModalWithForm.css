@@ -1,0 +1,42 @@
+.modal-form__button {
+    width: 360px;
+    height: 64px;
+    margin: 24px auto 0;
+    padding: 0;
+    background-color: #2F71E5;
+    color: #ffff;
+    border: none;
+    border-radius: 100px;
+}
+
+.modal-form__button_disabled {
+    background-color: #E6E8EB;
+    color: #B6BCBF;
+}
+
+.modal-form__text {
+    margin: 16px auto 28px;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px; 
+}
+
+.modal-form__link {
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    background-color: transparent;
+    color: #2F71E5;
+
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.modal-form__link:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}

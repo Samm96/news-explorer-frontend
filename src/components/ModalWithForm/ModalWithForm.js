@@ -7,6 +7,7 @@ const ModalWithForm = ({
   buttonText,
   linkText,
   openModal,
+  formName,
 }) => {
   return (
     <Modal
@@ -16,7 +17,54 @@ const ModalWithForm = ({
       buttonText={buttonText}
       linkText={linkText}
       openModal={openModal}
-    ></Modal>
+    >
+      <form name={formName}>
+        <div className="modal-form__input-container">
+          <label className="modal-form__input-label" for="email">
+            Email
+          </label>
+          <input
+            className="modal-form__input"
+            type="email"
+            id="signin-email"
+            placeholder="Enter email"
+          />
+
+          <label className="modal-form__input-label" for="password">
+            Password
+          </label>
+          <input
+            className="modal-form__input"
+            type="password"
+            id="password"
+            placeholder="Enter password"
+          />
+
+          {formName === "register" ? (
+            <>
+              <label className="modal-form__input-label" for="username">
+                Username
+              </label>
+              <input
+                className="modal-form__input"
+                type="text"
+                id="username"
+                placeholder="Enter your username"
+              />
+            </>
+          ) : (
+            ""
+          )}
+        </div>
+      </form>
+      <button className="modal-form__button">{"button" || buttonText}</button>
+      <p className={`modal-form__text`}>
+          or{" "}
+          <button className="modal-form__link" onClick={openModal}>
+            {"link" || linkText}
+          </button>
+        </p>
+    </Modal>
   );
 };
 
