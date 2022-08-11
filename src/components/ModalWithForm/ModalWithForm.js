@@ -13,7 +13,6 @@ const ModalWithForm = ({
     <Modal
       isOpen={isOpen}
       modalTitle={modalTitle}
-      isButton={true}
       buttonText={buttonText}
       linkText={linkText}
       openModal={openModal}
@@ -59,11 +58,11 @@ const ModalWithForm = ({
       </form>
       <button className="modal-form__button">{"button" || buttonText}</button>
       <p className={`modal-form__text`}>
-          or{" "}
-          <button className="modal-form__link" onClick={openModal}>
-            {"link" || linkText}
-          </button>
-        </p>
+        or{" "}
+        <button className="modal-form__link" onClick={openModal}>
+          {"link" || linkText}
+        </button>
+      </p>
     </Modal>
   );
 };
