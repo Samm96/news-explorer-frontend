@@ -63,13 +63,13 @@ const NewsCard = ({
               buttonType === "save" ? setIsShown("_hidden") : setIsShown("");
             }}
             onMouseLeave={() => setIsShown("_hidden")}
-            className={"save-button" || `${buttonType}-button`}
+            className={`${buttonType}-button`}
           ></button>
         ) : (
           <button
             onMouseEnter={() => setIsShown("")}
             onMouseLeave={() => setIsShown("_hidden")}
-            className={"save-button" || `${buttonType}-button`}
+            className={`${buttonType}-button`}
           ></button>
         )}
         <img
