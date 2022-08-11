@@ -10,7 +10,6 @@ import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import Modal from "../Modal/Modal";
 
 const App = () => {
   // placeholder
@@ -19,7 +18,6 @@ const App = () => {
 
   return (
     <div className="page">
-      <Modal />
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
           <Route
