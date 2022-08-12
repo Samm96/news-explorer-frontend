@@ -1,7 +1,49 @@
+.modal-form__input-container {
+    margin: 22px 0 0 36px;
+    padding: 0;
+    width: 358px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form__input-container:first-of-type {
+    margin: 22px 0 31px 36px;
+    padding: 0;
+}
+
+.modal-form__input-label {
+    margin: 0 0 9px;
+    padding: 0;
+
+    color: #2F71E5;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.modal-form__input {
+    margin: 0 0 16px;
+    padding: 0 0 9px;
+
+    color: #1A1B22;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #1A1B22;
+    opacity: 0.2;
+}
+
+.modal-form__input:last-of-type {
+    margin: 0;
+}
+
+
 .modal-form__button {
     width: 360px;
     height: 64px;
-    margin: 24px auto 0;
+    margin: 38px auto 0;
     padding: 0;
     background-color: #2F71E5;
     color: #ffff;

@@ -28,7 +28,9 @@ const ModalWithForm = ({
             id="signin-email"
             placeholder="Enter email"
           />
+        </div>
 
+        <div className="modal-form__input-container">
           <label className="modal-form__input-label" for="password">
             Password
           </label>
@@ -38,23 +40,23 @@ const ModalWithForm = ({
             id="password"
             placeholder="Enter password"
           />
-
-          {formName === "register" ? (
-            <>
-              <label className="modal-form__input-label" for="username">
-                Username
-              </label>
-              <input
-                className="modal-form__input"
-                type="text"
-                id="username"
-                placeholder="Enter your username"
-              />
-            </>
-          ) : (
-            ""
-          )}
         </div>
+
+        {formName === "register" ? (
+          <div className="modal-form__input-container">
+            <label className="modal-form__input-label" for="username">
+              Username
+            </label>
+            <input
+              className="modal-form__input"
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+            />
+          </div>
+        ) : (
+          ""
+        )}
       </form>
       <button className="modal-form__button">{"button" || buttonText}</button>
       <p className={`modal-form__text`}>
