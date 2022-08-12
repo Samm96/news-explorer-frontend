@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -29,6 +29,18 @@ const App = () => {
     setIsSuccessOpen(false);
     setIsLoginOpen(false);
   };
+
+  useEffect(() => {
+    const closeByEsc = (e) => {
+      if (e.key === "Escape") {
+        closeAllPopups();
+      }
+    }
+
+    document.addEventListener("keydown", closeByEsc);
+
+    return () => document.removeEventListener("keydown", closeByEsc);
+  }, []);
 
   return (
     <div className="page">
