@@ -12,6 +12,11 @@
     padding: 0;
 }
 
+.modal-form__input-container_type_username {
+    margin: 31px 0 0 36px;
+    padding: 0;
+}
+
 .modal-form__input-label {
     margin: 0 0 9px;
     padding: 0;

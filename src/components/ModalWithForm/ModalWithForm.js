@@ -43,7 +43,7 @@ const ModalWithForm = ({
         </div>
 
         {formName === "register" ? (
-          <div className="modal-form__input-container">
+          <div className="modal-form__input-container modal-form__input-container_type_username">
             <label className="modal-form__input-label" for="username">
               Username
             </label>
