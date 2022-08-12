@@ -30,16 +30,27 @@ const App = () => {
     setIsLoginOpen(false);
   };
 
+  /** closes modal using esc and if clicked outside of modal */
   useEffect(() => {
     const closeByEsc = (e) => {
       if (e.key === "Escape") {
         closeAllPopups();
       }
-    }
+    };
 
+    const clickClose = (e) => {
+      if (!e.target.closest("modal")) {
+        closeAllPopups();
+      }
+    };
+
+    document.addEventListener("mousedown", clickClose);
     document.addEventListener("keydown", closeByEsc);
 
-    return () => document.removeEventListener("keydown", closeByEsc);
+    return () => {
+      document.removeEventListener("keydown", closeByEsc);
+      document.removeEventListener("mousedown", clickClose);
+    };
   }, []);
 
   return (
