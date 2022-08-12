@@ -10,7 +10,8 @@ import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import Register from "../Register/Register";
+import Login from "../Login/Login";
 
 const App = () => {
   // placeholder
@@ -49,6 +50,8 @@ const App = () => {
             }
           />
         </Routes>
+        <Register />
+        <Login />
       </CurrentUserContext.Provider>
     </div>
   );
