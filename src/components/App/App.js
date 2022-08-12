@@ -16,7 +16,7 @@ import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
   /** Modals */
@@ -36,6 +36,7 @@ const App = () => {
                 <SearchForm>
                   <Header
                     isLoggedIn={isLoggedIn}
+                    openSigninModal={() => setIsRegisterOpen(true)}
                     logoColor={"white"}
                     textColor={""}
                   />
@@ -52,6 +53,7 @@ const App = () => {
               <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <Header
                   isLoggedIn={isLoggedIn}
+                  openSigninModal={() => setIsRegisterOpen(true)}
                   logoColor={"black"}
                   textColor={"black"}
                 />

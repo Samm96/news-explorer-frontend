@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import blackIcon from "../../images/Icons/button-icon.svg";
 import whiteIcon from "../../images/Icons/button-icon-white.svg";
 
-const Navigation = ({ isLoggedIn, userName, textColor }) => {
+const Navigation = ({ isLoggedIn, userName, textColor, openSigninModal }) => {
   const placeholderUser = "Samantha";
 
   const whiteText = {
@@ -87,6 +87,7 @@ const Navigation = ({ isLoggedIn, userName, textColor }) => {
                   ? `${whiteText.signInButton} ${blackText.signInButton}`
                   : `${whiteText.signInButton}`
               }
+              onClick={openSigninModal}
             >
               Sign in
             </button>

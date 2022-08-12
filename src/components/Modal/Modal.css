@@ -1,11 +1,4 @@
 .modal {
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity ease-out 0.5s, visibility 0s ease-out 0.5s;
-}
-
-.modal_open {
     position: fixed;
     left: 0;
     right: 0;
@@ -13,13 +6,19 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.8);
 
-    z-index: 3;
+    z-index: 999;
+    pointer-events: none;
 
     justify-content: center;
     align-items: center;
 
     display: flex;
-    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity ease-out 0.5s, visibility 0s ease-out 0.5s;
+}
+
+.modal_open {
     opacity: 1;
     height: auto;
     visibility: visible;
