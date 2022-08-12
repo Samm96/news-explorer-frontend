@@ -10,8 +10,9 @@ import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import Register from "../Register/Register";
-import Login from "../Login/Login";
+import RegisterModal from "../Register-Modal/Register-Modal";
+import LoginModal from "../Login-Modal/Login-Modal";
+import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 
 const App = () => {
   // placeholder
@@ -50,8 +51,9 @@ const App = () => {
             }
           />
         </Routes>
-        <Register />
-        <Login />
+        <RegisterModal isOpen={false}/>
+        <LoginModal isOpen={false}/>
+        <RegisterSuccess isOpen={false} />
       </CurrentUserContext.Provider>
     </div>
   );

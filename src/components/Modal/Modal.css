@@ -66,3 +66,30 @@
     font-size: 24px;
     line-height: 28px;
 }
+
+.modal__title_type_success {
+    margin: 43px 0 0 36px;
+}
+
+.modal__link {
+    color: #2F71E5;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+
+    width: 228px;
+    height: 18px;
+    margin: 14px 0 51px 36px;
+    padding: 0;
+
+    text-align: start;
+
+    border: none;
+    background-color: transparent;
+}
+
+.modal__link:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
