@@ -51,9 +51,6 @@ const NewsCard = ({
     <div className="news-card">
       <div className="news-card__container">
         <span className={`news-card__warning${isShown}`}>{message}</span>
-        <span className="news-card__keyword news-card__keyword_hidden">
-          {placeholderCard.key}
-        </span>
         {isLoggedIn ? (
           <button
             onClick={
@@ -72,6 +69,15 @@ const NewsCard = ({
             className={`${buttonType}-button`}
           ></button>
         )}
+        <span
+          className={
+            buttonType === "delete"
+              ? "news-card__keyword"
+              : "news-card__keyword news-card__keyword_hidden"
+          }
+        >
+          {placeholderCard.key}
+        </span>
         <img
           className="news-card__image"
           src={placeholderCard.image}

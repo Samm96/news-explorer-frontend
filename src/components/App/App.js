@@ -10,6 +10,7 @@ import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const App = () => {
   // placeholder
