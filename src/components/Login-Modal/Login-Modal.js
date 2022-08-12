@@ -1,6 +1,6 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const Login = ({ isOpen, openModal }) => {
+const Login = ({ isOpen, openModal, onClose }) => {
   return (
     <ModalWithForm
       isOpen={isOpen}
@@ -9,6 +9,7 @@ const Login = ({ isOpen, openModal }) => {
       linkText="Sign up"
       openModal={openModal}
       formName="login"
+      onClose={onClose}
     />
   );
 };

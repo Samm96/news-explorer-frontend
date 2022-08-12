@@ -24,6 +24,12 @@ const App = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
 
+  const closeAllPopups = () => {
+    setIsRegisterOpen(false);
+    setIsSuccessOpen(false);
+    setIsLoginOpen(false);
+  };
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -63,10 +69,30 @@ const App = () => {
           />
         </Routes>
 
-        <RegisterModal isOpen={isRegisterOpen} />
-        <LoginModal isOpen={isLoginOpen} />
-        <RegisterSuccess isOpen={isSuccessOpen} />
-        
+        <RegisterModal
+          isOpen={isRegisterOpen}
+          openModal={() => {
+            setIsRegisterOpen(false);
+            setIsLoginOpen(true);
+          }}
+          onClose={closeAllPopups}
+        />
+        <LoginModal
+          isOpen={isLoginOpen}
+          openModal={() => {
+            setIsLoginOpen(false);
+            setIsRegisterOpen(true);
+          }}
+          onClose={closeAllPopups}
+        />
+        <RegisterSuccess
+          isOpen={isSuccessOpen}
+          openModal={() => {
+            setIsSuccessOpen(false);
+            setIsLoginOpen(true);
+          }}
+          onClose={closeAllPopups}
+        />
       </CurrentUserContext.Provider>
     </div>
   );

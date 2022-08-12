@@ -8,6 +8,7 @@ const ModalWithForm = ({
   linkText,
   openModal,
   formName,
+  onClose,
 }) => {
   return (
     <Modal
@@ -16,6 +17,7 @@ const ModalWithForm = ({
       buttonText={buttonText}
       linkText={linkText}
       openModal={openModal}
+      onClose={onClose}
     >
       <form name={formName}>
         <div className="modal-form__input-container">

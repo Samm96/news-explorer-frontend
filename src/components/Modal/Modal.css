@@ -19,6 +19,7 @@
 }
 
 .modal_open {
+    pointer-events: all;
     opacity: 1;
     height: auto;
     visibility: visible;

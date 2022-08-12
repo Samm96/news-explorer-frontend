@@ -1,10 +1,10 @@
 import "./Modal.css";
 
-const Modal = ({ isOpen, modalTitle, children, isSuccess }) => {
+const Modal = ({ isOpen, modalTitle, children, isSuccess, onClose }) => {
   return (
     <div className={`modal ${isOpen && "modal_open"}`}>
       <div className="modal__container">
-        <button className="close-button"></button>
+        <button className="close-button" onClick={onClose}></button>
         <p
           className={
             isSuccess

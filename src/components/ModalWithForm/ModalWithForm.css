@@ -60,6 +60,11 @@
     border-radius: 100px;
 }
 
+.modal-form__button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
 .modal-form__button_disabled {
     background-color: #E6E8EB;
     color: #B6BCBF;
