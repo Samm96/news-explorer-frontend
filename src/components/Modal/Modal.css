@@ -4,7 +4,6 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
 
     z-index: 999;
     pointer-events: none;
@@ -16,6 +15,10 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity ease-out 0.5s, visibility 0s ease-out 0.5s;
+}
+
+.modal__overlay {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal_open {

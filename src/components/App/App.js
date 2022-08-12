@@ -39,13 +39,13 @@ const App = () => {
     };
 
     const clickClose = (e) => {
-      if (!e.target.closest("modal")) {
+      if (e.target.className.includes('modal__overlay')) {
         closeAllPopups();
       }
     };
 
-    document.addEventListener("mousedown", clickClose);
     document.addEventListener("keydown", closeByEsc);
+    document.addEventListener("mousedown", clickClose);
 
     return () => {
       document.removeEventListener("keydown", closeByEsc);
