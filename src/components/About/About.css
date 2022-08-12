@@ -6,7 +6,8 @@
 
 .about__container {
     margin: 0 auto 0;
-    width: 1220px;
+    max-width: 1220px;
+    width: 100%;
     display: grid;
     grid-template-columns: 464px 1fr;
     grid-gap: 56px;
@@ -22,7 +23,8 @@
 }
 
 .about__text-container {
-    width: 600px;
+    max-width: 600px;
+    width: 100%;
     grid-column: 2;
 }
 
