@@ -44,6 +44,10 @@
     margin: 0;
 }
 
+.modal-form__input:focus {
+    outline: none;
+}
+
 
 .modal-form__button {
     width: 360px;
