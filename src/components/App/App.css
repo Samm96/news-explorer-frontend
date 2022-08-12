@@ -1,7 +1,6 @@
 .page {
   font-family: "Roboto-Slab", "Roboto", "Inter", serif;
-  max-width: 1440px;
-  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   margin: 0 auto;
   color: #1a1b22;
