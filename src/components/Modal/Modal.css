@@ -1,4 +1,5 @@
 .modal {
+    display: none;
     opacity: 0;
     visibility: hidden;
     transition: opacity ease-out 0.5s, visibility 0s ease-out 0.5s;

@@ -19,38 +19,35 @@ const ModalWithForm = ({
     >
       <form name={formName}>
         <div className="modal-form__input-container">
-          <label className="modal-form__input-label" for="email">
+          <label className="modal-form__input-label" aria-label="email">
             Email
           </label>
           <input
             className="modal-form__input"
             type="email"
-            id="signin-email"
             placeholder="Enter email"
           />
         </div>
 
         <div className="modal-form__input-container">
-          <label className="modal-form__input-label" for="password">
+          <label className="modal-form__input-label" aria-label="password">
             Password
           </label>
           <input
             className="modal-form__input"
             type="password"
-            id="password"
             placeholder="Enter password"
           />
         </div>
 
         {formName === "register" ? (
           <div className="modal-form__input-container modal-form__input-container_type_username">
-            <label className="modal-form__input-label" for="username">
+            <label className="modal-form__input-label" aria-label="username">
               Username
             </label>
             <input
               className="modal-form__input"
               type="text"
-              id="username"
               placeholder="Enter your username"
             />
           </div>
@@ -58,11 +55,11 @@ const ModalWithForm = ({
           ""
         )}
       </form>
-      <button className="modal-form__button">{"button" || buttonText}</button>
+      <button className="modal-form__button">{buttonText}</button>
       <p className={`modal-form__text`}>
         or{" "}
         <button className="modal-form__link" onClick={openModal}>
-          {"link" || linkText}
+          {linkText}
         </button>
       </p>
     </Modal>

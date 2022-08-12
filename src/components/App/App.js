@@ -19,6 +19,11 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
 
+  /** Modals */
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -45,15 +50,21 @@ const App = () => {
             path="/saved-news"
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <Header isLoggedIn={isLoggedIn} logoColor={"black"} textColor={"black"} />
+                <Header
+                  isLoggedIn={isLoggedIn}
+                  logoColor={"black"}
+                  textColor={"black"}
+                />
                 <SavedNews />
               </ProtectedRoute>
             }
           />
         </Routes>
-        <RegisterModal isOpen={false}/>
-        <LoginModal isOpen={false}/>
-        <RegisterSuccess isOpen={false} />
+
+        <RegisterModal isOpen={isRegisterOpen} />
+        <LoginModal isOpen={isLoginOpen} />
+        <RegisterSuccess isOpen={isSuccessOpen} />
+        
       </CurrentUserContext.Provider>
     </div>
   );
