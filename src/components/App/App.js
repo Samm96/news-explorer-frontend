@@ -13,6 +13,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import RegisterModal from "../Register-Modal/Register-Modal";
 import LoginModal from "../Login-Modal/Login-Modal";
 import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
+import NavigationModal from "../NavigationModal/NavigationModal";
 
 const App = () => {
   // placeholder
@@ -23,11 +24,13 @@ const App = () => {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const closeAllPopups = () => {
     setIsRegisterOpen(false);
     setIsSuccessOpen(false);
     setIsLoginOpen(false);
+    setIsMobileNavOpen(false);
   };
 
   /** closes modal using esc and if clicked outside of modal */
@@ -39,7 +42,7 @@ const App = () => {
     };
 
     const clickClose = (e) => {
-      if (e.target.className.includes('modal__overlay')) {
+      if (e.target.className.includes("modal__overlay")) {
         closeAllPopups();
       }
     };
@@ -56,6 +59,7 @@ const App = () => {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
+        <NavigationModal isOpen={isMobileNavOpen} onClose={closeAllPopups} />
         <Routes>
           <Route
             exact
@@ -65,9 +69,10 @@ const App = () => {
                 <SearchForm>
                   <Header
                     isLoggedIn={isLoggedIn}
-                    openSigninModal={() => setIsRegisterOpen(true)}
                     logoColor={"white"}
                     textColor={""}
+                    openSigninModal={() => setIsRegisterOpen(true)}
+                    openMobileModal={() => setIsMobileNavOpen(true)}
                   />
                 </SearchForm>
                 <About />
@@ -82,9 +87,10 @@ const App = () => {
               <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <Header
                   isLoggedIn={isLoggedIn}
-                  openSigninModal={() => setIsRegisterOpen(true)}
                   logoColor={"black"}
                   textColor={"black"}
+                  openSigninModal={() => setIsRegisterOpen(true)}
+                  openMobileModal={() => setIsMobileNavOpen(true)}
                 />
                 <SavedNews />
               </ProtectedRoute>

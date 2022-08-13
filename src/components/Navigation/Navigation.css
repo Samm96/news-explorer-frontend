@@ -50,7 +50,7 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: #B6BCBF;
+  color: #b6bcbf;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -87,7 +87,7 @@
 
 /* when background is white */
 .navigation__button_type_page {
-  border-color: #D1D2D6;
+  border-color: #d1d2d6;
   color: #1a1b22;
 }
 
@@ -118,6 +118,22 @@
   opacity: 0.6;
 }
 
+.navigation__menu {
+  display: none;
+  background-image: url("../../images/Menu-Button/menu-white.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: center;
+
+  margin: 0;
+  padding: 0;
+
+  width: 24px;
+  height: 24px;
+  border: none;
+}
+
 @media screen and (max-width: 768px) {
   .navigation {
     height: 40px;
@@ -144,7 +160,7 @@
     color: #ffff;
     font-weight: 500;
     font-size: 16px;
-  
+
     padding: 0 9px 22px;
   }
 
@@ -179,6 +195,20 @@
   }
 }
 
-/* @media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {
+  .navigation__link {
+    display: none;
+  }
 
-} */
+  .navigation__button {
+    display: none;
+  }
+
+  .navigation__button-img {
+    display: none;
+  }
+
+  .navigation__menu {
+    display: block;
+  }
+}
