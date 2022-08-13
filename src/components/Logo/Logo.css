@@ -19,3 +19,16 @@
 .logo__text_black {
     color: #1A1B22;
 }
+
+@media screen and (max-width: 768px) {
+   .logo__text {
+        margin: 8px 0 0;
+   } 
+}
+
+@media screen and (max-width: 480px) {
+    .logo__text {
+        margin: 0;
+        font-size: 16px;
+    }
+}
