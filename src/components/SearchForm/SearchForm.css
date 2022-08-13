@@ -91,7 +91,7 @@
 
 @media screen and (max-width: 768px) {
     .search-form {
-        width: 768px;
+        max-width: 768px;
         height: 400px;
     }
 

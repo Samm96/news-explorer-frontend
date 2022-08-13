@@ -85,7 +85,7 @@
 
     .about__container {
         margin: 0 16px 0;
-        max-width: 320px;
+        max-width: 480px;
         width: 100%;
         grid-template-columns: none;
         grid-template-rows: 272px 1fr;
