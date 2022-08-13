@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom";
 import blackIcon from "../../images/Icons/button-icon.svg";
 import whiteIcon from "../../images/Icons/button-icon-white.svg";
 
-const Navigation = ({ isLoggedIn, userName, textColor, openSigninModal }) => {
+import whiteMenu from "../../images/Menu-Button/menu-white.svg";
+import blackMenu from "../../images/Menu-Button/menu-black.svg";
+
+const Navigation = ({ isLoggedIn, userName, textColor, openSigninModal, openMobileModal }) => {
   const placeholderUser = "Samantha";
 
   const whiteText = {
@@ -64,6 +67,15 @@ const Navigation = ({ isLoggedIn, userName, textColor, openSigninModal }) => {
               />
             </button>
           </li>
+          <li>
+            <button className="navigation__menu">
+              <img
+                src={textColor === "black" ? blackMenu : whiteMenu}
+                alt="menu"
+                onClick={openMobileModal}
+              />
+            </button>
+          </li>
         </ul>
       ) : (
         <ul className="navigation__container">
@@ -90,6 +102,15 @@ const Navigation = ({ isLoggedIn, userName, textColor, openSigninModal }) => {
               onClick={openSigninModal}
             >
               Sign in
+            </button>
+          </li>
+          <li>
+            <button className="navigation__menu">
+              <img
+                src={textColor === "black" ? blackMenu : whiteMenu}
+                alt="menu"
+                onClick={openMobileModal}
+              />
             </button>
           </li>
         </ul>
