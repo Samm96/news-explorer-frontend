@@ -59,8 +59,61 @@
     padding: 0;
     width: 24px;
     height: 24px;
+
+    border: none;
+    background-color: transparent;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.footer__link_type_fb-mobile {
+    background-image: url('../../images/Icons/fb-icon_tablet.svg');
+}
+
+.footer__link:first-of-type {
+    background-image: url('../../images/Icons/github-icon_svg.svg');
+}
+
+.footer__link:last-of-type {
+    background-image: url('../../images/Icons/fb-icon_svg.svg');
 }
 
 .footer__link:hover {
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    .footer {
+        max-width: 688px;
+        width: 100%;
+        padding: 24px auto 18px;
+    }
+
+    .footer__container {
+        max-width: 360px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 88px 176px 24px 72px;
+    }
+
+    .footer__home {
+        justify-self: start;
+    }
+    
+    .footer__text {
+        justify-self: start;
+    }
+    
+    .footer__link-container {
+        display: flex;
+        justify-content: space-between;
+        grid-column: 4;
+    }
+}
+
+
+
+/* @media screen and (max-width: 480px) {
+
+} */

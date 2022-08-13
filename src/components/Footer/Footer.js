@@ -1,7 +1,5 @@
 import "./Footer.css";
 import { NavLink } from "react-router-dom";
-import githubIcon from "../../images/Icons/github-icon_svg.svg";
-import facebookIcon from "../../images/Icons/fb-icon_svg.svg";
 
 const Footer = () => {
   return (
@@ -15,16 +13,8 @@ const Footer = () => {
         </NavLink>
         <p className="footer__text">Practicum by Yandex</p>
         <div className="footer__link-container">
-          <a className="footer__link" href="*">
-            <img className="footer__icon" src={githubIcon} alt="GitHub Icon" />
-          </a>
-          <a className="footer__link" href="*">
-            <img
-              className="footer__icon"
-              src={facebookIcon}
-              alt="Facebook Icon"
-            />
-          </a>
+          <button className="footer__link" alt="GitHub Icon"></button>
+          <button className="footer__link" alt="Facebook Icon"></button>
         </div>
       </div>
     </div>
