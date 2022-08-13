@@ -1,0 +1,33 @@
+@media screen and (max-width: 480px) {
+    .nav-modal {
+        max-width: 480px;
+        height: 230px;
+    
+        background-color: #1A1B22;
+    }
+
+    .nav-modal__container {
+        max-height: 40px;
+        height: 100%;
+        padding: 16px 0 0 16px;
+
+        border-bottom: 3px solid rgba(196, 196, 196, 0.1);
+
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nav-modal__close-button {
+        background-image: url('../../images/Icons/close-png.png');
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        background-position: center;
+
+        border: none;
+        width: 24px;
+        height: 24px;
+
+        margin: 0 21px 0 0;
+    }
+}
