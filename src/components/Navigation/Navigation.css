@@ -134,6 +134,10 @@
     grid-template-columns: 64px 160px 1fr;
   }
 
+  .navigation__link {
+    margin: 8px 0;
+  }
+
   .navigation__home {
     width: 60px;
     margin: 0 0 0 17px;
@@ -141,7 +145,7 @@
     font-weight: 500;
     font-size: 16px;
   
-    padding: 0 9px 18px;
+    padding: 0 9px 22px;
   }
 
   .navigation__home_type_page {
@@ -172,11 +176,9 @@
   .navigation__button-img {
     width: 17px;
     height: 16px;
-    grid-column: 2;
-    justify-self: center;
   }
 }
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
 
-}
+} */

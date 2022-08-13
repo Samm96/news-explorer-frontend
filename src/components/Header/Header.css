@@ -30,5 +30,11 @@
     .header {
         max-height: 24px;
         height: 100%;
+        padding: 16px 0 16px;
+    }
+
+    .header__container {
+        max-width: 288px;
+        width: 100%;
     }
 }
