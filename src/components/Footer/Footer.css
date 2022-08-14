@@ -67,10 +67,6 @@
     background-position: center;
 }
 
-.footer__link_type_fb-mobile {
-    background-image: url('../../images/Icons/fb-icon_tablet.svg');
-}
-
 .footer__link:first-of-type {
     background-image: url('../../images/Icons/github-icon_svg.svg');
 }
@@ -109,6 +105,10 @@
         display: flex;
         justify-content: space-between;
         grid-column: 4;
+    }
+
+    .footer__link:last-of-type {
+        background-image: url('../../images/Icons/fb-icon_tablet.svg');
     }
 }
 
