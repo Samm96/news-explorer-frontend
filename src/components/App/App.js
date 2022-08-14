@@ -64,7 +64,6 @@ const App = () => {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-      <RegisterSuccess isOpen={true}/>
         <NavigationModal isOpen={isMobileNavOpen} onClose={closeAllPopups} />
         <Routes>
           <Route

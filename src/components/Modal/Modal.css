@@ -130,6 +130,8 @@
     
         width: 226px;
         height: 20px;
-        margin: 16px 0 51px 36px;
+        margin: 16px auto;
+
+        text-align: center;
     }
 }
