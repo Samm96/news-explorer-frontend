@@ -187,6 +187,16 @@
         max-width: 120px;
     }
 
+    .save-button {
+        right: 8px;
+        top: 8px;
+    }
+    
+    .delete-button {
+        right: 8px;
+        top: 8px;
+    }
+
     .news-card__image {
         width: 224px;
         height: 150px;
