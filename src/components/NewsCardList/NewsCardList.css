@@ -9,3 +9,14 @@
     grid-gap: 16px;
     justify-content: center;
 }
+
+@media screen and (max-width: 768px) {
+    .card-list {
+        width: 688px;
+    }
+
+    .card-list__container {
+        grid-template-columns: repeat(3, 224px);
+        grid-gap: 8px;
+    }
+}
