@@ -51,8 +51,7 @@
     }
 
     .about__container {
-        margin: 0 0 0 40px;
-        max-width: 768px;
+        max-width: 688px;
         grid-template-columns: 232px 1fr;
         grid-gap: 32px;
     }
@@ -85,8 +84,8 @@
     }
 
     .about__container {
-        margin: 0 16px 0;
-        max-width: 480px;
+        margin: 0 auto 0;
+        max-width: 288px;
         width: 100%;
         grid-template-columns: none;
         grid-template-rows: 272px 1fr;

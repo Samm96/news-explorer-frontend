@@ -132,7 +132,7 @@
 
 @media screen and (max-width: 480px) {
     .search-form {
-        width: 320px;
+        max-width: 480px;
         height: 536px;
     }
 

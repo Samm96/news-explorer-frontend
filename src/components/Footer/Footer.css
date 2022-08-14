@@ -114,6 +114,49 @@
 
 
 
-/* @media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {
+    .footer {
+        max-width: 288px;
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0 auto 0;
+        padding: 0;
+    }
 
-} */
+    .footer__copyright {
+        margin: 40px 0 0;
+        padding: 0 0 22px 0;
+    }
+    
+    .footer__container {
+        display: grid;
+        grid-template-columns: 200px 72px;
+        grid-template-rows: repeat(2, 1fr);
+    }
+    
+    .footer__home {
+        line-height: 48px;
+        justify-self: start;
+        align-content: flex-start;
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .footer__text {
+        line-height: 48px;
+        justify-self: start;
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .footer__link-container {
+        display: flex;
+        justify-content: space-between;
+        grid-column: 2;
+        align-items: center;
+    }
+    
+    .footer__link:last-of-type {
+        background-image: url('../../images/Icons/fb-icon_svg.svg');
+    }
+}
