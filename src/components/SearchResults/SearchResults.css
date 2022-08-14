@@ -33,3 +33,28 @@
     cursor: pointer;
     background-color: #E8E8E8;
 }
+
+@media screen and (max-width: 768px) {
+    .results {
+        height: 654px;
+    }
+
+    .results__container {
+        max-width: 768px;
+    }
+
+    .results__title {
+        margin: 0 0 32px;
+        padding: 40px 0 0;
+
+        font-size: 30px;
+        line-height: 34px;
+    }
+
+    .results__button {
+        width: 240px;
+        height: 56px;
+    
+        margin: 32px 39%;
+    }
+}
