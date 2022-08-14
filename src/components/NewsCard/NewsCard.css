@@ -146,7 +146,10 @@
     padding: 0;
     width: 352px;
     height: 110px;
+
     text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 
     font-family: 'Roboto';
     font-weight: 400;
@@ -158,9 +161,61 @@
     margin: 18px 0 0;
     padding: 0;
 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
     font-family: 'Roboto Slab';
     color: #B6BCBF;
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .news-card {
+        max-width: 224px;
+    }
+
+    .news-card__warning {
+        max-width: 120px;
+    }
+
+    .news-card__keyword {
+        margin: 0;
+        padding: 8px 20px;
+        max-width: 120px;
+    }
+
+    .news-card__image {
+        width: 224px;
+        height: 150px;
+    }
+    
+    .news-card__text-container {
+        margin: 16px 0 0;
+        padding: 0 16px 16px 15px;
+    }
+    
+    .news-card__title {
+        margin: 0 0 10px 0;
+        font-size: 22px;
+        line-height: 24px;
+    }
+    
+    .news-card__text {
+        margin: 0;
+        padding: 0;
+        width: 192px;
+        height: 88px;
+    }
+    
+    .news-card__source {
+        margin: 12px 0 0;
+        padding: 0;
+    }
+    
+    
+
+
 }
