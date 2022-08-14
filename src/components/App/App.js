@@ -14,6 +14,8 @@ import RegisterModal from "../Register-Modal/Register-Modal";
 import LoginModal from "../Login-Modal/Login-Modal";
 import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
+import Modal from "../Modal/Modal";
+import RegisterSuccessModal from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 
 const App = () => {
   // placeholder
@@ -62,6 +64,7 @@ const App = () => {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
+      <LoginModal isOpen={true}/>
         <NavigationModal isOpen={isMobileNavOpen} onClose={closeAllPopups} />
         <Routes>
           <Route
