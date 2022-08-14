@@ -2,7 +2,7 @@ import "./NavigationModal.css";
 import Logo from "../Logo/Logo";
 import { NavLink } from "react-router-dom";
 
-const NavigationModal = ({ isOpen, isLoggedIn, onClose }) => {
+const NavigationModal = ({ isOpen, onClose, openLoginModal }) => {
   return (
     <div className={`nav-modal nav-modal__overlay ${isOpen && "nav-modal_open"}`}>
       <div className="nav-modal__container">
@@ -14,8 +14,8 @@ const NavigationModal = ({ isOpen, isLoggedIn, onClose }) => {
           <NavLink to="/" className="nav-modal__link">
             Home
           </NavLink>
-          <button className="nav-modal__button">
-            {isLoggedIn ? "Sign up" : "Sign in"}
+          <button className="nav-modal__button" onClick={openLoginModal}>
+            Sign in
           </button>
         </div>
       </div>

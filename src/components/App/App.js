@@ -64,7 +64,11 @@ const App = () => {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-        <NavigationModal isOpen={isMobileNavOpen} onClose={closeAllPopups} />
+        <NavigationModal
+          isOpen={isMobileNavOpen}
+          openLoginModal={() => setIsLoginOpen(true)}
+          onClose={closeAllPopups}
+        />
         <Routes>
           <Route
             exact
