@@ -14,8 +14,6 @@ import RegisterModal from "../Register-Modal/Register-Modal";
 import LoginModal from "../Login-Modal/Login-Modal";
 import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
-import Modal from "../Modal/Modal";
-import RegisterSuccessModal from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 
 const App = () => {
   // placeholder
@@ -66,6 +64,7 @@ const App = () => {
       <CurrentUserContext.Provider value={currentUser}>
         <NavigationModal
           isOpen={isMobileNavOpen}
+          isLoggedIn={isLoggedIn}
           openLoginModal={() => setIsLoginOpen(true)}
           onClose={closeAllPopups}
         />
