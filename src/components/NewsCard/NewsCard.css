@@ -186,6 +186,8 @@
         margin: 0;
         padding: 8px 20px;
         max-width: 120px;
+        top: 8px;
+        left: 8px;
     }
 
     .save-button {
