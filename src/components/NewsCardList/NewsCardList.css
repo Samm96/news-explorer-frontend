@@ -3,7 +3,6 @@
 }
 
 .card-list__container {
-    margin: 0;
     display: grid;
     grid-template-columns: repeat(3, minmax(244px, 400px));
     grid-gap: 16px;
@@ -11,12 +10,14 @@
 
 @media screen and (max-width: 768px) {
     .card-list {
-        width: 688px;
+        max-width: 688px;
         margin: 0;
     }
 
     .card-list__container {
-        grid-template-columns: repeat(3, 224px);
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns: auto minmax(0, 1fr);
         grid-gap: 8px;
     }
 }

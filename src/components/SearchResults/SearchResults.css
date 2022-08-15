@@ -38,12 +38,13 @@
 @media screen and (max-width: 768px) {
     .results {
         max-width: 768px;
-        height: 654px;
+        height: fit-content;
     }
 
     .results__container {
         max-width: 688px;
         width: 100%;
+        padding: 0 0 40px;
     }
 
     .results__title {
