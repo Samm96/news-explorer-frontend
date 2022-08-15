@@ -1,18 +1,18 @@
 .card-list {
-    margin: 0 auto 0;
-    width: 1232px;
+    margin: 0;
 }
 
 .card-list__container {
+    margin: 0;
     display: grid;
-    grid-template-columns: repeat(3, 400px);
+    grid-template-columns: repeat(3, minmax(244px, 400px));
     grid-gap: 16px;
-    justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
     .card-list {
         width: 688px;
+        margin: 0;
     }
 
     .card-list__container {
