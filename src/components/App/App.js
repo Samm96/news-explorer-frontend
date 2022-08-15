@@ -17,7 +17,7 @@ import NavigationModal from "../NavigationModal/NavigationModal";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
 
   /** Modals */
