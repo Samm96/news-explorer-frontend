@@ -179,7 +179,10 @@
     }
 
     .news-card__warning {
-        max-width: 120px;
+        max-width: 90px;
+        top: 8px;
+        right: 56px;
+        z-index: 3;
     }
 
     .news-card__keyword {
