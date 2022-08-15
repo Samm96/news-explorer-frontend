@@ -1,11 +1,36 @@
 .card-list {
-    margin: 0 auto 0;
-    width: 1232px;
+    margin: 0;
 }
 
 .card-list__container {
     display: grid;
-    grid-template-columns: repeat(3, 400px);
+    grid-template-columns: repeat(3, minmax(244px, 400px));
     grid-gap: 16px;
-    justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .card-list {
+        max-width: 688px;
+        margin: 0;
+    }
+
+    .card-list__container {
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-gap: 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card-list {
+        width: 288px;
+    }
+
+    .card-list__container {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+        grid-gap: 10px;
+    }
 }
