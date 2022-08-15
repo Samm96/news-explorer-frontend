@@ -237,9 +237,10 @@
     
     /** Disallows users to save articles if not signed in. Warning message **/
     .news-card__warning {
-        margin: 0;
         padding: 13px 35px;
         max-width: 182px;
+        top: 8px;
+        right: 57px;
     }
 
     /** Info card that displays article's keyword **/
@@ -247,6 +248,7 @@
         margin: 0;
         padding: 8px 22px;
         max-width: 182px;
+        top: 8px;
     }
     
     .news-card__image {
