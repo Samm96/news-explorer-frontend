@@ -147,7 +147,8 @@
   }
 
   .navigation__container_type_signedin {
-    grid-template-columns: 64px 160px 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: 688px;
   }
 
   .navigation__link {
@@ -182,7 +183,7 @@
 
   .navigation__button {
     max-height: 40px;
-    width: 152px;
+    max-width: 152px;
     margin: 0;
     padding: 8px 12px;
 
@@ -206,6 +207,14 @@
 
   .navigation__button-img {
     display: none;
+  }
+
+  .navigation__container {
+    display: flex;
+  }
+
+  .navigation__container_type_signedin {
+    grid-template-columns: none;
   }
 
   .navigation__menu {
