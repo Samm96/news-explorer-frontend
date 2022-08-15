@@ -225,3 +225,54 @@
         padding: 0;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .news-card {
+        max-width: 288px;
+    }
+    
+    .news-card__container {
+        width: 288px;
+    }
+    
+    /** Disallows users to save articles if not signed in. Warning message **/
+    .news-card__warning {
+        margin: 0;
+        padding: 13px 35px;
+        max-width: 182px;
+    }
+
+    /** Info card that displays article's keyword **/
+    .news-card__keyword {
+        margin: 0;
+        padding: 8px 22px;
+        max-width: 182px;
+    }
+    
+    .news-card__image {
+        width: 288px;
+        height: 196px;
+    }
+    
+    .news-card__text-container {
+        margin: 16px 0 0;
+        padding: 0 16px 16px;
+    }
+    
+    .news-card__date {
+        margin: 0 0 10px 0;
+    }
+    
+    .news-card__title {
+        margin: 0 0 14px 0;
+    }
+    
+    .news-card__text {
+        width: 256px;
+        height: 88px;
+    }
+    
+    .news-card__source {
+        margin: 8px 0 0;
+    } 
+}
