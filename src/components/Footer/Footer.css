@@ -18,7 +18,6 @@
 }
 
 .footer__container {
-    max-width: 416px;
     display: grid;
     grid-template-columns: 117px 192px 40px 72px;
 }
