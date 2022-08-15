@@ -24,9 +24,10 @@
     height: 64px;
     border: none;
     border-radius: 50px;
-
-    margin: 64px 0 0;
     padding: 0;
+
+    display: block;
+    margin: 64px auto 0;
 }
 
 .results__button:hover {
