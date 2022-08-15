@@ -89,8 +89,7 @@
     
     .saved-news__cards {
         max-width: 688px;
-/** this needs fixing **/
-        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         grid-gap: 8px 8px;
     }
 }
