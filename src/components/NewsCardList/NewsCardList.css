@@ -20,3 +20,16 @@
         grid-gap: 8px;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .card-list {
+        width: 288px;
+    }
+
+    .card-list__container {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+        grid-gap: 10px;
+    }
+}
