@@ -78,7 +78,6 @@ const App = () => {
                     openMobileModal={() => setIsMobileNavOpen(true)}
                   />
                 </SearchForm>
-                <SearchResults />
                 <About />
                 <Footer />
               </>
