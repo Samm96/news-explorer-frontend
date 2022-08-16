@@ -26,6 +26,10 @@ const App = () => {
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
+  const handleNewsSearch = () => {
+    
+  }
+
   const closeAllPopups = () => {
     setIsRegisterOpen(false);
     setIsSuccessOpen(false);
@@ -69,7 +73,9 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm>
+                <SearchForm
+                  handleSubmit={handleNewsSearch}
+                >
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
