@@ -29,6 +29,7 @@ const ModalWithForm = ({
             type="email"
             placeholder="Enter email"
           />
+          <span className="modal-form__error-message modal-form__error-message_visible email-error">Hello</span>
         </div>
 
         <div className="modal-form__input-container">
@@ -40,6 +41,7 @@ const ModalWithForm = ({
             type="password"
             placeholder="Enter password"
           />
+          <span className="modal-form__error-message modal-form__error-message_visible password-error">Hello</span>
         </div>
 
         {formName === "register" ? (
@@ -52,6 +54,7 @@ const ModalWithForm = ({
               type="text"
               placeholder="Enter your username"
             />
+            <span className="modal-form__error-message modal-form__error-message_visible username-error">Hello</span>
           </div>
         ) : (
           ""
