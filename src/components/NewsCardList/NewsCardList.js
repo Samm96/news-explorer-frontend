@@ -4,7 +4,7 @@ import React, { Children, useState } from "react";
 
 /** I think this is where I would map all of the cards coming in from the news api */
 
-const NewsCardList = ({ buttonType, cards, onClick }) => {
+const NewsCardList = ({ buttonType, cards }) => {
   const [shownAmount, setShownAmount] = useState(3);
 
   let defaultShown = shownAmount;

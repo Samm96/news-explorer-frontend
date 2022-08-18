@@ -15,12 +15,13 @@ import LoginModal from "../Login-Modal/Login-Modal";
 import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
 import { NewsApi } from "../../utils/NewsExplorerApi";
+import placeholderCard from "../../utils/constants"; // only being used for testing
 
 const App = () => {
   // placeholder
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [cards, setCards] = useState({});
+  const [cards, setCards] = useState([]);
 
   /** Modals */
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -29,15 +30,15 @@ const App = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const handleNewsSearch = (userKeyword) => {
-    NewsApi
-      .getNews(userKeyword)
+    NewsApi.getNews(userKeyword)
       .then((cardData) => {
-        setCards(cardData)
+        setCards(cardData);
+        localStorage.setItem(cards, JSON.stringify(cards));
       })
       .catch((err) => {
         console.log(err);
-      })
-  }
+      });
+  };
 
   const closeAllPopups = () => {
     setIsRegisterOpen(false);
@@ -84,7 +85,7 @@ const App = () => {
               <>
                 <SearchForm
                   handleSubmit={handleNewsSearch}
-                  // isSuccess={handleNewsSearch} -- add logic to set info to cards
+                  // -- add logic to set info to cards
                 >
                   <Header
                     isLoggedIn={isLoggedIn}
@@ -94,7 +95,10 @@ const App = () => {
                     openMobileModal={() => setIsMobileNavOpen(true)}
                   />
                 </SearchForm>
-                {/* <SearchResults card={cards}/> */}
+                <SearchResults
+                  cards={placeholderCard}
+                />{" "}
+                {/** replace `placeholderCard` with `cards` */}
                 <About />
                 <Footer />
               </>
