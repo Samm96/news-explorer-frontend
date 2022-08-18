@@ -1,9 +1,18 @@
+import React, { useState, useEffect, Children } from 'react';
 import "./SavedNews.css";
 import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
 
-const SavedNews = ({ userName }) => {
+const SavedNews = ({ userName, cards }) => {
   const placeholder = "Samantha";
+
+  let articlesAmount = cards.length;
+  let cardKeywords = [];
+
+  cards.forEach((card) => cardKeywords.push(card.key));
+  let keywordString = cardKeywords.toString().split(',').join(', ');
+
+  console.log(keywordString)
 
   /** keywords is probably going to be an array */
   const placeholderData = {
@@ -16,7 +25,7 @@ const SavedNews = ({ userName }) => {
       <div className="saved-news__text-container">
         <p className="saved-news__title">Saved articles</p>
         <p className="saved-news__saved">
-          {placeholder || userName}, you have {placeholderData.savedArticles}{" "}
+          {placeholder || userName}, you have {articlesAmount}{" "}
           saved articles
         </p>
         <p className="saved-news__keywords">
@@ -25,10 +34,13 @@ const SavedNews = ({ userName }) => {
       </div>
       <div className="saved-news__news-container">
         <div className="saved-news__cards">
-          <NewsCard buttonType={"delete"}/>
-          <NewsCard buttonType={"delete"}/>
-          <NewsCard buttonType={"delete"}/>
-          <NewsCard buttonType={"delete"}/>
+        {Children.toArray(
+          cards.map((card) => (
+            <>
+              <NewsCard card={card} buttonType={"delete"} />
+            </>
+          ))
+        )}
         </div>
       </div>
       <Footer />
