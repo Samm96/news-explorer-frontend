@@ -8,13 +8,17 @@ const SavedNews = ({ userName, cards }) => {
 
   let articlesAmount = cards.length === 0 ? 0 : cards.length;
   let cardKeywords = [];
-  cards.forEach((card) => cardKeywords.push(card.key));
+
+  cards.forEach((card) => {
+    cardKeywords.push(card.key.charAt(0).toUpperCase() + card.key.slice(1));
+  });
+  
   let findDuplicates = [...new Set(cardKeywords)];
 
   let keywords;
 
   switch (findDuplicates.length) {
-    case (findDuplicates.length > 2):
+    case findDuplicates.length > 2:
       keywords =
         findDuplicates.splice(0, 2).toString().split(",").join(", ") +
         ` and ${findDuplicates.length - 2} others`;
