@@ -1,34 +1,61 @@
+import React, { Children } from "react";
 import "./SavedNews.css";
 import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
 
-const SavedNews = ({ userName }) => {
+const SavedNews = ({ userName, cards }) => {
   const placeholder = "Samantha";
 
-  /** keywords is probably going to be an array */
-  const placeholderData = {
-    savedArticles: 5,
-    keywords: "Nature, Yellowstone and 2 others",
-  };
+  let articlesAmount = cards.length === 0 ? 0 : cards.length;
+  let cardKeywords = [];
+
+  cards.forEach((card) => {
+    cardKeywords.push(card.key.charAt(0).toUpperCase() + card.key.slice(1));
+  });
+  
+  let findDuplicates = [...new Set(cardKeywords)];
+
+  let keywords;
+
+  switch (findDuplicates.length) {
+    case findDuplicates.length > 2:
+      keywords =
+        findDuplicates.splice(0, 2).toString().split(",").join(", ") +
+        ` and ${findDuplicates.length - 2} others`;
+      break;
+    case (findDuplicates.length = 2):
+      keywords = findDuplicates.toString().split(",").join(" and ");
+      break;
+    case (findDuplicates.length = 1):
+      keywords = findDuplicates.toString();
+      break;
+    case (findDuplicates.length = 0):
+      keywords = "";
+      break;
+    default:
+      keywords = "";
+  }
 
   return (
     <div className="saved-news">
       <div className="saved-news__text-container">
         <p className="saved-news__title">Saved articles</p>
         <p className="saved-news__saved">
-          {placeholder || userName}, you have {placeholderData.savedArticles}{" "}
-          saved articles
+          {placeholder || userName}, you have {articlesAmount} saved articles
         </p>
         <p className="saved-news__keywords">
-          By keywords: <b>{placeholderData.keywords}</b>
+          By keywords: <b>{keywords}</b>
         </p>
       </div>
       <div className="saved-news__news-container">
         <div className="saved-news__cards">
-          <NewsCard buttonType={"delete"}/>
-          <NewsCard buttonType={"delete"}/>
-          <NewsCard buttonType={"delete"}/>
-          <NewsCard buttonType={"delete"}/>
+          {Children.toArray(
+            cards.map((card) => (
+              <>
+                <NewsCard card={card} buttonType={"delete"} />
+              </>
+            ))
+          )}
         </div>
       </div>
       <Footer />

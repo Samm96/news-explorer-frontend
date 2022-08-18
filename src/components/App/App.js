@@ -14,17 +14,32 @@ import RegisterModal from "../Register-Modal/Register-Modal";
 import LoginModal from "../Login-Modal/Login-Modal";
 import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
+import { NewsApi } from "../../utils/NewsExplorerApi";
+import placeholderCard from "../../utils/constants"; // only being used for testing
 
 const App = () => {
   // placeholder
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
+  // const [savedCards, setSavedCards] = useState([]);
 
   /** Modals */
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  const handleNewsSearch = (userKeyword) => {
+    NewsApi.getNews(userKeyword)
+      .then((cardData) => {
+        setCards(cardData);
+        localStorage.setItem(cards, JSON.stringify(cards));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const closeAllPopups = () => {
     setIsRegisterOpen(false);
@@ -74,7 +89,9 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm>
+                <SearchForm
+                  handleSubmit={handleNewsSearch}
+                >
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
@@ -83,6 +100,10 @@ const App = () => {
                     openMobileModal={() => setIsMobileNavOpen(true)}
                   />
                 </SearchForm>
+                <SearchResults
+                  cards={placeholderCard}
+                />{" "}
+                {/** replace `placeholderCard` with `cards` */}
                 <About />
                 <Footer />
               </>
@@ -100,7 +121,7 @@ const App = () => {
                   openSigninModal={() => setIsRegisterOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                 />
-                <SavedNews />
+                <SavedNews cards={placeholderCard} /> {/** replace `placeholderCard` with `savedCards` */}
               </ProtectedRoute>
             }
           />

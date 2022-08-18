@@ -14,6 +14,7 @@ const NewsCard = ({
   isLoggedIn,
   onSaveClick,
   onDeleteClick,
+  card
 }) => {
   const [isShown, setIsShown] = useState("_hidden");
 
@@ -36,15 +37,6 @@ const NewsCard = ({
   const handleSaveClick = () => {
     console.log("I'm saved!");
     //   onSaveClick(cardData);
-  };
-
-  const placeholderCard = {
-    image: placeholderImg,
-    date: "November 4, 2020",
-    title: "Everyone Needs a Special 'Sit Spot' in Nature",
-    text: 'Ever since I read Richard Louv\'s influential book, "Last Child in the Woods," the idea of having a special "sit spot" has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...',
-    source: "TreeHugger",
-    key: "Nature",
   };
 
   return (
@@ -76,19 +68,19 @@ const NewsCard = ({
               : "news-card__keyword news-card__keyword_hidden"
           }
         >
-          {placeholderCard.key}
+          {card.key}
         </span>
         <img
           className="news-card__image"
-          src={placeholderCard.image}
+          src={card.image}
           alt="Card"
         />
         <div className="news-card__text-container">
-          <p className="news-card__date">{placeholderCard.date}</p>
-          <p className="news-card__title">{placeholderCard.title}</p>
-          <p className="news-card__text">{placeholderCard.text}</p>
+          <p className="news-card__date">{card.date}</p>
+          <p className="news-card__title">{card.title}</p>
+          <p className="news-card__text">{card.text}</p>
           <p className="news-card__source">
-            {placeholderCard.source.toUpperCase()}
+            {card.source.toUpperCase()}
           </p>
         </div>
       </div>

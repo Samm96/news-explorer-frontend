@@ -1,6 +1,30 @@
 import "./SearchForm.css";
+import React, { useState, useEffect } from "react";
 
-const SearchForm = ({ handleSubmit, children }) => {
+const SearchForm = ({ onSubmit, children }) => {
+  /** the handleSubmit will transfer to App.js and that is where you'd probably get
+   * the information from the NewsApi.
+   */
+
+  const [keyword, setKeyword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const userKeyword = {
+      keyword,
+    };
+    console.log(userKeyword);
+    // onSubmit(userKeyword);
+  };
+
+  const handleInputReset = () => {
+    setKeyword("");
+  };
+
+  useEffect(() => {
+    handleInputReset();
+  }, []);
+
   return (
     <div className="search-form">
       {children}
@@ -15,15 +39,11 @@ const SearchForm = ({ handleSubmit, children }) => {
             <input
               className="search-form__input"
               type="text"
+              name="keyword"
+              id="keyword"
               placeholder="Enter topic"
+              onChange={(e) => setKeyword(e.target.value)}
             ></input>
-            <button
-              className="search-form__button"
-              type="search"
-              id="search-button"
-            >
-              Search
-            </button>
           </div>
         </form>
       </div>
