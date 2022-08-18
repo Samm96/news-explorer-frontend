@@ -1,8 +1,7 @@
-import React, { useState, useEffect, Children } from "react";
+import React, { Children } from "react";
 import "./SavedNews.css";
 import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
-import { useLinkClickHandler } from "react-router-dom";
 
 const SavedNews = ({ userName, cards }) => {
   const placeholder = "Samantha";
@@ -21,7 +20,7 @@ const SavedNews = ({ userName, cards }) => {
         ` and ${cardKeywords.length - 2} others`;
       break;
     case (findDuplicates.length = 2):
-      keywords = findDuplicates.toString().split(",").join("and ");
+      keywords = findDuplicates.toString().split(",").join(" and ");
       break;
     case (findDuplicates.length = 1):
       keywords = findDuplicates.toString();
