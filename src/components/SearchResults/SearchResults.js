@@ -7,7 +7,6 @@ const SearchResults = ({ cards }) => {
       <div className="results__container">
         <p className="results__title">Search Results</p>
         <NewsCardList cards={cards} buttonType={"save"}/>
-        <button className="results__button">Show more</button>
       </div>
     </div>
   );
