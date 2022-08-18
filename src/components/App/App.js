@@ -85,7 +85,6 @@ const App = () => {
               <>
                 <SearchForm
                   handleSubmit={handleNewsSearch}
-                  // -- add logic to set info to cards
                 >
                   <Header
                     isLoggedIn={isLoggedIn}
