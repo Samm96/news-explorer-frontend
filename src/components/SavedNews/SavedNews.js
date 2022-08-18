@@ -17,7 +17,7 @@ const SavedNews = ({ userName, cards }) => {
     case findDuplicates.length > 2:
       keywords =
         findDuplicates.splice(0, 2).toString().split(",").join(", ") +
-        ` and ${cardKeywords.length - 2} others`;
+        ` and ${findDuplicates.length - 2} others`;
       break;
     case (findDuplicates.length = 2):
       keywords = findDuplicates.toString().split(",").join(" and ");
