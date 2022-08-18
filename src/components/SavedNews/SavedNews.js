@@ -26,10 +26,10 @@ const SavedNews = ({ userName, cards }) => {
       keywords = findDuplicates.toString();
       break;
     case (findDuplicates.length = 0):
-      keywords = "You do not have any saved articles";
+      keywords = "";
       break;
     default:
-      keywords = "You do not have any saved articles";
+      keywords = "";
   }
 
   return (
