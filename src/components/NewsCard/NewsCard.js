@@ -68,7 +68,7 @@ const NewsCard = ({
               : "news-card__keyword news-card__keyword_hidden"
           }
         >
-          {card.keyword}
+          {card.key}
         </span>
         <img
           className="news-card__image"

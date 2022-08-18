@@ -36,7 +36,7 @@ const NavigationModal = ({
           </NavLink>
           {isLoggedIn ? (
             <>
-              <NavLink to="/saved-articles" className="nav-modal__link" onClick={onClose}>
+              <NavLink to="/saved-news" className="nav-modal__link" onClick={onClose}>
                 Saved articles
               </NavLink>
               <button className="nav-modal__button-user">
