@@ -6,7 +6,7 @@ import NewsCard from "../NewsCard/NewsCard";
 const SavedNews = ({ userName, cards }) => {
   const placeholder = "Samantha";
 
-  let articlesAmount = cards.length;
+  let articlesAmount = cards.length === 0 ? 0 : cards.length;
   let cardKeywords = [];
   cards.forEach((card) => cardKeywords.push(card.key));
   let findDuplicates = [...new Set(cardKeywords)];
