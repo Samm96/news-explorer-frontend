@@ -22,6 +22,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+  // const [savedCards, setSavedCards] = useState([]);
 
   /** Modals */
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -120,7 +121,7 @@ const App = () => {
                   openSigninModal={() => setIsRegisterOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                 />
-                <SavedNews />
+                <SavedNews cards={placeholderCard} /> {/** replace `placeholderCard` with `savedCards` */}
               </ProtectedRoute>
             }
           />
