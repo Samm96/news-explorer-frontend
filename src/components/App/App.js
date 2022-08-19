@@ -26,9 +26,11 @@ const App = () => {
   const [cards, setCards] = useState([]);
   // const [savedCards, setSavedCards] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isNotFound, setIsNotFound] = useState(false);
-  const [results, setResults] = useState(false);
+  const [isImageLoad, setIsImageLoad] = useState(false);
+
+  const [isLoading, setIsLoading] = useState("_hidden");
+  const [isNotFound, setIsNotFound] = useState("_hidden");
+  const [isResults, setResults] = useState("_hidden");
 
   /******************************************************************************************** */
   /** **************************************** Modals *******************************************/
@@ -149,14 +151,9 @@ const App = () => {
                   />
                 </SearchForm>
                 <Main>
-                  <SearchResults
-                    isResults={results}
-                    cards={cards}
-                  />
-                  <Preloader isLoading={isLoading} />
-                  <NothingFound
-                    isNotFound={isNotFound}
-                  />
+                  <SearchResults hideResults={isResults} imageLoading={false} cards={cards} />
+                  <Preloader hideLoader={isLoading} />
+                  <NothingFound hideNotFound={isNotFound} />
                 </Main>
                 <About />
                 <Footer />
