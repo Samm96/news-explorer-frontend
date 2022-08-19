@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import "./NewsCard.css";
-import placeholderImg from "../../images/card-placeholder.png";
 
 /** NewsCard Component
  * takes the data from the news API and places it in correct place.
@@ -14,7 +13,7 @@ const NewsCard = ({
   isLoggedIn,
   onSaveClick,
   onDeleteClick,
-  card
+  card,
 }) => {
   const [isShown, setIsShown] = useState("_hidden");
 
@@ -28,6 +27,15 @@ const NewsCard = ({
     default:
       message = "Sign in to save articles";
   }
+
+  const convertedPublishedDate = new Date(card.publishedAt).toLocaleString(
+    "default",
+    {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }
+  );
 
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
@@ -68,20 +76,14 @@ const NewsCard = ({
               : "news-card__keyword news-card__keyword_hidden"
           }
         >
-          {card.key}
+          {card.keyword}
         </span>
-        <img
-          className="news-card__image"
-          src={card.image}
-          alt="Card"
-        />
+        <img className="news-card__image" src={card.urlToImage} alt="Card" />
         <div className="news-card__text-container">
-          <p className="news-card__date">{card.date}</p>
+          <p className="news-card__date">{convertedPublishedDate}</p>
           <p className="news-card__title">{card.title}</p>
-          <p className="news-card__text">{card.text}</p>
-          <p className="news-card__source">
-            {card.source.toUpperCase()}
-          </p>
+          <p className="news-card__text">{card.description}</p>
+          <p className="news-card__source">{card.source.name.toUpperCase()}</p>
         </div>
       </div>
     </div>
