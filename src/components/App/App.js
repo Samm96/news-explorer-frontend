@@ -26,8 +26,6 @@ const App = () => {
   const [cards, setCards] = useState([]);
   // const [savedCards, setSavedCards] = useState([]);
 
-  const [isImageLoad, setIsImageLoad] = useState(false);
-
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
   const [isResults, setResults] = useState("_hidden");
@@ -145,7 +143,6 @@ const App = () => {
                 <Main>
                   <SearchResults
                     hideResults={isResults}
-                    imageLoading={isImageLoad}
                     cards={cards}
                   />
                   <Preloader hideLoader={isLoading} />
