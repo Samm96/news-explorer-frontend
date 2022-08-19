@@ -18,6 +18,7 @@ import Main from "../Main/Main";
 import SearchResults from "../SearchResults/SearchResults";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
+import * as auth from "../../utils/auth";
 
 const App = () => {
   // placeholder
@@ -81,7 +82,19 @@ const App = () => {
   };
 
   /******************************************************************************************** */
-  /** *************************************************************************************** */
+  /** ************************************ Handles `Modal` Logic ******************************** */
+
+  
+
+
+
+
+
+
+
+
+   /******************************************************************************************** */
+  /** ************************************ Closes `Modal`s ************************************** */
 
   const closeAllPopups = () => {
     setIsRegisterOpen(false);
