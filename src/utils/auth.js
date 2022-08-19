@@ -15,7 +15,7 @@ export const register = (email, password, username) => {
   });
 };
 
-export const login = (email, password) => {
+export const login = (email, password, username) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
@@ -23,7 +23,7 @@ export const login = (email, password) => {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": BASE_URL,
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password, username }),
   }).then((res) => res.json());
 };
 

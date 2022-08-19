@@ -8,9 +8,9 @@ const NavigationModal = ({
   onClose,
   openLoginModal,
   isLoggedIn,
+  onLogout,
   userName,
 }) => {
-
   return (
     <div
       className={`nav-modal nav-modal__overlay ${isOpen && "nav-modal_open"}`}
@@ -36,10 +36,14 @@ const NavigationModal = ({
           </NavLink>
           {isLoggedIn ? (
             <>
-              <NavLink to="/saved-news" className="nav-modal__link" onClick={onClose}>
+              <NavLink
+                to="/saved-news"
+                className="nav-modal__link"
+                onClick={onClose}
+              >
                 Saved articles
               </NavLink>
-              <button className="nav-modal__button-user">
+              <button className="nav-modal__button-user" onClick={onLogout}>
                 <img
                   className="nav-modal__button-img"
                   src={whiteIcon}

@@ -42,6 +42,9 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           className="modal-form__input"
           type="email"
           placeholder="Enter email"
+          minLength="2"
+          maxLength="30"
+          required
         />
       </div>
 
@@ -53,6 +56,9 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           className="modal-form__input"
           type="password"
           placeholder="Enter password"
+          minLength="2"
+          maxLength="30"
+          required
         />
       </div>
     </ModalWithForm>

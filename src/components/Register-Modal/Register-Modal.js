@@ -46,6 +46,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           type="email"
           placeholder="Enter email"
           onChange={(e) => setEmail(e.target.value)}
+          minLength="2"
+          maxLength="30"
+          required
         />
       </div>
 
@@ -58,6 +61,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           type="password"
           placeholder="Enter password"
           onChange={(e) => setPassword(e.target.value)}
+          minLength="2"
+          maxLength="30"
+          required
         />
       </div>
       <div className="modal-form__input-container modal-form__input-container_type_username">
@@ -69,6 +75,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           type="text"
           placeholder="Enter your username"
           onChange={(e) => setUsername(e.target.value)}
+          minLength="2"
+          maxLength="30"
+          required
         />
       </div>
     </ModalWithForm>
