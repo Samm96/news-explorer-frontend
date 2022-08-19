@@ -117,7 +117,8 @@
     border-top-right-radius: 4%;
 }
 
-.news-card__loader-container {
+/** future endeavor ? */
+/* .news-card__loader-container {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -143,7 +144,7 @@
 	margin: auto;
 	
 	animation: spin .75s infinite linear;
-}
+} */
 
 .news-card__text-container {
     margin: 17px 0 0;

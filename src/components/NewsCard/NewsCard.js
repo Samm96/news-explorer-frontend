@@ -79,13 +79,7 @@ const NewsCard = ({
         >
           {card.keyword}
         </span>
-        {isLoading ? (
-          <div className="news-card__loader-container">
-            <span className="news-card__image-loader"></span>
-          </div>
-        ) : (
-          <img className="news-card__image" src={card.urlToImage} alt="Card" />
-        )}
+        <img className="news-card__image" src={card.urlToImage} alt="Card" />
         <div className="news-card__text-container">
           <p className="news-card__date">{convertedPublishedDate}</p>
           <p className="news-card__title">{card.title}</p>

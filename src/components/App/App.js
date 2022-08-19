@@ -41,20 +41,22 @@ const App = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   /******************************************************************************************** */
-  /** *************************************************************************************** */
+  /** **************************************** News API **************************************** */
 
   const handleNewsSearch = (userKeyword) => {
     console.log(userKeyword);
+    // setIsLoading("");
     // NewsApi.getNews(userKeyword)
     //   .then((cardData) => {
-    //     cardData['keyword'] = userKeyword;
+    //     cardData["keyword"] = userKeyword;
     //     localStorage.setItem("cards", JSON.stringify(cardData));
     //   })
     //   .then(() => {
-    //     handleSearchResults();
+    //     handleSearchSuccess()
     //   })
     //   .catch((err) => {
-    //     console.log(err);
+    //     handleNothingFound()
+    //     console.log(err)
     //   });
   };
 
@@ -68,27 +70,17 @@ const App = () => {
   /******************************************************************************************** */
   /************************************* Handles `Main` behavior *******************************/
 
-  // const handleLoading = () => {
-  //   setMain(true);
-  //   setIsLoading(true);
-  // };
 
-  // const handleSearchSuccess = () => {
-  //   setMain(true);
-  //   setResults(true);
-  // };
+  const handleSearchSuccess = () => {
+    setResults("");
+    setIsLoading("_hidden");
+    handleSearchResults();
+  };
 
-  // const handleNothingFound = () => {
-  //   setMain(true);
-  //   setIsNotFound(true);
-  // };
-
-  // const closeMain = () => {
-  //   setMain(false);
-  //   setIsNotFound(false);
-  //   setResults(false);
-  //   setIsLoading(false);
-  // };
+  const handleNothingFound = () => {
+    setIsLoading("_hidden")
+    setIsNotFound("")
+  };
 
   /******************************************************************************************** */
   /** *************************************************************************************** */
@@ -141,7 +133,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm onSubmit={handleSearchResults}>
+                <SearchForm onSubmit={handleNewsSearch}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
@@ -151,7 +143,11 @@ const App = () => {
                   />
                 </SearchForm>
                 <Main>
-                  <SearchResults hideResults={isResults} imageLoading={false} cards={cards} />
+                  <SearchResults
+                    hideResults={isResults}
+                    imageLoading={isImageLoad}
+                    cards={cards}
+                  />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />
                 </Main>
