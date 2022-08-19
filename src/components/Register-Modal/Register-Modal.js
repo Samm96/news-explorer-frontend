@@ -1,6 +1,31 @@
+import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const Register = ({ isOpen, openModal, onClose }) => {
+const Register = ({ isOpen, openModal, onClose, onRegister }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const userRegisterData = {
+      email,
+      password,
+      username,
+    };
+    onRegister(userRegisterData);
+  };
+
+  const handleInputReset = () => {
+    setEmail("");
+    setPassword("");
+    setUsername("");
+  };
+
+  useEffect(() => {
+    handleInputReset();
+  }, []);
+
   return (
     <ModalWithForm
       isOpen={isOpen}
@@ -10,6 +35,7 @@ const Register = ({ isOpen, openModal, onClose }) => {
       openModal={openModal}
       formName="register"
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
       <div className="modal-form__input-container">
         <label className="modal-form__input-label" aria-label="email">
@@ -19,6 +45,7 @@ const Register = ({ isOpen, openModal, onClose }) => {
           className="modal-form__input"
           type="email"
           placeholder="Enter email"
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
@@ -30,6 +57,7 @@ const Register = ({ isOpen, openModal, onClose }) => {
           className="modal-form__input"
           type="password"
           placeholder="Enter password"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className="modal-form__input-container modal-form__input-container_type_username">
@@ -40,6 +68,7 @@ const Register = ({ isOpen, openModal, onClose }) => {
           className="modal-form__input"
           type="text"
           placeholder="Enter your username"
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
     </ModalWithForm>
