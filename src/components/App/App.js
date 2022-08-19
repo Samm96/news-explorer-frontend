@@ -23,9 +23,9 @@ const App = () => {
   const [cards, setCards] = useState([]);
   // const [savedCards, setSavedCards] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [main, setMain] = useState(true);
-  const [isNotFound, setIsNotFound] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [main, setMain] = useState(false);
+  const [isNotFound, setIsNotFound] = useState(false);
 
   /** Modals */
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
