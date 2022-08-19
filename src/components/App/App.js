@@ -44,7 +44,7 @@ const App = () => {
     console.log(userKeyword);
     // NewsApi.getNews(userKeyword)
     //   .then((cardData) => {
-    //     console.log(cardData);
+    //     cardData['keyword'] = userKeyword;
     //     localStorage.setItem("cards", JSON.stringify(cardData));
     //   })
     //   .then(() => {
@@ -58,6 +58,7 @@ const App = () => {
   const handleSearchResults = () => {
     const cardData = JSON.parse(localStorage.getItem("cards"));
     const newsArticles = cardData.articles;
+    newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
     setCards(newsArticles);
   };
 

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import "./NewsCard.css";
-import placeholderImg from "../../images/card-placeholder.png";
 
 /** NewsCard Component
  * takes the data from the news API and places it in correct place.
@@ -77,7 +76,7 @@ const NewsCard = ({
               : "news-card__keyword news-card__keyword_hidden"
           }
         >
-          {card.key}
+          {card.keyword}
         </span>
         <img className="news-card__image" src={card.urlToImage} alt="Card" />
         <div className="news-card__text-container">
