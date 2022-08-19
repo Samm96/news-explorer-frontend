@@ -3,7 +3,7 @@ import notFoundIcon from "../../images/Icons/not-found_icon.png";
 
 const NothingFound = () => {
   return (
-      <div className="not-found">
+      <div className="not-found not-found_hidden">
         <img
           className="not-found__icon"
           src={notFoundIcon}

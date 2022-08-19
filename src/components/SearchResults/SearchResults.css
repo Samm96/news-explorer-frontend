@@ -1,6 +1,11 @@
 .results {
     background-color: #F5F6F7;
     height: fit-content;
+    display: block;
+}
+
+.results_hidden {
+    display: none;
 }
 
 .results__container {

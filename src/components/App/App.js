@@ -25,7 +25,6 @@ const App = () => {
   // const [savedCards, setSavedCards] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [main, setMain] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
   const [results, setResults] = useState(false);
 
@@ -65,27 +64,27 @@ const App = () => {
   /******************************************************************************************** */
   /************************************* Handles `Main` behavior *******************************/
 
-  const handleLoading = () => {
-    setMain(true);
-    setIsLoading(true);
-  };
+  // const handleLoading = () => {
+  //   setMain(true);
+  //   setIsLoading(true);
+  // };
 
-  const handleSearchSuccess = () => {
-    setMain(true);
-    setResults(true);
-  };
+  // const handleSearchSuccess = () => {
+  //   setMain(true);
+  //   setResults(true);
+  // };
 
-  const handleNothingFound = () => {
-    setMain(true);
-    setIsNotFound(true);
-  };
+  // const handleNothingFound = () => {
+  //   setMain(true);
+  //   setIsNotFound(true);
+  // };
 
-  const closeMain = () => {
-    setMain(false);
-    setIsNotFound(false);
-    setResults(false);
-    setIsLoading(false);
-  };
+  // const closeMain = () => {
+  //   setMain(false);
+  //   setIsNotFound(false);
+  //   setResults(false);
+  //   setIsLoading(false);
+  // };
 
   /******************************************************************************************** */
   /** *************************************************************************************** */
@@ -147,16 +146,12 @@ const App = () => {
                     openMobileModal={() => setIsMobileNavOpen(true)}
                   />
                 </SearchForm>
-
-                <SearchResults cards={cards} />
-                {/* {main === true ? (
-                  <Main
-                    isLoading={isLoading}
-                    isNotFound={isNotFound}
-                    isFound={results}
-                    cards={cards}
-                  />
-                ) : null} */}
+                <Main
+                  isLoading={isLoading}
+                  isNotFound={isNotFound}
+                  isFound={results}
+                  cards={cards}
+                />
                 <About />
                 <Footer />
               </>

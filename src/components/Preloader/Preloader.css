@@ -6,6 +6,12 @@
 	overflow: hidden;
 	position: relative;
 	z-index: 5;
+
+	display: block;
+}
+
+.preloader_hidden {
+	display: none;
 }
 
 .circle-preloader {
