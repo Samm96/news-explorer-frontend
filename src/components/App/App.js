@@ -3,9 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
-import NothingFound from "../NothingFound/NothingFound";
 import About from "../About/About";
-import SearchResults from "../SearchResults/SearchResults";
 import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -16,6 +14,7 @@ import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
 import { NewsApi } from "../../utils/NewsExplorerApi";
 import placeholderCard from "../../utils/constants"; // only being used for testing
+import Main from "../Main/Main";
 
 const App = () => {
   // placeholder
@@ -24,11 +23,21 @@ const App = () => {
   const [cards, setCards] = useState([]);
   // const [savedCards, setSavedCards] = useState([]);
 
-  /** Modals */
+  const [isLoading, setIsLoading] = useState(false);
+  const [main, setMain] = useState(false);
+  const [isNotFound, setIsNotFound] = useState(false);
+  const [results, setResults] = useState(false);
+
+  /******************************************************************************************** */
+  /** **************************************** Modals *******************************************/
+
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  /******************************************************************************************** */
+   /** *************************************************************************************** */
 
   const handleNewsSearch = (userKeyword) => {
     NewsApi.getNews(userKeyword)
@@ -40,6 +49,34 @@ const App = () => {
         console.log(err);
       });
   };
+
+  /******************************************************************************************** */
+  /************************************* Handles `Main` behavior *******************************/
+  
+  const handleLoading = () => {
+    setMain(true);
+    setIsLoading(true);
+  }
+
+  const handleSearchSuccess = () => {
+    setMain(true);
+    setResults(true);
+  }
+
+  const handleNothingFound = () => {
+    setMain(true);
+    setIsNotFound(true);
+  }
+
+  const closeMain = () => {
+    setMain(false);
+    setIsNotFound(false);
+    setResults(false);
+    setIsLoading(false);
+  }
+
+    /******************************************************************************************** */
+  /** *************************************************************************************** */
 
   const closeAllPopups = () => {
     setIsRegisterOpen(false);
@@ -89,9 +126,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm
-                  handleSubmit={handleNewsSearch}
-                >
+                <SearchForm handleSubmit={handleNewsSearch}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
@@ -100,10 +135,14 @@ const App = () => {
                     openMobileModal={() => setIsMobileNavOpen(true)}
                   />
                 </SearchForm>
-                <SearchResults
-                  cards={placeholderCard}
-                />{" "}
-                {/** replace `placeholderCard` with `cards` */}
+                {main === true ? (
+                  <Main
+                    isLoading={isLoading}
+                    isNotFound={isNotFound}
+                    isFound={results}
+                    cards={placeholderCard}
+                  />
+                ) : null}
                 <About />
                 <Footer />
               </>
@@ -121,7 +160,8 @@ const App = () => {
                   openSigninModal={() => setIsRegisterOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                 />
-                <SavedNews cards={placeholderCard} /> {/** replace `placeholderCard` with `savedCards` */}
+                <SavedNews cards={placeholderCard} />{" "}
+                {/** replace `placeholderCard` with `savedCards` */}
               </ProtectedRoute>
             }
           />

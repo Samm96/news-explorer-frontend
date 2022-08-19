@@ -1,9 +1,11 @@
-body {
+.preloader {
 	margin: 0;
-	min-height: 100vh;
+	height: 374px;
 	background-color: #333;
 	
 	overflow: hidden;
+	position: relative;
+	z-index: 5;
 }
 
 .circle-preloader {
@@ -28,5 +30,17 @@ body {
 @keyframes spin {
 	100% {
 		transform: rotate(360deg);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.preloader {
+		height: 654px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.preloader {
+		height: 320px;
 	}
 }

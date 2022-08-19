@@ -44,6 +44,13 @@ const SearchForm = ({ onSubmit, children }) => {
               placeholder="Enter topic"
               onChange={(e) => setKeyword(e.target.value)}
             ></input>
+            <button
+              className="search-form__button"
+              type="submit"
+              id="search-button"
+            >
+              Search
+            </button>
           </div>
         </form>
       </div>
