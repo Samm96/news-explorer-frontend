@@ -16,6 +16,8 @@ import { NewsApi } from "../../utils/NewsExplorerApi";
 import placeholderCard from "../../utils/constants"; // only being used for testing
 import Main from "../Main/Main";
 import SearchResults from "../SearchResults/SearchResults";
+import Preloader from "../Preloader/Preloader";
+import NothingFound from "../NothingFound/NothingFound";
 
 const App = () => {
   // placeholder
@@ -24,10 +26,9 @@ const App = () => {
   const [cards, setCards] = useState([]);
   // const [savedCards, setSavedCards] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [main, setMain] = useState(false);
-  const [isNotFound, setIsNotFound] = useState(false);
-  const [results, setResults] = useState(false);
+  const [isLoading, setIsLoading] = useState("_hidden");
+  const [isNotFound, setIsNotFound] = useState("_hidden");
+  const [isResults, setResults] = useState("_hidden");
 
   /******************************************************************************************** */
   /** **************************************** Modals *******************************************/
@@ -38,20 +39,22 @@ const App = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   /******************************************************************************************** */
-  /** *************************************************************************************** */
+  /** **************************************** News API **************************************** */
 
   const handleNewsSearch = (userKeyword) => {
     console.log(userKeyword);
+    // setIsLoading("");
     // NewsApi.getNews(userKeyword)
     //   .then((cardData) => {
-    //     cardData['keyword'] = userKeyword;
+    //     cardData["keyword"] = userKeyword;
     //     localStorage.setItem("cards", JSON.stringify(cardData));
     //   })
     //   .then(() => {
-    //     handleSearchResults();
+    //     handleSearchSuccess()
     //   })
     //   .catch((err) => {
-    //     console.log(err);
+    //     handleNothingFound()
+    //     console.log(err)
     //   });
   };
 
@@ -65,26 +68,16 @@ const App = () => {
   /******************************************************************************************** */
   /************************************* Handles `Main` behavior *******************************/
 
-  const handleLoading = () => {
-    setMain(true);
-    setIsLoading(true);
-  };
 
   const handleSearchSuccess = () => {
-    setMain(true);
-    setResults(true);
+    setResults("");
+    setIsLoading("_hidden");
+    handleSearchResults();
   };
 
   const handleNothingFound = () => {
-    setMain(true);
-    setIsNotFound(true);
-  };
-
-  const closeMain = () => {
-    setMain(false);
-    setIsNotFound(false);
-    setResults(false);
-    setIsLoading(false);
+    setIsLoading("_hidden")
+    setIsNotFound("")
   };
 
   /******************************************************************************************** */
@@ -138,7 +131,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm onSubmit={handleSearchResults}>
+                <SearchForm onSubmit={handleNewsSearch}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
@@ -147,16 +140,14 @@ const App = () => {
                     openMobileModal={() => setIsMobileNavOpen(true)}
                   />
                 </SearchForm>
-
-                <SearchResults cards={cards} />
-                {/* {main === true ? (
-                  <Main
-                    isLoading={isLoading}
-                    isNotFound={isNotFound}
-                    isFound={results}
+                <Main>
+                  <SearchResults
+                    hideResults={isResults}
                     cards={cards}
                   />
-                ) : null} */}
+                  <Preloader hideLoader={isLoading} />
+                  <NothingFound hideNotFound={isNotFound} />
+                </Main>
                 <About />
                 <Footer />
               </>

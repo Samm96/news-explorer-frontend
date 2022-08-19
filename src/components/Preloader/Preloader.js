@@ -1,9 +1,9 @@
 import "./Preloader.css";
 
-const Preloader = ({ isLoading }) => {
+const Preloader = ({ hideLoader }) => {
   return (
-    <div className="preloader">
-      {isLoading ? <i className="circle-preloader"></i> : ""}
+    <div className={`preloader preloader${hideLoader}`}>
+      <i className="circle-preloader"></i> 
     </div>
   );
 };
