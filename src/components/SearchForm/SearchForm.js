@@ -10,10 +10,7 @@ const SearchForm = ({ onSubmit, children }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userKeyword = {
-      keyword,
-    };
-    onSubmit(userKeyword);
+    onSubmit(keyword);
   };
 
   const handleInputReset = () => {

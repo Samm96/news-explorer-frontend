@@ -15,6 +15,7 @@ import NavigationModal from "../NavigationModal/NavigationModal";
 import { NewsApi } from "../../utils/NewsExplorerApi";
 import placeholderCard from "../../utils/constants"; // only being used for testing
 import Main from "../Main/Main";
+import SearchResults from "../SearchResults/SearchResults";
 
 const App = () => {
   // placeholder
@@ -37,47 +38,55 @@ const App = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   /******************************************************************************************** */
-   /** *************************************************************************************** */
+  /** *************************************************************************************** */
 
   const handleNewsSearch = (userKeyword) => {
     console.log(userKeyword);
     // NewsApi.getNews(userKeyword)
     //   .then((cardData) => {
     //     console.log(cardData);
-    //     setCards(cardData);
-    //     localStorage.setItem(cards, JSON.stringify(cards));
+    //     localStorage.setItem("cards", JSON.stringify(cardData));
+    //   })
+    //   .then(() => {
+    //     handleSearchResults();
     //   })
     //   .catch((err) => {
     //     console.log(err);
     //   });
   };
 
+  const handleSearchResults = () => {
+    const cardData = JSON.parse(localStorage.getItem("cards"));
+    const newsArticles = cardData.articles;
+    setCards(newsArticles);
+  };
+
   /******************************************************************************************** */
   /************************************* Handles `Main` behavior *******************************/
-  
+
   const handleLoading = () => {
     setMain(true);
     setIsLoading(true);
-  }
+  };
 
   const handleSearchSuccess = () => {
     setMain(true);
     setResults(true);
-  }
+  };
 
   const handleNothingFound = () => {
     setMain(true);
     setIsNotFound(true);
-  }
+  };
 
   const closeMain = () => {
     setMain(false);
     setIsNotFound(false);
     setResults(false);
     setIsLoading(false);
-  }
+  };
 
-    /******************************************************************************************** */
+  /******************************************************************************************** */
   /** *************************************************************************************** */
 
   const closeAllPopups = () => {
@@ -128,7 +137,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm onSubmit={handleNewsSearch}>
+                <SearchForm onSubmit={handleSearchResults}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
@@ -137,14 +146,16 @@ const App = () => {
                     openMobileModal={() => setIsMobileNavOpen(true)}
                   />
                 </SearchForm>
-                {main === true ? (
+
+                <SearchResults cards={cards} />
+                {/* {main === true ? (
                   <Main
                     isLoading={isLoading}
                     isNotFound={isNotFound}
                     isFound={results}
-                    cards={placeholderCard}
+                    cards={cards}
                   />
-                ) : null}
+                ) : null} */}
                 <About />
                 <Footer />
               </>

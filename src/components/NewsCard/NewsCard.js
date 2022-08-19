@@ -72,15 +72,15 @@ const NewsCard = ({
         </span>
         <img
           className="news-card__image"
-          src={card.image}
+          src={card.urlToImage}
           alt="Card"
         />
         <div className="news-card__text-container">
-          <p className="news-card__date">{card.date}</p>
+          <p className="news-card__date">{card.publishedAt}</p>
           <p className="news-card__title">{card.title}</p>
-          <p className="news-card__text">{card.text}</p>
+          <p className="news-card__text">{card.description}</p>
           <p className="news-card__source">
-            {card.source.toUpperCase()}
+            {card.source.name.toUpperCase()}
           </p>
         </div>
       </div>
