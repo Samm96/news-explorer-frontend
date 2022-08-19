@@ -14,7 +14,7 @@ import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
 import { NewsApi } from "../../utils/NewsExplorerApi";
 import placeholderCard from "../../utils/constants"; // only being used for testing
-import Main from "../main/main";
+import Main from "../Main/Main";
 
 const App = () => {
   // placeholder
@@ -26,12 +26,18 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [main, setMain] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
+  const [results, setResults] = useState(false);
 
-  /** Modals */
+  /******************************************************************************************** */
+  /** **************************************** Modals *******************************************/
+
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  /******************************************************************************************** */
+   /** *************************************************************************************** */
 
   const handleNewsSearch = (userKeyword) => {
     NewsApi.getNews(userKeyword)
@@ -43,6 +49,34 @@ const App = () => {
         console.log(err);
       });
   };
+
+  /******************************************************************************************** */
+  /************************************* Handles `Main` behavior *******************************/
+  
+  const handleLoading = () => {
+    setMain(true);
+    setIsLoading(true);
+  }
+
+  const handleSearchSuccess = () => {
+    setMain(true);
+    setResults(true);
+  }
+
+  const handleNothingFound = () => {
+    setMain(true);
+    setIsNotFound(true);
+  }
+
+  const closeMain = () => {
+    setMain(false);
+    setIsNotFound(false);
+    setResults(false);
+    setIsLoading(false);
+  }
+
+    /******************************************************************************************** */
+  /** *************************************************************************************** */
 
   const closeAllPopups = () => {
     setIsRegisterOpen(false);
@@ -105,6 +139,7 @@ const App = () => {
                   <Main
                     isLoading={isLoading}
                     isNotFound={isNotFound}
+                    isFound={results}
                     cards={placeholderCard}
                   />
                 ) : null}

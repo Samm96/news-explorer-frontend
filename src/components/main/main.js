@@ -1,4 +1,4 @@
-import "./main.css";
+import "./Main.css";
 import SearchResults from "../SearchResults/SearchResults";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
