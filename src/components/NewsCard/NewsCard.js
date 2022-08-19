@@ -14,7 +14,7 @@ const NewsCard = ({
   isLoggedIn,
   onSaveClick,
   onDeleteClick,
-  card
+  card,
 }) => {
   const [isShown, setIsShown] = useState("_hidden");
 
@@ -28,6 +28,15 @@ const NewsCard = ({
     default:
       message = "Sign in to save articles";
   }
+
+  const convertedPublishedDate = new Date(card.publishedAt).toLocaleString(
+    "default",
+    {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }
+  );
 
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
@@ -70,18 +79,12 @@ const NewsCard = ({
         >
           {card.key}
         </span>
-        <img
-          className="news-card__image"
-          src={card.urlToImage}
-          alt="Card"
-        />
+        <img className="news-card__image" src={card.urlToImage} alt="Card" />
         <div className="news-card__text-container">
-          <p className="news-card__date">{card.publishedAt}</p>
+          <p className="news-card__date">{convertedPublishedDate}</p>
           <p className="news-card__title">{card.title}</p>
           <p className="news-card__text">{card.description}</p>
-          <p className="news-card__source">
-            {card.source.name.toUpperCase()}
-          </p>
+          <p className="news-card__source">{card.source.name.toUpperCase()}</p>
         </div>
       </div>
     </div>
