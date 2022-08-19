@@ -13,7 +13,6 @@ const NewsCard = ({
   isLoggedIn,
   onSaveClick,
   onDeleteClick,
-  isLoading,
   card,
 }) => {
   const [isShown, setIsShown] = useState("_hidden");
