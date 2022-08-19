@@ -13,8 +13,7 @@ const SearchForm = ({ onSubmit, children }) => {
     const userKeyword = {
       keyword,
     };
-    console.log(userKeyword);
-    // onSubmit(userKeyword);
+    onSubmit(userKeyword);
   };
 
   const handleInputReset = () => {

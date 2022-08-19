@@ -40,14 +40,16 @@ const App = () => {
    /** *************************************************************************************** */
 
   const handleNewsSearch = (userKeyword) => {
-    NewsApi.getNews(userKeyword)
-      .then((cardData) => {
-        setCards(cardData);
-        localStorage.setItem(cards, JSON.stringify(cards));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(userKeyword);
+    // NewsApi.getNews(userKeyword)
+    //   .then((cardData) => {
+    //     console.log(cardData);
+    //     setCards(cardData);
+    //     localStorage.setItem(cards, JSON.stringify(cards));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   /******************************************************************************************** */
@@ -126,7 +128,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm handleSubmit={handleNewsSearch}>
+                <SearchForm onSubmit={handleNewsSearch}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
