@@ -2,7 +2,7 @@ import "./Preloader.css";
 
 const Preloader = ({ isLoading }) => {
   return (
-    <div className="preloader preloader_hidden">
+    <div className="preloader">
       {isLoading ? <i className="circle-preloader"></i> : ""}
     </div>
   );

@@ -16,6 +16,8 @@ import { NewsApi } from "../../utils/NewsExplorerApi";
 import placeholderCard from "../../utils/constants"; // only being used for testing
 import Main from "../Main/Main";
 import SearchResults from "../SearchResults/SearchResults";
+import Preloader from "../Preloader/Preloader";
+import NothingFound from "../NothingFound/NothingFound";
 
 const App = () => {
   // placeholder
@@ -146,12 +148,16 @@ const App = () => {
                     openMobileModal={() => setIsMobileNavOpen(true)}
                   />
                 </SearchForm>
-                <Main
-                  isLoading={isLoading}
-                  isNotFound={isNotFound}
-                  isFound={results}
-                  cards={cards}
-                />
+                <Main>
+                  <SearchResults
+                    isResults={results}
+                    cards={cards}
+                  />
+                  <Preloader isLoading={isLoading} />
+                  <NothingFound
+                    isNotFound={isNotFound}
+                  />
+                </Main>
                 <About />
                 <Footer />
               </>

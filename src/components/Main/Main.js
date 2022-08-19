@@ -1,14 +1,9 @@
 import "./Main.css";
-import SearchResults from "../SearchResults/SearchResults";
-import Preloader from "../Preloader/Preloader";
-import NothingFound from "../NothingFound/NothingFound";
 
-const Main = ({ isLoading, isNotFound, isFound, cards }) => {
+const Main = ({children}) => {
   return (
     <div className="main">
-      <SearchResults isFound={isFound} cards={cards} />
-      <Preloader isLoading={isLoading} />
-      <NothingFound isNotFound={isNotFound} />
+      {children}
     </div>
   );
 };
