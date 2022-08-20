@@ -1,16 +1,20 @@
-import React, { Children } from "react";
+import React, { Children, useContext } from "react";
 import "./SavedNews.css";
 import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-const SavedNews = ({ userName, cards }) => {
+const SavedNews = ({ cards }) => {
+
+  const { currentUser } = useContext(CurrentUserContext);
+
   const placeholder = "Samantha";
 
   let articlesAmount = cards.length === 0 ? 0 : cards.length;
   let cardKeywords = [];
 
   cards.forEach((card) => {
-    cardKeywords.push(card.key.charAt(0).toUpperCase() + card.key.slice(1));
+    cardKeywords.push(card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1));
   });
   
   let findDuplicates = [...new Set(cardKeywords)];
@@ -41,7 +45,7 @@ const SavedNews = ({ userName, cards }) => {
       <div className="saved-news__text-container">
         <p className="saved-news__title">Saved articles</p>
         <p className="saved-news__saved">
-          {placeholder || userName}, you have {articlesAmount} saved articles
+          {currentUser || placeholder}, you have {articlesAmount} saved articles
         </p>
         <p className="saved-news__keywords">
           By keywords: <b>{keywords}</b>

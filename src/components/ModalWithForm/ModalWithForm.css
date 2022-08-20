@@ -48,6 +48,10 @@
     outline: none;
 }
 
+.modal-form__button-container {
+    display: flex;
+    justify-items: center;
+}
 
 .modal-form__button {
     width: 360px;
