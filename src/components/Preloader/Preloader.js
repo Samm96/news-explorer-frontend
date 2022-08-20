@@ -1,9 +1,11 @@
-import './Preloader.css';
+import "./Preloader.css";
 
-const Preloader = () => {
-    return (
-        <i className="circle-preloader"></i>
-    )
-}
+const Preloader = ({ hideLoader }) => {
+  return (
+    <div className={`preloader preloader${hideLoader}`}>
+      <i className="circle-preloader"></i> 
+    </div>
+  );
+};
 
 export default Preloader;

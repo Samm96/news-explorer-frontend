@@ -1,19 +1,17 @@
 import "./NothingFound.css";
 import notFoundIcon from "../../images/Icons/not-found_icon.png";
 
-const NothingFound = () => {
+const NothingFound = ({ hideNotFound }) => {
   return (
-    <div className="not-found">
-      <div className="not-found__container">
-        <img
-          className="not-found__icon"
-          src={notFoundIcon}
-          alt="Not Found Icon"
-        />
-        <p className="not-found__text">Nothing found</p>
-        <p className="not-found__subtext">Sorry, but nothing matched</p>
-        <p className="not-found__subtext">your search terms.</p>
-      </div>
+    <div className={`not-found not-found${hideNotFound}`}>
+      <img
+        className="not-found__icon"
+        src={notFoundIcon}
+        alt="Not Found Icon"
+      />
+      <p className="not-found__text">Nothing found</p>
+      <p className="not-found__subtext">Sorry, but nothing matched</p>
+      <p className="not-found__subtext">your search terms.</p>
     </div>
   );
 };

@@ -66,6 +66,10 @@
     visibility: visible;
 }
 
+.modal-form__button-container {
+    display: flex;
+    justify-items: center;
+}
 
 .modal-form__button {
     width: 360px;
@@ -113,4 +117,31 @@
 .modal-form__link:hover {
     opacity: 0.6;
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 480px) {
+    .modal-form__input-container {
+        margin: 30px auto 16px;
+        width: 288px;
+    }
+    
+    .modal-form__input-container:first-of-type {
+        margin: 18px auto 30px;
+        padding: 0;
+    }
+    
+    .modal-form__input-container_type_username {
+        margin: 30px auto 16px;
+        padding: 0;
+    }
+    
+    .modal-form__input {
+        padding: 0 0 10px;
+    }
+    
+    .modal-form__button {
+        width: 288px;
+        margin: 23px auto 0;
+    }
 }

@@ -3,9 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
-import NothingFound from "../NothingFound/NothingFound";
 import About from "../About/About";
-import SearchResults from "../SearchResults/SearchResults";
 import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -14,17 +12,112 @@ import RegisterModal from "../Register-Modal/Register-Modal";
 import LoginModal from "../Login-Modal/Login-Modal";
 import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
+import { NewsApi } from "../../utils/NewsExplorerApi";
+import placeholderCard from "../../utils/constants"; // only being used for testing
+import Main from "../Main/Main";
+import SearchResults from "../SearchResults/SearchResults";
+import Preloader from "../Preloader/Preloader";
+import NothingFound from "../NothingFound/NothingFound";
+import * as auth from "../../utils/auth";
 
 const App = () => {
   // placeholder
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    username: "",
+  });
+  const [cards, setCards] = useState([]);
+  // const [savedCards, setSavedCards] = useState([]);
 
-  /** Modals */
+  const [isLoading, setIsLoading] = useState("_hidden");
+  const [isNotFound, setIsNotFound] = useState("_hidden");
+  const [isResults, setResults] = useState("_hidden");
+
+  /******************************************************************************************** */
+  /** **************************************** Modals *******************************************/
+
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  /******************************************************************************************** */
+  /** **************************************** News API **************************************** */
+
+  const handleNewsSearch = (userKeyword) => {
+    console.log(userKeyword);
+    // setIsLoading("");
+    // NewsApi.getNews(userKeyword)
+    //   .then((cardData) => {
+    //     cardData["keyword"] = userKeyword;
+    //     localStorage.setItem("cards", JSON.stringify(cardData));
+    //   })
+    //   .then(() => {
+    //     handleSearchSuccess()
+    //   })
+    //   .catch((err) => {
+    //     handleNothingFound()
+    //     console.log(err)
+    //   });
+  };
+
+  const handleSearchResults = () => {
+    const cardData = JSON.parse(localStorage.getItem("cards"));
+    const newsArticles = cardData.articles;
+    newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
+    setCards(newsArticles);
+  };
+
+  /******************************************************************************************** */
+  /************************************* Handles `Main` behavior *******************************/
+
+
+  const handleSearchSuccess = () => {
+    setResults("");
+    setIsLoading("_hidden");
+    handleSearchResults();
+  };
+
+  const handleNothingFound = () => {
+    setIsLoading("_hidden")
+    setIsNotFound("")
+  };
+
+  /******************************************************************************************** */
+  /** ***************************** Handles `Register` & `Login` Logic *************************** */
+
+  const onRegister = ({email, password, username}) => {
+    auth
+      .register(email, password, username)
+      .then((res) => {
+          setIsSuccessOpen(true);
+      })
+      .catch((err) => console.log(err));
+  }
+
+
+  const onLogin = ({email, password, username}) => {
+    auth
+      .login(email, password)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem('email', email);
+        setCurrentUser(username);
+        setIsLoggedIn(true);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
+
+  const onLogout = () => {
+    setIsLoggedIn(false);
+    closeAllPopups();
+  }
+
+
+   /******************************************************************************************** */
+  /** ************************************ Closes `Modal`s ************************************** */
 
   const closeAllPopups = () => {
     setIsRegisterOpen(false);
@@ -62,22 +155,37 @@ const App = () => {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-        <NavigationModal isOpen={isMobileNavOpen} onClose={closeAllPopups} />
+        <NavigationModal
+          isOpen={isMobileNavOpen}
+          isLoggedIn={isLoggedIn}
+          openLoginModal={() => setIsLoginOpen(true)}
+          onLogout={onLogout}
+          onClose={closeAllPopups}
+        />
         <Routes>
           <Route
             exact
             path="/"
             element={
               <>
-                <SearchForm>
+                <SearchForm onSubmit={handleNewsSearch}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
                     textColor={""}
                     openSigninModal={() => setIsRegisterOpen(true)}
                     openMobileModal={() => setIsMobileNavOpen(true)}
+                    onLogout={onLogout}
                   />
                 </SearchForm>
+                <Main>
+                  <SearchResults
+                    hideResults={isResults}
+                    cards={cards}
+                  />
+                  <Preloader hideLoader={isLoading} />
+                  <NothingFound hideNotFound={isNotFound} />
+                </Main>
                 <About />
                 <Footer />
               </>
@@ -95,7 +203,8 @@ const App = () => {
                   openSigninModal={() => setIsRegisterOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                 />
-                <SavedNews />
+                <SavedNews cards={placeholderCard} />{" "}
+                {/** replace `placeholderCard` with `savedCards` */}
               </ProtectedRoute>
             }
           />
@@ -107,6 +216,7 @@ const App = () => {
             setIsRegisterOpen(false);
             setIsLoginOpen(true);
           }}
+          onRegister={onRegister}
           onClose={closeAllPopups}
         />
         <LoginModal
@@ -115,6 +225,7 @@ const App = () => {
             setIsLoginOpen(false);
             setIsRegisterOpen(true);
           }}
+          onLogin={onLogin}
           onClose={closeAllPopups}
         />
         <RegisterSuccess
