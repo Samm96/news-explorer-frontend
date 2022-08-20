@@ -30,7 +30,6 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
     <ModalWithForm
       isOpen={isOpen}
       modalTitle="Sign up"
-      buttonText="Sign up"
       linkText="Sign in"
       openModal={openModal}
       formName="register"
@@ -79,6 +78,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           maxLength="30"
           required
         />
+      </div>
+      <div className="modal-form__button-container">
+        <button className="modal-form__button">Sign up</button>
       </div>
     </ModalWithForm>
   );

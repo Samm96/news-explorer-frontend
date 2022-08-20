@@ -4,7 +4,6 @@ import Modal from "../Modal/Modal";
 const ModalWithForm = ({
   isOpen,
   modalTitle,
-  buttonText,
   linkText,
   openModal,
   formName,
@@ -16,7 +15,6 @@ const ModalWithForm = ({
     <Modal
       isOpen={isOpen}
       modalTitle={modalTitle}
-      buttonText={buttonText}
       linkText={linkText}
       openModal={openModal}
       onClose={onClose}
@@ -24,7 +22,6 @@ const ModalWithForm = ({
       <form name={formName} onSubmit={onSubmit}>
         {children}
       </form>
-      <button className="modal-form__button">{buttonText}</button>
       <p className={`modal-form__text`}>
         or{" "}
         <button className="modal-form__link" onClick={openModal}>

@@ -1,7 +1,9 @@
 import "./NavigationModal.css";
 import Logo from "../Logo/Logo";
 import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
 import whiteIcon from "../../images/Icons/button-icon-white.svg";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const NavigationModal = ({
   isOpen,
@@ -9,8 +11,9 @@ const NavigationModal = ({
   openLoginModal,
   isLoggedIn,
   onLogout,
-  userName,
 }) => {
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <div
       className={`nav-modal nav-modal__overlay ${isOpen && "nav-modal_open"}`}
@@ -43,7 +46,11 @@ const NavigationModal = ({
               >
                 Saved articles
               </NavLink>
-              <button className="nav-modal__button-user" onClick={onLogout}>
+              <button
+                className="nav-modal__button-user"
+                userName={currentUser}
+                onClick={onLogout}
+              >
                 <img
                   className="nav-modal__button-img"
                   src={whiteIcon}

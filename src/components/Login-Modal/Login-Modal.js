@@ -9,7 +9,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
     e.preventDefault();
     const userLoginData = {
       email,
-      password
+      password,
     };
     onLogin(userLoginData);
   };
@@ -61,6 +61,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           required
         />
       </div>
+      <button className="modal-form__button">Sign in</button>
     </ModalWithForm>
   );
 };
