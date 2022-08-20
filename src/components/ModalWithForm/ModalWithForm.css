@@ -66,11 +66,6 @@
     visibility: visible;
 }
 
-.modal-form__button-container {
-    display: flex;
-    justify-items: center;
-}
-
 .modal-form__button {
     width: 360px;
     height: 64px;
@@ -80,6 +75,11 @@
     color: #ffff;
     border: none;
     border-radius: 100px;
+}
+
+.modal-form__button-container {
+    display: flex;
+    justify-items: center;
 }
 
 .modal-form__button:hover {

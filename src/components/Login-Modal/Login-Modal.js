@@ -46,6 +46,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           maxLength="30"
           required
         />
+        <span className="modal-form__error-message email-error"></span>
       </div>
 
       <div className="modal-form__input-container">
@@ -60,6 +61,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           maxLength="30"
           required
         />
+        <span className="modal-form__error-message password-error"></span>
       </div>
       <div className="modal-form__button-container">
         <button className="modal-form__button">Sign in</button>
