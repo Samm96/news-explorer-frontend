@@ -16,6 +16,7 @@ class Api {
     getAppInfo() {
         return Promise.all([
             this.getUserInfo(),
+            this.getSavedNews(),
         ])
     }
 
@@ -35,7 +36,7 @@ class Api {
     }
 
 
-    /** sets user's info */
+    /** sets user's info (do I need this?) */
 
     setUserInfo({ username }) {
         return fetch(`${this._baseURL}/users/me`, {
@@ -54,7 +55,8 @@ class Api {
     /** Accesses Saved News articles by user. Get list. url may be different later */
 
     getSavedNews() {
-        return fetch(`${this._baseURL}/saved-news`, {
+        return fetch(`${this._baseURL}/articles`, {
+            method: 'GET',
             headers: {
                 // authorization: `Bearer ${token}`,
                 ...this._headers,
@@ -64,8 +66,8 @@ class Api {
 
     
     /** Post Saved News articles. url may be different */
-    addSavedNews({}) {
-        return fetch(`${this._baseURL}/saved-news`, {
+    addSavedNews({ articleData }) {
+        return fetch(`${this._baseURL}/articles`, {
             method: 'POST',
             headers: {
                 // authorization: `Bearer ${token}`,
@@ -77,7 +79,7 @@ class Api {
 
     /** delete saved news */
     deleteNewsCard({ _id }) {
-        return fetch(`${this._baseURL}/saved-news/${_id}`, {
+        return fetch(`${this._baseURL}/articles/${_id}`, {
             method: 'DELETE',
             headers: {
                 // authorization: `Bearer ${token}`,
@@ -88,8 +90,8 @@ class Api {
 
 
     /** toggle save button state */
-    toggleSaveButtonState({ cardId, save }) {
-        return fetch(`${this._baseURL}/${cardId}/saved`, {
+    toggleSaveButtonState({ articleId, save }) {
+        return fetch(`${this._baseURL}/articles/${articleId}/saved`, {
             method: save ? 'PUT' : 'DELETE',
             headers: {
                 // authorization: `Bearer ${token}`,
@@ -100,5 +102,6 @@ class Api {
 
 }
 
-
-
+export const api = new Api ({
+    baseURL: "http://localhost:3000",
+  });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./NewsCard.css";
 
@@ -16,6 +16,7 @@ const NewsCard = ({
   card,
 }) => {
   const [isShown, setIsShown] = useState("_hidden");
+  const [isSaved, setIsSaved] = useState("");
 
   switch (buttonType) {
     case "save":
@@ -39,12 +40,18 @@ const NewsCard = ({
 
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
-    // onDeleteClick(cardData);
+    // onDeleteClick(card);
   };
 
   const handleSaveClick = () => {
     console.log("I'm saved!");
-    //   onSaveClick(cardData);
+    if (isLoggedIn && isSaved === "") {
+      debugger;
+      setIsSaved("save-button_active");
+      onSaveClick(card);
+    } else {
+      setIsSaved("");
+    }
   };
 
   return (
@@ -56,15 +63,13 @@ const NewsCard = ({
             onClick={
               buttonType === "save" ? handleSaveClick : handleDeleteClick
             }
-            onMouseEnter={() => {
-              buttonType === "save" ? setIsShown("_hidden") : setIsShown("");
-            }}
-            onMouseLeave={() => setIsShown("_hidden")}
-            className={`${buttonType}-button`}
+            className={`${buttonType}-button $${isSaved}`}
           ></button>
         ) : (
           <button
-            onMouseEnter={() => setIsShown("")}
+            onMouseEnter={() => {
+              buttonType === "save" ? setIsShown("_hidden") : setIsShown("");
+            }}
             onMouseLeave={() => setIsShown("_hidden")}
             className={`${buttonType}-button`}
           ></button>
