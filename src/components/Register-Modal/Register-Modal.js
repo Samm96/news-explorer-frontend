@@ -43,12 +43,14 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
         <input
           className="modal-form__input"
           type="email"
+          name="email"
           placeholder="Enter email"
           onChange={(e) => setEmail(e.target.value)}
           minLength="2"
           maxLength="30"
           required
         />
+        <span className="modal-form__error-message email-error"></span>
       </div>
 
       <div className="modal-form__input-container">
@@ -58,12 +60,14 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
         <input
           className="modal-form__input"
           type="password"
+          name="password"
           placeholder="Enter password"
           onChange={(e) => setPassword(e.target.value)}
           minLength="2"
           maxLength="30"
           required
         />
+        <span className="modal-form__error-message password-error"></span>
       </div>
       <div className="modal-form__input-container modal-form__input-container_type_username">
         <label className="modal-form__input-label" aria-label="username">
@@ -72,12 +76,14 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
         <input
           className="modal-form__input"
           type="text"
+          name="username"
           placeholder="Enter your username"
           onChange={(e) => setUsername(e.target.value)}
           minLength="2"
           maxLength="30"
           required
         />
+        <span className="modal-form__error-message username-error"></span>
       </div>
       <div className="modal-form__button-container">
         <button className="modal-form__button">Sign up</button>

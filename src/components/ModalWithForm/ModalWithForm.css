@@ -5,6 +5,7 @@
 
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .modal-form__input-container:first-of-type {
@@ -48,9 +49,21 @@
     outline: none;
 }
 
-.modal-form__button-container {
-    display: flex;
-    justify-items: center;
+.modal-form__error-message {
+    margin: 0;
+    padding: 0;
+    color: #FF0000;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    position: absolute;
+    top: 54px;
+    visibility: hidden;
+}
+
+.modal-form__error-message_visible {
+    visibility: visible;
 }
 
 .modal-form__button {
@@ -62,6 +75,11 @@
     color: #ffff;
     border: none;
     border-radius: 100px;
+}
+
+.modal-form__button-container {
+    display: flex;
+    justify-items: center;
 }
 
 .modal-form__button:hover {
