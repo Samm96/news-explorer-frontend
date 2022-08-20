@@ -61,7 +61,9 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           required
         />
       </div>
-      <button className="modal-form__button">Sign in</button>
+      <div className="modal-form__button-container">
+        <button className="modal-form__button">Sign in</button>
+      </div>
     </ModalWithForm>
   );
 };

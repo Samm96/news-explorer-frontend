@@ -23,7 +23,9 @@ import * as auth from "../../utils/auth";
 const App = () => {
   // placeholder
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    username: "",
+  });
   const [cards, setCards] = useState([]);
   // const [savedCards, setSavedCards] = useState([]);
 
@@ -82,15 +84,36 @@ const App = () => {
   };
 
   /******************************************************************************************** */
-  /** ************************************ Handles `Modal` Logic ******************************** */
+  /** ***************************** Handles `Register` & `Login` Logic *************************** */
 
-  
+  const onRegister = ({email, password, username}) => {
+    auth
+      .register(email, password, username)
+      .then((res) => {
+          setIsSuccessOpen(true);
+      })
+      .catch((err) => console.log(err));
+  }
 
 
+  const onLogin = ({email, password, username}) => {
+    auth
+      .login(email, password)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem('email', email);
+        setCurrentUser(username);
+        setIsLoggedIn(true);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
 
 
-
-
+  const onLogout = () => {
+    setIsLoggedIn(false);
+    closeAllPopups();
+  }
 
 
    /******************************************************************************************** */
@@ -136,6 +159,7 @@ const App = () => {
           isOpen={isMobileNavOpen}
           isLoggedIn={isLoggedIn}
           openLoginModal={() => setIsLoginOpen(true)}
+          onLogout={onLogout}
           onClose={closeAllPopups}
         />
         <Routes>
@@ -151,6 +175,7 @@ const App = () => {
                     textColor={""}
                     openSigninModal={() => setIsRegisterOpen(true)}
                     openMobileModal={() => setIsMobileNavOpen(true)}
+                    onLogout={onLogout}
                   />
                 </SearchForm>
                 <Main>
@@ -191,6 +216,7 @@ const App = () => {
             setIsRegisterOpen(false);
             setIsLoginOpen(true);
           }}
+          onRegister={onRegister}
           onClose={closeAllPopups}
         />
         <LoginModal
@@ -199,6 +225,7 @@ const App = () => {
             setIsLoginOpen(false);
             setIsRegisterOpen(true);
           }}
+          onLogin={onLogin}
           onClose={closeAllPopups}
         />
         <RegisterSuccess

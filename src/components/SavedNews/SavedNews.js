@@ -14,7 +14,7 @@ const SavedNews = ({ cards }) => {
   let cardKeywords = [];
 
   cards.forEach((card) => {
-    cardKeywords.push(card.key.charAt(0).toUpperCase() + card.key.slice(1));
+    cardKeywords.push(card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1));
   });
   
   let findDuplicates = [...new Set(cardKeywords)];
