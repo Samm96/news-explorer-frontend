@@ -18,6 +18,7 @@ import Main from "../Main/Main";
 import SearchResults from "../SearchResults/SearchResults";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
+import SomethingWentWrong from "../SomethingWentWrong/SomethingWentWrong";
 import * as auth from "../../utils/auth";
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
   const [isResults, setResults] = useState("_hidden");
+  const [isInternalIssue, setIsInternalIssue] = useState("_hidden");
 
   /******************************************************************************************** */
   /** **************************************** Modals *******************************************/
@@ -56,7 +58,11 @@ const App = () => {
     //     handleSearchSuccess()
     //   })
     //   .catch((err) => {
-    //     handleNothingFound()
+    //     if (err.status === 404) {
+    //       handleNothingFound()
+    //     } else {
+    //       handleInternalIssue()
+    //     }
     //     console.log(err)
     //   });
   };
@@ -66,6 +72,7 @@ const App = () => {
     const newsArticles = cardData.articles;
     newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
     setCards(newsArticles);
+    setResults(""); // placeholder
   };
 
   /******************************************************************************************** */
@@ -82,6 +89,11 @@ const App = () => {
     setIsLoading("_hidden")
     setIsNotFound("")
   };
+
+  const handleInternalIssue = () => {
+    setIsLoading("_hidden");
+    setIsInternalIssue("");
+  }
 
   /******************************************************************************************** */
   /** ***************************** Handles `Register` & `Login` Logic *************************** */
@@ -168,7 +180,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm onSubmit={handleNewsSearch}>
+                <SearchForm onSubmit={handleSearchResults}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
@@ -185,6 +197,7 @@ const App = () => {
                   />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />
+                  <SomethingWentWrong hideWentWrong={isInternalIssue} />
                 </Main>
                 <About />
                 <Footer />
