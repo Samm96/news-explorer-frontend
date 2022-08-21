@@ -55,7 +55,7 @@ class Api {
     /** Accesses Saved News articles by user. Get list. url may be different later */
 
     getSavedNews() {
-        return fetch(`${this._baseURL}/articles`, {
+        return fetch(`${this._baseURL}/saved-news`, {
             method: 'GET',
             headers: {
                 // authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ class Api {
     
     /** Post Saved News articles. url may be different */
     addSavedNews({ articleData }) {
-        return fetch(`${this._baseURL}/articles`, {
+        return fetch(`${this._baseURL}/saved-news`, {
             method: 'POST',
             headers: {
                 // authorization: `Bearer ${token}`,
@@ -79,7 +79,7 @@ class Api {
 
     /** delete saved news */
     deleteNewsCard({ _id }) {
-        return fetch(`${this._baseURL}/articles/${_id}`, {
+        return fetch(`${this._baseURL}/saved-news/${_id}`, {
             method: 'DELETE',
             headers: {
                 // authorization: `Bearer ${token}`,
@@ -91,7 +91,7 @@ class Api {
 
     /** toggle save button state */
     toggleSaveButtonState({ articleId, save }) {
-        return fetch(`${this._baseURL}/articles/${articleId}/saved`, {
+        return fetch(`${this._baseURL}/saved-news/${articleId}/saved`, {
             method: save ? 'PUT' : 'DELETE',
             headers: {
                 // authorization: `Bearer ${token}`,

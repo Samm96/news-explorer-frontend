@@ -20,15 +20,16 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import SomethingWentWrong from "../SomethingWentWrong/SomethingWentWrong";
 import * as auth from "../../utils/auth";
+import { api } from "../../utils/Api";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({
     username: "",
   });
   const [cards, setCards] = useState([]);
-  // const [savedCards, setSavedCards] = useState([]);
+  const [savedCards, setSavedCards] = useState([]);
 
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
@@ -127,6 +128,18 @@ const App = () => {
     closeAllPopups();
   }
 
+    /******************************************************************************************** */
+  /******************************* Handles `Save` & `Delete` Cards ********************************/
+  
+  const onSave = (card) => {
+    api
+      .addSavedNews(card)
+      .then((newSave) => {
+        setSavedCards([newSave, ...savedCards]);
+      })
+      .catch((err) => console.log(err));
+  }
+
 
    /******************************************************************************************** */
   /** ************************************ Closes `Modal`s ************************************** */
@@ -194,6 +207,8 @@ const App = () => {
                   <SearchResults
                     hideResults={isResults}
                     cards={cards}
+                    isLoggedIn={isLoggedIn}
+                    onSaveClick={onSave}
                   />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />
@@ -216,8 +231,7 @@ const App = () => {
                   openSigninModal={() => setIsRegisterOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                 />
-                <SavedNews cards={placeholderCard} />{" "}
-                {/** replace `placeholderCard` with `savedCards` */}
+                <SavedNews cards={savedCards} />
               </ProtectedRoute>
             }
           />

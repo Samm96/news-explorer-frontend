@@ -4,7 +4,7 @@ import React, { Children, useState } from "react";
 
 /** I think this is where I would map all of the cards coming in from the news api */
 
-const NewsCardList = ({ buttonType, cards, onSaveClick }) => {
+const NewsCardList = ({ buttonType, cards, onSaveClick, isLoggedIn }) => {
   const [shownAmount, setShownAmount] = useState(3);
 
   let defaultShown = shownAmount;
@@ -21,7 +21,7 @@ const NewsCardList = ({ buttonType, cards, onSaveClick }) => {
         {Children.toArray(
           threeCards.map((card) => (
             <>
-              <NewsCard card={card} onSaveClick={onSaveClick} buttonType={buttonType} />
+              <NewsCard isLoggedIn={isLoggedIn} card={card} onSaveClick={onSaveClick} buttonType={buttonType} />
             </>
           ))
         )}

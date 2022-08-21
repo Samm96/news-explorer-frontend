@@ -38,20 +38,24 @@ const NewsCard = ({
     }
   );
 
+  const toggleSaveButton = () => {
+    if (isSaved === "") {
+      handleSaveClick();
+    } else {
+      handleDeleteClick();
+    }
+  }
+
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
+    setIsSaved("");
     // onDeleteClick(card);
   };
 
   const handleSaveClick = () => {
     console.log("I'm saved!");
-    if (isLoggedIn && isSaved === "") {
-      debugger;
-      setIsSaved("save-button_active");
-      onSaveClick(card);
-    } else {
-      setIsSaved("");
-    }
+    setIsSaved("save-button__active");
+    onSaveClick(card);
   };
 
   return (
@@ -61,9 +65,9 @@ const NewsCard = ({
         {isLoggedIn ? (
           <button
             onClick={
-              buttonType === "save" ? handleSaveClick : handleDeleteClick
+              buttonType === "save" ? toggleSaveButton : handleDeleteClick
             }
-            className={`${buttonType}-button $${isSaved}`}
+            className={`${buttonType}-button ${isSaved}`}
           ></button>
         ) : (
           <button
