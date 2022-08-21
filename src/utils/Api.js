@@ -16,6 +16,7 @@ class Api {
     getAppInfo() {
         return Promise.all([
             this.getUserInfo(),
+            this.getSavedNews(),
         ])
     }
 
@@ -35,7 +36,7 @@ class Api {
     }
 
 
-    /** sets user's info */
+    /** sets user's info (do I need this?) */
 
     setUserInfo({ username }) {
         return fetch(`${this._baseURL}/users/me`, {
@@ -55,6 +56,7 @@ class Api {
 
     getSavedNews() {
         return fetch(`${this._baseURL}/saved-news`, {
+            method: 'GET',
             headers: {
                 // authorization: `Bearer ${token}`,
                 ...this._headers,
@@ -64,13 +66,16 @@ class Api {
 
     
     /** Post Saved News articles. url may be different */
-    addSavedNews({}) {
+    addSavedNews({ articleData }) {
         return fetch(`${this._baseURL}/saved-news`, {
             method: 'POST',
             headers: {
                 // authorization: `Bearer ${token}`,
                 ...this._headers,
             },
+            body: JSON.stringify({
+                articleData
+            }),
         }).then(this._handleServerResponse);
     }
 
@@ -85,20 +90,11 @@ class Api {
             }
         }).then(this._handleServerResponse);
     }
-
-
-    /** toggle save button state */
-    toggleSaveButtonState({ cardId, save }) {
-        return fetch(`${this._baseURL}/${cardId}/saved`, {
-            method: save ? 'PUT' : 'DELETE',
-            headers: {
-                // authorization: `Bearer ${token}`,
-                ...this._headers,
-            }
-        }).then(this._handleServerResponse);
-    }
-
 }
 
-
-
+export const api = new Api ({
+    baseURL: "http://localhost:3000",
+    headers: {
+        "Content-Type": "application/json",
+    }
+  });

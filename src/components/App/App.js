@@ -20,15 +20,16 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import SomethingWentWrong from "../SomethingWentWrong/SomethingWentWrong";
 import * as auth from "../../utils/auth";
+import { api } from "../../utils/Api";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({
     username: "",
   });
   const [cards, setCards] = useState([]);
-  // const [savedCards, setSavedCards] = useState([]);
+  const [savedCards, setSavedCards] = useState([]);
 
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
@@ -78,7 +79,6 @@ const App = () => {
   /******************************************************************************************** */
   /************************************* Handles `Main` behavior *******************************/
 
-
   const handleSearchSuccess = () => {
     setResults("");
     setIsLoading("_hidden");
@@ -86,49 +86,68 @@ const App = () => {
   };
 
   const handleNothingFound = () => {
-    setIsLoading("_hidden")
-    setIsNotFound("")
+    setIsLoading("_hidden");
+    setIsNotFound("");
   };
 
   const handleInternalIssue = () => {
     setIsLoading("_hidden");
     setIsInternalIssue("");
-  }
+  };
 
   /******************************************************************************************** */
   /** ***************************** Handles `Register` & `Login` Logic *************************** */
 
-  const onRegister = ({email, password, username}) => {
+  const onRegister = ({ email, password, username }) => {
     auth
       .register(email, password, username)
       .then((res) => {
-          setIsSuccessOpen(true);
+        setIsSuccessOpen(true);
       })
       .catch((err) => console.log(err));
-  }
+  };
 
-
-  const onLogin = ({email, password, username}) => {
+  const onLogin = ({ email, password, username }) => {
     auth
       .login(email, password)
       .then((res) => {
         console.log(res);
-        localStorage.setItem('email', email);
+        localStorage.setItem("email", email);
+        localStorage.setItem("username", username);
         setCurrentUser(username);
         setIsLoggedIn(true);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
-  }
-
+  };
 
   const onLogout = () => {
     setIsLoggedIn(false);
     closeAllPopups();
-  }
+  };
 
+  /******************************************************************************************** */
+  /******************************* Handles `Save` & `Delete` Cards ********************************/
 
-   /******************************************************************************************** */
+  const onSave = (card) => {
+    api
+      .addSavedNews(card)
+      .then((newSave) => {
+        setSavedCards([newSave, ...savedCards]);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const onDelete = (card) => {
+    api
+      .deleteNewsCard(card._id)
+      .then(() => {
+        setSavedCards((cardData) => cardData.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  /******************************************************************************************** */
   /** ************************************ Closes `Modal`s ************************************** */
 
   const closeAllPopups = () => {
@@ -194,6 +213,9 @@ const App = () => {
                   <SearchResults
                     hideResults={isResults}
                     cards={cards}
+                    isLoggedIn={isLoggedIn}
+                    onSaveClick={onSave}
+                    onDeleteClick={null}
                   />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />
@@ -216,8 +238,11 @@ const App = () => {
                   openSigninModal={() => setIsRegisterOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                 />
-                <SavedNews cards={placeholderCard} />{" "}
-                {/** replace `placeholderCard` with `savedCards` */}
+                <SavedNews
+                  onDeleteClick={onDelete}
+                  onSaveClick={null}
+                  cards={placeholderCard || savedCards}
+                />
               </ProtectedRoute>
             }
           />

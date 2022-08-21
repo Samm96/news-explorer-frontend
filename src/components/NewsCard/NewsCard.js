@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./NewsCard.css";
 
@@ -16,6 +16,7 @@ const NewsCard = ({
   card,
 }) => {
   const [isShown, setIsShown] = useState("_hidden");
+  const [isSaved, setIsSaved] = useState("");
 
   switch (buttonType) {
     case "save":
@@ -37,14 +38,26 @@ const NewsCard = ({
     }
   );
 
-  const handleDeleteClick = () => {
-    console.log("I should be deleted!");
-    // onDeleteClick(cardData);
-  };
+  const keyword = card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1);
 
   const handleSaveClick = () => {
     console.log("I'm saved!");
-    //   onSaveClick(cardData);
+    setIsSaved("save-button__active");
+    onSaveClick(card);
+  };
+
+  const handleDeleteClick = () => {
+    console.log("I should be deleted!");
+    onDeleteClick(card);
+  };
+
+  const toggleSaveButton = () => {
+    if (isSaved === "") {
+      handleSaveClick();
+    } else {
+      setIsSaved("");
+      handleDeleteClick();
+    }
   };
 
   return (
@@ -54,19 +67,26 @@ const NewsCard = ({
         {isLoggedIn ? (
           <button
             onClick={
-              buttonType === "save" ? handleSaveClick : handleDeleteClick
+              (buttonType === "save" ? toggleSaveButton : handleDeleteClick)
             }
             onMouseEnter={() => {
-              buttonType === "save" ? setIsShown("_hidden") : setIsShown("");
+              if (buttonType === "delete") {
+                setIsShown("");
+              }
             }}
             onMouseLeave={() => setIsShown("_hidden")}
-            className={`${buttonType}-button`}
+            className={
+              buttonType === "save"
+                ? `${buttonType}-button ${isSaved}`
+                : `${buttonType}-button`
+            }
           ></button>
         ) : (
           <button
             onMouseEnter={() => setIsShown("")}
             onMouseLeave={() => setIsShown("_hidden")}
             className={`${buttonType}-button`}
+            onClick={null}
           ></button>
         )}
         <span
@@ -76,7 +96,7 @@ const NewsCard = ({
               : "news-card__keyword news-card__keyword_hidden"
           }
         >
-          {card.keyword}
+          {keyword}
         </span>
         <img className="news-card__image" src={card.urlToImage} alt="Card" />
         <div className="news-card__text-container">
