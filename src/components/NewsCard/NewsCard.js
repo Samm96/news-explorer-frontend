@@ -49,7 +49,7 @@ const NewsCard = ({
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
     setIsSaved("");
-    // onDeleteClick(card);
+    onDeleteClick(card);
   };
 
   const handleSaveClick = () => {

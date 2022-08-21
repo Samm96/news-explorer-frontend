@@ -24,7 +24,7 @@ import { api } from "../../utils/Api";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({
     username: "",
   });
@@ -79,7 +79,6 @@ const App = () => {
   /******************************************************************************************** */
   /************************************* Handles `Main` behavior *******************************/
 
-
   const handleSearchSuccess = () => {
     setResults("");
     setIsLoading("_hidden");
@@ -87,50 +86,48 @@ const App = () => {
   };
 
   const handleNothingFound = () => {
-    setIsLoading("_hidden")
-    setIsNotFound("")
+    setIsLoading("_hidden");
+    setIsNotFound("");
   };
 
   const handleInternalIssue = () => {
     setIsLoading("_hidden");
     setIsInternalIssue("");
-  }
+  };
 
   /******************************************************************************************** */
   /** ***************************** Handles `Register` & `Login` Logic *************************** */
 
-  const onRegister = ({email, password, username}) => {
+  const onRegister = ({ email, password, username }) => {
     auth
       .register(email, password, username)
       .then((res) => {
-          setIsSuccessOpen(true);
+        setIsSuccessOpen(true);
       })
       .catch((err) => console.log(err));
-  }
+  };
 
-
-  const onLogin = ({email, password, username}) => {
+  const onLogin = ({ email, password, username }) => {
     auth
       .login(email, password)
       .then((res) => {
         console.log(res);
-        localStorage.setItem('email', email);
+        localStorage.setItem("email", email);
         setCurrentUser(username);
         setIsLoggedIn(true);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
-  }
-
+  };
 
   const onLogout = () => {
     setIsLoggedIn(false);
     closeAllPopups();
-  }
+  };
 
-    /******************************************************************************************** */
+  /******************************************************************************************** */
   /******************************* Handles `Save` & `Delete` Cards ********************************/
-  
+
   const onSave = (card) => {
     api
       .addSavedNews(card)
@@ -138,10 +135,18 @@ const App = () => {
         setSavedCards([newSave, ...savedCards]);
       })
       .catch((err) => console.log(err));
-  }
+  };
 
+  const onDelete = (card) => {
+    api
+      .deleteNewsCard(card._id)
+      .then(() => {
+        setSavedCards((cardData) => cardData.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => console.log(err));
+  };
 
-   /******************************************************************************************** */
+  /******************************************************************************************** */
   /** ************************************ Closes `Modal`s ************************************** */
 
   const closeAllPopups = () => {
@@ -209,6 +214,7 @@ const App = () => {
                     cards={cards}
                     isLoggedIn={isLoggedIn}
                     onSaveClick={onSave}
+                    onDeleteClick={onDelete}
                   />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />

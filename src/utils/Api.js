@@ -73,6 +73,9 @@ class Api {
                 // authorization: `Bearer ${token}`,
                 ...this._headers,
             },
+            body: JSON.stringify({
+                articleData
+            }),
         }).then(this._handleServerResponse);
     }
 
@@ -87,21 +90,11 @@ class Api {
             }
         }).then(this._handleServerResponse);
     }
-
-
-    /** toggle save button state */
-    toggleSaveButtonState({ articleId, save }) {
-        return fetch(`${this._baseURL}/saved-news/${articleId}/saved`, {
-            method: save ? 'PUT' : 'DELETE',
-            headers: {
-                // authorization: `Bearer ${token}`,
-                ...this._headers,
-            }
-        }).then(this._handleServerResponse);
-    }
-
 }
 
 export const api = new Api ({
     baseURL: "http://localhost:3000",
+    headers: {
+        "Content-Type": "application/json",
+    }
   });
