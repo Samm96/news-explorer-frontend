@@ -29,9 +29,9 @@ const NewsCardList = ({
             <>
               <NewsCard
                 isLoggedIn={isLoggedIn}
-                onDeleteClick={onDeleteClick}
                 card={card}
                 onSaveClick={onSaveClick}
+                onDeleteClick={onDeleteClick}
                 buttonType={buttonType}
               />
             </>

@@ -214,7 +214,7 @@ const App = () => {
                     cards={cards}
                     isLoggedIn={isLoggedIn}
                     onSaveClick={onSave}
-                    onDeleteClick={onDelete}
+                    onDeleteClick={null}
                   />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />
@@ -239,6 +239,7 @@ const App = () => {
                 />
                 <SavedNews
                   onDeleteClick={onDelete}
+                  onSaveClick={null}
                   cards={placeholderCard || savedCards}
                 />
               </ProtectedRoute>

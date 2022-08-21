@@ -4,8 +4,7 @@ import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-const SavedNews = ({ cards, onDeleteClick }) => {
-
+const SavedNews = ({ cards, onDeleteClick, onSaveClick }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
   const placeholder = "Samantha";
@@ -14,9 +13,11 @@ const SavedNews = ({ cards, onDeleteClick }) => {
   let cardKeywords = [];
 
   cards.forEach((card) => {
-    cardKeywords.push(card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1));
+    cardKeywords.push(
+      card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1)
+    );
   });
-  
+
   let findDuplicates = [...new Set(cardKeywords)];
 
   let keywords;
@@ -56,7 +57,12 @@ const SavedNews = ({ cards, onDeleteClick }) => {
           {Children.toArray(
             cards.map((card) => (
               <>
-                <NewsCard card={card} onDeleteClick={onDeleteClick} buttonType={"delete"} />
+                <NewsCard
+                  card={card}
+                  buttonType={"delete"}
+                  onDeleteClick={onDeleteClick}
+                  onSaveClick={onSaveClick}
+                />
               </>
             ))
           )}

@@ -40,6 +40,17 @@ const NewsCard = ({
 
   const keyword = card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1);
 
+  const handleSaveClick = () => {
+    console.log("I'm saved!");
+    setIsSaved("save-button__active");
+    onSaveClick(card);
+  };
+
+  const handleDeleteClick = () => {
+    console.log("I should be deleted!");
+    // onDeleteClick(card);
+  };
+
   const toggleSaveButton = () => {
     if (isSaved === "") {
       handleSaveClick();
@@ -49,17 +60,6 @@ const NewsCard = ({
     }
   };
 
-  const handleDeleteClick = () => {
-    console.log("I should be deleted!");
-    onDeleteClick(card);
-  };
-
-  const handleSaveClick = () => {
-    console.log("I'm saved!");
-    setIsSaved("save-button__active");
-    onSaveClick(card);
-  };
-
   return (
     <div className="news-card">
       <div className="news-card__container">
@@ -67,15 +67,26 @@ const NewsCard = ({
         {isLoggedIn ? (
           <button
             onClick={
-              buttonType === "save" ? toggleSaveButton : handleDeleteClick
+              (buttonType === "save" ? toggleSaveButton : handleDeleteClick)
             }
-            className={`${buttonType}-button ${isSaved}`}
+            onMouseEnter={() => {
+              if (buttonType === "delete") {
+                setIsShown("");
+              }
+            }}
+            onMouseLeave={() => setIsShown("_hidden")}
+            className={
+              buttonType === "save"
+                ? `${buttonType}-button ${isSaved}`
+                : `${buttonType}-button`
+            }
           ></button>
         ) : (
           <button
             onMouseEnter={() => setIsShown("")}
             onMouseLeave={() => setIsShown("_hidden")}
             className={`${buttonType}-button`}
+            onClick={null}
           ></button>
         )}
         <span

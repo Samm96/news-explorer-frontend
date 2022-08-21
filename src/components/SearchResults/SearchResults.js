@@ -6,7 +6,13 @@ const SearchResults = ({ isLoggedIn, cards, hideResults, onSaveClick, onDeleteCl
     <div className={`results results${hideResults}`}>
       <div className="results__container">
         <p className="results__title">Search Results</p>
-        <NewsCardList isLoggedIn={isLoggedIn} onDeleteClick={onDeleteClick} onSaveClick={onSaveClick} cards={cards} buttonType={"save"}/>
+        <NewsCardList
+          isLoggedIn={isLoggedIn}
+          onSaveClick={onSaveClick}
+          onDeleteClick={onDeleteClick}
+          cards={cards}
+          buttonType={"save"}
+        />
       </div>
     </div>
   );
