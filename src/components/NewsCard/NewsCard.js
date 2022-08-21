@@ -48,7 +48,7 @@ const NewsCard = ({
 
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
-    // onDeleteClick(card);
+    onDeleteClick(card);
   };
 
   const toggleSaveButton = () => {
