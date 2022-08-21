@@ -113,6 +113,7 @@ const App = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("email", email);
+        localStorage.setItem("username", username);
         setCurrentUser(username);
         setIsLoggedIn(true);
         closeAllPopups();
