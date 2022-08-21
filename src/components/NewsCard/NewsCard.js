@@ -44,7 +44,7 @@ const NewsCard = ({
     } else {
       handleDeleteClick();
     }
-  }
+  };
 
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
@@ -71,9 +71,7 @@ const NewsCard = ({
           ></button>
         ) : (
           <button
-            onMouseEnter={() => {
-              buttonType === "save" ? setIsShown("_hidden") : setIsShown("");
-            }}
+            onMouseEnter={() => setIsShown("")}
             onMouseLeave={() => setIsShown("_hidden")}
             className={`${buttonType}-button`}
           ></button>
