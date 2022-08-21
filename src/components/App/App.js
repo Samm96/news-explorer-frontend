@@ -237,7 +237,10 @@ const App = () => {
                   openSigninModal={() => setIsRegisterOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                 />
-                <SavedNews cards={savedCards} />
+                <SavedNews
+                  onDeleteClick={onDelete}
+                  cards={placeholderCard || savedCards}
+                />
               </ProtectedRoute>
             }
           />

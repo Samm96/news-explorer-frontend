@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-const SavedNews = ({ cards }) => {
+const SavedNews = ({ cards, onDeleteClick }) => {
 
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -56,7 +56,7 @@ const SavedNews = ({ cards }) => {
           {Children.toArray(
             cards.map((card) => (
               <>
-                <NewsCard card={card} buttonType={"delete"} />
+                <NewsCard card={card} onDeleteClick={onDeleteClick} buttonType={"delete"} />
               </>
             ))
           )}

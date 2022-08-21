@@ -47,11 +47,8 @@ const NavigationModal = ({
               >
                 Saved articles
               </NavLink>
-              <button
-                className="nav-modal__button-user"
-                userName={placeholder}
-                onClick={onLogout}
-              >
+              <button className="nav-modal__button-user" onClick={onLogout}>
+                {placeholder}
                 <img
                   className="nav-modal__button-img"
                   src={whiteIcon}
