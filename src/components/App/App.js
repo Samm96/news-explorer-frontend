@@ -24,7 +24,7 @@ import { api } from "../../utils/Api";
 
 const App = () => {
   // placeholder
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     username: "",
   });
@@ -204,7 +204,7 @@ const App = () => {
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
                     textColor={""}
-                    openSigninModal={() => setIsRegisterOpen(true)}
+                    openSigninModal={() => setIsLoginOpen(true)}
                     openMobileModal={() => setIsMobileNavOpen(true)}
                     onLogout={onLogout}
                   />
@@ -235,7 +235,7 @@ const App = () => {
                   isLoggedIn={isLoggedIn}
                   logoColor={"black"}
                   textColor={"black"}
-                  openSigninModal={() => setIsRegisterOpen(true)}
+                  openSigninModal={() => setIsLoginOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                 />
                 <SavedNews
