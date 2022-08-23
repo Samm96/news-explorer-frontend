@@ -17,6 +17,10 @@
     line-height: 22px;
 }
 
+.footer__copyright:hover {
+    cursor: default;
+}
+
 .footer__container {
     display: grid;
     grid-template-columns: 117px 192px 40px 72px;
@@ -45,6 +49,9 @@
     font-size: 18px;
     line-height: 24px;
     justify-self: center;
+
+    text-decoration: none;
+    color: #1A1B22;
 }
 
 .footer__link-container {
@@ -64,6 +71,7 @@
     background-size: 24px 24px;
     background-repeat: no-repeat;
     background-position: center;
+    color: transparent;
 }
 
 .footer__link:first-of-type {

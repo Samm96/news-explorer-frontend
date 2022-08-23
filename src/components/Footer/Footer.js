@@ -1,6 +1,13 @@
 import "./Footer.css";
 import { NavLink } from "react-router-dom";
 
+const scrollUp = () => {
+  document.documentElement.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
 const Footer = () => {
   return (
     <div className="footer">
@@ -8,13 +15,33 @@ const Footer = () => {
         &copy; 2022 Supersite, Powered by News API
       </p>
       <div className="footer__container">
-        <NavLink to="/" className="footer__home">
+        <NavLink onClick={scrollUp} to="/" className="footer__home">
           Home
         </NavLink>
-        <p className="footer__text">Practicum by Yandex</p>
+        <a
+          className="footer__text"
+          target="__blank"
+          href="https://practicum.com/"
+        >
+          Practicum by Yandex
+        </a>
         <div className="footer__link-container">
-          <button className="footer__link" alt="GitHub Icon"></button>
-          <button className="footer__link" alt="Facebook Icon"></button>
+          <a
+            className="footer__link"
+            href="https://github.com/Samm96"
+            target="__blank"
+            alt="GitHub Icon"
+          >
+            GitHub Icon
+          </a>
+          <a
+            className="footer__link"
+            href="https://www.facebook.com/"
+            target="__blank"
+            alt="Facebook Icon"
+          >
+            Facebook Icon
+          </a>
         </div>
       </div>
     </div>
