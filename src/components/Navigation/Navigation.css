@@ -144,7 +144,8 @@
   }
 
   .navigation__container_type_signedin {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 70px max-content 1fr;
+    grid-gap: 16px;
     max-width: 688px;
   }
 
@@ -179,7 +180,7 @@
   }
 
   .navigation__saved-articles_type_page {
-    padding: 0 18px 18px;
+    padding: 0 18px 22px;
   }
 
   .navigation__button {
