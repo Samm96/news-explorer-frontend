@@ -49,23 +49,23 @@ const App = () => {
 
   const handleNewsSearch = (userKeyword) => {
     console.log(userKeyword);
-    // setIsLoading("");
-    // NewsApi.getNews(userKeyword)
-    //   .then((cardData) => {
-    //     cardData["keyword"] = userKeyword;
-    //     localStorage.setItem("cards", JSON.stringify(cardData));
-    //   })
-    //   .then(() => {
-    //     handleSearchSuccess()
-    //   })
-    //   .catch((err) => {
-    //     if (err.status === 404) {
-    //       handleNothingFound()
-    //     } else {
-    //       handleInternalIssue()
-    //     }
-    //     console.log(err)
-    //   });
+    setIsLoading("");
+    NewsApi.getNews(userKeyword)
+      .then((cardData) => {
+        cardData["keyword"] = userKeyword;
+        localStorage.setItem("cards", JSON.stringify(cardData));
+      })
+      .then(() => {
+        handleSearchSuccess()
+      })
+      .catch((err) => {
+        if (err.status === 404) {
+          handleNothingFound()
+        } else {
+          handleInternalIssue()
+        }
+        console.log(err)
+      });
   };
 
   const handleSearchResults = () => {
@@ -199,7 +199,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm onSubmit={handleSearchResults}>
+                <SearchForm onSubmit={handleNewsSearch}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
