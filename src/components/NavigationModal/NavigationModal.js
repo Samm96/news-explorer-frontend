@@ -16,51 +16,54 @@ const NavigationModal = ({
   const placeholder = "Samantha";
 
   return (
-    <div
-      className={`nav-modal nav-modal__overlay ${isOpen && "nav-modal_open"}`}
-    >
-      <div className="nav-modal__container">
-        <div className="nav-modal__header-container">
-          <Logo logoColor={"white"} />
-          <button
-            className="nav-modal__close-button"
-            onClick={onClose}
-          ></button>
-        </div>
-        <div className="nav-modal__link-container">
-          <NavLink
-            to="/"
-            className={
-              isLoggedIn
-                ? `nav-modal__link nav-modal__link_type_loggedin`
-                : "nav-modal__link"
-            }
-          >
-            Home
-          </NavLink>
-          {isLoggedIn ? (
-            <>
-              <NavLink
-                to="/saved-news"
-                className="nav-modal__link nav-modal__link_type_loggedin"
-                onClick={onClose}
-              >
-                Saved articles
-              </NavLink>
-              <button className="nav-modal__button nav-modal__button_type_user" onClick={onLogout}>
-                {placeholder}
-                <img
-                  className="nav-modal__button-img"
-                  src={whiteIcon}
-                  alt="signout"
-                />
+    <div className={`nav-modal ${isOpen && "nav-modal_open"}`}>
+      <div className="nav-modal__overlay">
+        <div className="nav-modal__container">
+          <div className="nav-modal__header-container">
+            <Logo logoColor={"white"} />
+            <button
+              className="nav-modal__close-button"
+              onClick={onClose}
+            ></button>
+          </div>
+          <div className="nav-modal__link-container">
+            <NavLink
+              to="/"
+              className={
+                isLoggedIn
+                  ? `nav-modal__link nav-modal__link_type_loggedin`
+                  : "nav-modal__link"
+              }
+            >
+              Home
+            </NavLink>
+            {isLoggedIn ? (
+              <>
+                <NavLink
+                  to="/saved-news"
+                  className="nav-modal__link nav-modal__link_type_loggedin"
+                  onClick={onClose}
+                >
+                  Saved articles
+                </NavLink>
+                <button
+                  className="nav-modal__button nav-modal__button_type_user"
+                  onClick={onLogout}
+                >
+                  {placeholder}
+                  <img
+                    className="nav-modal__button-img"
+                    src={whiteIcon}
+                    alt="signout"
+                  />
+                </button>
+              </>
+            ) : (
+              <button className="nav-modal__button" onClick={openLoginModal}>
+                Sign in
               </button>
-            </>
-          ) : (
-            <button className="nav-modal__button" onClick={openLoginModal}>
-              Sign in
-            </button>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>

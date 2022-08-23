@@ -17,7 +17,7 @@
     transition: opacity ease-out 0.5s, visibility 0s ease-out 0.5s;
 }
 
-.modal__overlay {
+.modal_overlay {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
