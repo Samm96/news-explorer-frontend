@@ -40,7 +40,7 @@
 }
 
 .navigation__home_type_page {
-  color: #1a1b22;
+  color: rgba(26, 27, 34, 0.5);
   border: none;
 }
 
@@ -59,7 +59,7 @@
 .navigation__saved-articles_type_page {
   padding: 0 32px 23px;
   border-bottom: 3px solid #1a1b22;
-  color: rgba(26, 27, 34, 0.5);
+  color: #1a1b22;
 }
 
 /* when background is black */
@@ -109,11 +109,8 @@
 }
 
 .navigation__home:hover,
-.navigation__home_type_selected:hover,
-.navigation__home_type_selected-page:hover,
-.navigation__saved-articles:hover,
-.navigation__saved-articles_type_selected:hover,
-.navigation__saved-articles_type_selected-page:hover {
+.navigation__home_type_page:hover,
+.navigation__saved-articles:hover {
   cursor: pointer;
   opacity: 0.6;
 }
@@ -166,8 +163,12 @@
   }
 
   .navigation__home_type_page {
-    color: #1a1b22;
+    color: rgba(26, 27, 34, 0.5);
     border: none;
+  }
+
+  .navigation__home_type_page:hover {
+    opacity: 0.6;
   }
 
   .navigation__saved-articles {
