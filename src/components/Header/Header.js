@@ -6,7 +6,7 @@ const Header = ({
   isLoggedIn,
   logoColor,
   textColor,
-  openSigninModal,
+  openLoginModal,
   openMobileModal,
   onLogout,
   username
@@ -19,7 +19,7 @@ const Header = ({
           isLoggedIn={isLoggedIn}
           textColor={textColor}
           onLogout={onLogout}
-          openSigninModal={openSigninModal}
+          openLoginModal={openLoginModal}
           openMobileModal={openMobileModal}
           username={username}
         />

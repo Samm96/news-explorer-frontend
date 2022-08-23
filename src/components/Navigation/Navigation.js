@@ -6,7 +6,7 @@ import whiteIcon from "../../images/Icons/button-icon-white.svg";
 import whiteMenu from "../../images/Menu-Button/menu-white.svg";
 import blackMenu from "../../images/Menu-Button/menu-black.svg";
 
-const Navigation = ({ isLoggedIn, userName, textColor, openSigninModal, openMobileModal, onLogout }) => {
+const Navigation = ({ isLoggedIn, userName, textColor, openLoginModal, openMobileModal, onLogout }) => {
   const placeholderUser = "Samantha";
 
   const whiteText = {
@@ -100,7 +100,7 @@ const Navigation = ({ isLoggedIn, userName, textColor, openSigninModal, openMobi
                   ? `${whiteText.signInButton} ${blackText.signInButton}`
                   : `${whiteText.signInButton}`
               }
-              onClick={openSigninModal}
+              onClick={openLoginModal}
             >
               Sign in
             </button>

@@ -204,7 +204,7 @@ const App = () => {
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
                     textColor={""}
-                    openSigninModal={() => setIsLoginOpen(true)}
+                    openLoginModal={() => setIsLoginOpen(true)}
                     openMobileModal={() => setIsMobileNavOpen(true)}
                     onLogout={onLogout}
                   />
@@ -235,7 +235,7 @@ const App = () => {
                   isLoggedIn={isLoggedIn}
                   logoColor={"black"}
                   textColor={"black"}
-                  openSigninModal={() => setIsLoginOpen(true)}
+                  openLoginModal={() => setIsLoginOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                 />
                 <SavedNews
