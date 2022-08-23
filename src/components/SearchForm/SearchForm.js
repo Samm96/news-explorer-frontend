@@ -22,10 +22,10 @@ const SearchForm = ({ onSubmit, children }) => {
   }, []);
 
   return (
-    <div className="search-form">
+    <section className="search-form">
       {children}
       <div className="search-form__container">
-        <p className="search-form__text">What's going on in the world?</p>
+        <h1 className="search-form__text">What's going on in the world?</h1>
         <p className="search-form__subtext">
           Find the latest news on any topic and save them in your personal
           account.
@@ -50,7 +50,7 @@ const SearchForm = ({ onSubmit, children }) => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

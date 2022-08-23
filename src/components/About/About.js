@@ -3,11 +3,11 @@ import authorImage from "../../images/Author/Samantha-author-op1.png";
 
 const About = () => {
   return (
-    <div className="about">
+    <section className="about">
       <div className="about__container">
         <img className="about__author" src={authorImage} alt="Author" />
         <div className="about__text-container">
-          <p className="about__title">About the author</p>
+          <h2 className="about__title">About the author</h2>
           <p className="about__text">
             Samantha Horsch is visual designer and a recent full-stack web
             developer. She has experience working with both frontend and backend
@@ -21,7 +21,7 @@ const About = () => {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

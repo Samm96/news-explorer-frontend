@@ -42,9 +42,9 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick }) => {
   }
 
   return (
-    <div className="saved-news">
+    <section className="saved-news">
       <div className="saved-news__text-container">
-        <p className="saved-news__title">Saved articles</p>
+        <h2 className="saved-news__title">Saved articles</h2>
         <p className="saved-news__saved">
           {currentUser || placeholder}, you have {articlesAmount} saved articles
         </p>
@@ -69,7 +69,7 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick }) => {
         </div>
       </div>
       <Footer />
-    </div>
+    </section>
   );
 };
 

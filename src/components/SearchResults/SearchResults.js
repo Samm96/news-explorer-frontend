@@ -3,9 +3,9 @@ import NewsCardList from "../NewsCardList/NewsCardList";
 
 const SearchResults = ({ isLoggedIn, cards, hideResults, onSaveClick, onDeleteClick }) => {
   return (
-    <div className={`results results${hideResults}`}>
+    <section className={`results results${hideResults}`}>
       <div className="results__container">
-        <p className="results__title">Search Results</p>
+        <h2 className="results__title">Search Results</h2>
         <NewsCardList
           isLoggedIn={isLoggedIn}
           onSaveClick={onSaveClick}
@@ -14,7 +14,7 @@ const SearchResults = ({ isLoggedIn, cards, hideResults, onSaveClick, onDeleteCl
           buttonType={"save"}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

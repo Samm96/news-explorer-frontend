@@ -10,7 +10,7 @@ const scrollUp = () => {
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <p className="footer__copyright">
         &copy; 2022 Supersite, Powered by News API
       </p>
@@ -44,7 +44,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

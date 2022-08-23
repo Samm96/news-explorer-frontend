@@ -2,9 +2,9 @@ import "./Main.css";
 
 const Main = ({children}) => {
   return (
-    <div className="main">
+    <main className="main">
       {children}
-    </div>
+    </main>
   );
 };
 

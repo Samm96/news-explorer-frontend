@@ -12,7 +12,7 @@ const Header = ({
   username
 }) => {
   return (
-    <div className="header">
+    <header className="header">
       <div className="header__container">
         <Logo logoColor={logoColor} />
         <Navigation
@@ -24,7 +24,7 @@ const Header = ({
           username={username}
         />
       </div>
-    </div>
+    </header>
   );
 };
 
