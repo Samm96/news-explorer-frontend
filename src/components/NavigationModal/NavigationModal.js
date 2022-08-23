@@ -42,12 +42,12 @@ const NavigationModal = ({
             <>
               <NavLink
                 to="/saved-news"
-                className="nav-modal__link"
+                className="nav-modal__link nav-modal__link_type_loggedin"
                 onClick={onClose}
               >
                 Saved articles
               </NavLink>
-              <button className="nav-modal__button-user" onClick={onLogout}>
+              <button className="nav-modal__button nav-modal__button_type_user" onClick={onLogout}>
                 {placeholder}
                 <img
                   className="nav-modal__button-img"

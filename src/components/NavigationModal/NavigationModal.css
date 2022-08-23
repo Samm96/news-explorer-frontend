@@ -29,7 +29,7 @@
     background-color: #1a1b22;
     padding: 0 0 16px;
     width: 480px;
-    height: 230px;
+    height: fit-content;
   }
 
   .nav-modal__header-container {
@@ -59,6 +59,8 @@
     width: 288px;
     margin: 16px auto 24px;
     position: relative;
+    display: grid;
+    grid-template-rows: fit-content;
   }
 
   .nav-modal__link {
@@ -80,7 +82,7 @@
   .nav-modal__button {
     width: 288px;
     max-height: 56px;
-    margin: 22px auto 0;
+    margin: 0 auto 0;
     padding: 12px;
     border: 1px solid #ffff;
     background-color: transparent;
@@ -90,27 +92,22 @@
     font-size: 18px;
     line-height: 24px;
     display: grid;
-    grid-template-columns: fit-content 1fr;
+    grid-template-columns: fit-content fit-content;
     grid-column: 1;
   }
 
-    /** the logout button mobile. remove if not needed **/
-  .nav-modal__button-user {
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    background-position: center;
-    border: none;
-    position: absolute;
-    right: 0;
-    bottom: 18px;
+  .nav-modal__button_type_user {
+    margin: 18px 0 0;
+    text-align: end;
   }
 
-
   .nav-modal__button-img {
+    margin: 0;
+    padding: 0;
     justify-self: center;
     align-self: center;
     width: 17px;
     height: 16px;
+    grid-column: 2;
   }
 }
