@@ -37,16 +37,20 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid #1A1B22;
-    opacity: 0.2;
+    border-bottom: 1px solid rgba(26, 27, 34, 0.2);
 }
 
 .modal-form__input:last-of-type {
     margin: 0;
 }
 
+.modal-form__input::placeholder {
+    color: rgba(26, 27, 34, 0.2);
+}
+
 .modal-form__input:focus {
-    outline: none;
+    outline-color: transparent;
+    border-bottom: 1px solid rgba(26, 27, 34, 1);
 }
 
 .modal-form__error-message {
