@@ -59,7 +59,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
         </label>
         <input
           className="modal-form__input"
-          type="password"
+          type="new-password"
           name="password"
           placeholder="Enter password"
           onChange={(e) => setPassword(e.target.value)}

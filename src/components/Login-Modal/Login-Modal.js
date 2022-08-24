@@ -56,7 +56,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
         </label>
         <input
           className="modal-form__input"
-          type="password"
+          type="current-password"
           name="password"
           placeholder="Enter password"
           minLength="2"
