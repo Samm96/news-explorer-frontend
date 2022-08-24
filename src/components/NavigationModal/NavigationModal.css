@@ -22,13 +22,15 @@
   }
 
   .nav-modal__overlay {
+    width: 480px;
     background-color: rgba(0, 0, 0, 0.5);
   }
 
   .nav-modal__container {
     background-color: #1a1b22;
     padding: 0 0 16px;
-    width: 480px;
+    width: 100%;
+    max-width: 480px;
     height: fit-content;
   }
 
@@ -38,7 +40,7 @@
     border-bottom: 3px solid rgba(196, 196, 196, 0.1);
 
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .nav-modal__link-container {
