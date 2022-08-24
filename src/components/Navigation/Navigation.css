@@ -146,7 +146,7 @@
   }
 
   .navigation__container_type_signedin {
-    grid-template-columns: 70px max-content 1fr;
+    grid-template-columns: 42px max-content 1fr;
     grid-gap: 16px;
     max-width: 688px;
   }
@@ -168,6 +168,7 @@
   .navigation__home_type_page {
     color: rgba(26, 27, 34, 0.5);
     border: none;
+    padding: 0 0 22px;
   }
 
   .navigation__home_type_page:hover {
@@ -194,7 +195,7 @@
     font-size: 16px;
   }
 
-  .navigation__button_type_signin {
+  .navigation__button_type_signin, .navigation__button_type_page {
     width: 100%;
   }
 
