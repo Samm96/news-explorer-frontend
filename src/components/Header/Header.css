@@ -34,7 +34,6 @@
     }
 
     .header__container {
-        max-width: 288px;
-        width: 100%;
+        justify-content: space-around;
     }
 }

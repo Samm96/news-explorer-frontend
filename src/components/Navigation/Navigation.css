@@ -18,6 +18,7 @@
 
 .navigation__container_type_signedin {
   grid-template-columns: 70px 178px 1fr;
+  grid-gap: 16px;
 }
 
 .navigation__link {
@@ -64,7 +65,7 @@
 
 /* when background is black */
 .navigation__button {
-  width: 176px;
+  max-width: 176px;
   max-height: 48px;
   margin: 0;
   padding: 12px;
@@ -97,6 +98,7 @@
 }
 
 .navigation__button-img {
+  margin: 0 0 0 10px;
   width: 18px;
   height: 16px;
   padding-top: 4px;
