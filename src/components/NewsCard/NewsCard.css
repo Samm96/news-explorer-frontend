@@ -60,7 +60,7 @@
 }
 
 .save-button {
-    background-image: url('../../images/Save-Button/Save_default.png');
+    background-image: url('../../images/Save-Button/save-button_default.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-color: transparent;
@@ -74,11 +74,11 @@
 }
 
 .save-button__active {
-    background-image: url('../../images/Save-Button/Save_active.png');
+    background-image: url('../../images/Save-Button/save-button_active.svg');
 }
 
 .save-button:hover {
-    background-image: url('../../images/Save-Button/Save_hover.png');
+    background-image: url('../../images/Save-Button/save-button_hover.svg');
     cursor: pointer;
 }
 

@@ -41,20 +41,6 @@
     justify-content: space-between;
   }
 
-  .nav-modal__close-button {
-    background-image: url("../../images/Icons/close-png.png");
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    background-position: center;
-
-    border: none;
-    width: 24px;
-    height: 24px;
-
-    margin: 0 21px 0 0;
-  }
-
   .nav-modal__link-container {
     width: 288px;
     margin: 16px auto 24px;

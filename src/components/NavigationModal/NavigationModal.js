@@ -22,7 +22,7 @@ const NavigationModal = ({
           <div className="nav-modal__header-container">
             <Logo logoColor={"white"} />
             <button
-              className="nav-modal__close-button"
+              className="close-button close-button_type_mobile"
               onClick={onClose}
             ></button>
           </div>
