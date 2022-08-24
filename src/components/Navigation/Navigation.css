@@ -188,11 +188,14 @@
   .navigation__button {
     max-height: 40px;
     max-width: 152px;
-    width: 100%;
     margin: 0;
     padding: 8px 12px;
 
     font-size: 16px;
+  }
+
+  .navigation__button_type_signin {
+    width: 100%;
   }
 
   .navigation__button-img {

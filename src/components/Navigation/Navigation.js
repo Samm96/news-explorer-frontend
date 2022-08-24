@@ -56,7 +56,7 @@ const Navigation = ({ isLoggedIn, userName, textColor, openLoginModal, openMobil
               className={
                 textColor === "black"
                   ? `${whiteText.signInButton} ${blackText.signInButton}`
-                  : `${whiteText.signInButton}`
+                  : `${whiteText.signInButton} navigation__button_type_signin`
               }
               onClick={onLogout}
             >
