@@ -18,7 +18,7 @@
     padding: 0;
 
     color: #1A1B22;
-    font-family: 'Roboto Slab';
+    font-family: 'Roboto Slab', serif;
     font-weight: 400;
     font-size: 26px;
     line-height: 30px;
@@ -34,7 +34,7 @@
     padding: 0;
 
     color: #B6BCBF;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;

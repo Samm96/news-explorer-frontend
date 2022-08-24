@@ -13,7 +13,7 @@
     padding: 0;
 
     color: rgba(26, 27, 34, 0.5);
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
@@ -24,7 +24,7 @@
     margin: 28px 0 0;
     padding: 0;
 
-    font-family: 'Roboto Slab';
+    font-family: 'Roboto Slab', serif;
     font-weight: 400;
     font-size: 40px;
     line-height: 46px;
@@ -34,7 +34,7 @@
     margin: 30px 0 56px;
     padding: 0;
 
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;

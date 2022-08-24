@@ -23,7 +23,7 @@
     padding: 0;
 
     color: #2F71E5;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
@@ -57,7 +57,7 @@
     margin: 0;
     padding: 0;
     color: #FF0000;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
@@ -98,7 +98,7 @@
 
 .modal-form__text {
     margin: 16px auto 28px;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px; 
@@ -112,7 +112,7 @@
     background-color: transparent;
     color: #2F71E5;
 
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
