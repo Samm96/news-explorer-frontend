@@ -1,14 +1,14 @@
 import "./Footer.css";
 import { NavLink } from "react-router-dom";
 
-const scrollUp = () => {
-  document.documentElement.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-};
-
 const Footer = () => {
+  const scrollUp = () => {
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <footer className="footer">
       <p className="footer__copyright">
@@ -32,7 +32,10 @@ const Footer = () => {
             target="__blank"
             alt="GitHub Icon"
           >
-            GitHub Icon
+            <img
+              className="footer__link-image footer__link-image_type_github"
+              alt="GitHub Icon"
+            />
           </a>
           <a
             className="footer__link"
@@ -40,7 +43,10 @@ const Footer = () => {
             target="__blank"
             alt="Facebook Icon"
           >
-            Facebook Icon
+            <img
+              className="footer__link-image footer__link-image_type_facebook"
+              alt="Facebook Icon"
+            />
           </a>
         </div>
       </div>
