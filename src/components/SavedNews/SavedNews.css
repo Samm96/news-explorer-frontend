@@ -101,6 +101,7 @@
     .saved-news__text-container {
         width: 289px;
         padding: 0 16px 0 15px;
+        margin: 0;
     }
     
     .saved-news__title {
