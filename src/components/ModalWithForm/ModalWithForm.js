@@ -19,15 +19,17 @@ const ModalWithForm = ({
       openModal={openModal}
       onClose={onClose}
     >
-      <form name={formName} onSubmit={onSubmit}>
-        {children}
-      </form>
-      <p className={`modal-form__text`}>
-        or{" "}
-        <button className="modal-form__link" onClick={openModal}>
-          {linkText}
-        </button>
-      </p>
+      <div className="modal-form">
+        <form name={formName} onSubmit={onSubmit}>
+          {children}
+        </form>
+        <p className={`modal-form__text`}>
+          or{" "}
+          <button className="modal-form__link" onClick={openModal}>
+            {linkText}
+          </button>
+        </p>
+      </div>
     </Modal>
   );
 };
