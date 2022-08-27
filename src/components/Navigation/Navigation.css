@@ -63,6 +63,7 @@
   color: #1a1b22;
 }
 
+
 /* when background is black */
 .navigation__button {
   width: 176px;
@@ -95,6 +96,10 @@
 .navigation__button_type_page:hover {
   border-color: #1a1b22;
   cursor: pointer;
+}
+
+.navigation__button-text {
+  width: 100%;
 }
 
 .navigation__button-img {
@@ -146,6 +151,7 @@
   }
 
   .navigation__container_type_signedin {
+    padding: 0 0 0 8px;
     grid-template-columns: 42px max-content 1fr;
     grid-gap: 16px;
     max-width: 688px;
@@ -189,6 +195,7 @@
   .navigation__button {
     max-height: 40px;
     max-width: 152px;
+    width: 100%;
     margin: 0;
     padding: 8px 12px;
 
@@ -197,6 +204,14 @@
 
   .navigation__button_type_signin, .navigation__button_type_page {
     width: 100%;
+  }
+
+  .navigation__button-text {
+    max-width: 100%;
+    min-width: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .navigation__button-img {
