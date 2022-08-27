@@ -73,7 +73,7 @@ const App = () => {
     const newsArticles = cardData.articles;
     newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
     setCards(newsArticles);
-    setResults(""); // placeholder
+    // setResults(""); // placeholder
   };
 
   /******************************************************************************************** */
