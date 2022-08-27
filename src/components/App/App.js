@@ -199,7 +199,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm onSubmit={handleSearchResults}>
+                <SearchForm onSubmit={handleNewsSearch}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
