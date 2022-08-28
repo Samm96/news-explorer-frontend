@@ -1,4 +1,5 @@
 import "./NavigationModal.css";
+import "../Navigation/Navigation.css";
 import Logo from "../Logo/Logo";
 import { NavLink } from "react-router-dom";
 // import React, { useContext } from "react";
@@ -18,7 +19,7 @@ const NavigationModal = ({
   return (
     <div className={`nav-modal ${isOpen && "nav-modal_open"}`}>
       <div className="nav-modal__overlay">
-        <div className="nav-modal__container">
+        <div className="navigation__container navigation__container_type_modal">
           <div className="nav-modal__header-container">
             <Logo logoColor={"white"} />
             <button
@@ -31,8 +32,8 @@ const NavigationModal = ({
               to="/"
               className={
                 isLoggedIn
-                  ? `nav-modal__link nav-modal__link_type_loggedin`
-                  : "nav-modal__link"
+                  ? `navigation__link navigation__link_type_modal navigation__link_type_loggedin`
+                  : "navigation__link navigation__link_type_modal"
               }
             >
               Home
@@ -41,25 +42,25 @@ const NavigationModal = ({
               <>
                 <NavLink
                   to="/saved-news"
-                  className="nav-modal__link nav-modal__link_type_loggedin"
+                  className="navigation__link navigation__link_type_modal"
                   onClick={onClose}
                 >
                   Saved articles
                 </NavLink>
                 <button
-                  className="nav-modal__button nav-modal__button_type_user"
+                  className="navigation__button navigation__button_type_modal navigation__button_type_user"
                   onClick={onLogout}
                 >
                   {placeholder}
                   <img
-                    className="nav-modal__button-img"
+                    className="navigation__button-img navigation__button-img_type_modal"
                     src={whiteIcon}
                     alt="signout"
                   />
                 </button>
               </>
             ) : (
-              <button className="nav-modal__button" onClick={openLoginModal}>
+              <button className="navigation__button navigation__button_type_modal" onClick={openLoginModal}>
                 Sign in
               </button>
             )}

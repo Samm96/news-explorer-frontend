@@ -26,14 +26,6 @@
     background-color: rgba(0, 0, 0, 0.5);
   }
 
-  .nav-modal__container {
-    background-color: #1a1b22;
-    padding: 0 0 16px;
-    width: 100%;
-    max-width: 480px;
-    height: fit-content;
-  }
-
   .nav-modal__header-container {
     padding: 16px 0 16px 16px;
 
@@ -49,53 +41,5 @@
     position: relative;
     display: grid;
     grid-template-rows: fit-content;
-  }
-
-  .nav-modal__link {
-    color: #ffff;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 56px;
-    text-decoration: none;
-
-    margin: 0 0 26px;
-  }
-
-  .nav-modal__link_type_loggedin {
-    display: flex;
-    margin: 0;
-  }
-
-  .nav-modal__button {
-    width: 288px;
-    max-height: 56px;
-    margin: 0 auto 0;
-    padding: 12px;
-    border: 1px solid #ffff;
-    background-color: transparent;
-    color: #ffff;
-    font-weight: 500;
-    border-radius: 100px;
-    font-size: 18px;
-    line-height: 24px;
-    display: grid;
-    grid-template-columns: fit-content fit-content;
-    grid-column: 1;
-  }
-
-  .nav-modal__button_type_user {
-    margin: 18px 0 0;
-    text-align: end;
-  }
-
-  .nav-modal__button-img {
-    margin: 0;
-    padding: 0;
-    justify-self: center;
-    align-self: center;
-    width: 17px;
-    height: 16px;
-    grid-column: 2;
   }
 }
