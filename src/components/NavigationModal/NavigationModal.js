@@ -38,6 +38,7 @@ const NavigationModal = ({
                   ? `navigation__link navigation__link_type_modal navigation__link_type_loggedin`
                   : "navigation__link navigation__link_type_modal"
               }
+              onClick={onClose}
             >
               Home
             </NavLink>
