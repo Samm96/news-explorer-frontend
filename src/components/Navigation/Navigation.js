@@ -60,7 +60,7 @@ const Navigation = ({ isLoggedIn, userName, textColor, openLoginModal, openMobil
               }
               onClick={onLogout}
             >
-              {placeholderUser || userName}
+              <span className="navigation__button-text">{placeholderUser || userName}</span>
               <img
                 className="navigation__button-img"
                 src={textColor === "black" ? blackIcon : whiteIcon}

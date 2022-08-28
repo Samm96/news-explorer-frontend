@@ -5,6 +5,7 @@
 
 .saved-news__text-container {
     margin: 0 auto 0;
+    padding: 0 16px 0 104px;
     max-width: 1220px;
 }
 
@@ -62,6 +63,7 @@
 @media screen and (max-width: 768px) {
     .saved-news__text-container {
         max-width: 712px;
+        padding: 0 16px 0 40px;
     }
     
     .saved-news__title {
@@ -98,6 +100,8 @@
 @media screen and (max-width: 480px) {
     .saved-news__text-container {
         width: 289px;
+        padding: 0 16px 0 15px;
+        margin: 0;
     }
     
     .saved-news__title {

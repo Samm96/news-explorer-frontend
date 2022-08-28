@@ -73,7 +73,7 @@ const App = () => {
     const newsArticles = cardData.articles;
     newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
     setCards(newsArticles);
-    setResults(""); // placeholder
+    // setResults(""); // placeholder
   };
 
   /******************************************************************************************** */
@@ -168,7 +168,7 @@ const App = () => {
     const clickClose = (e) => {
       if (
         e.target.className.includes("modal_overlay") ||
-        e.target.className.includes("nav-modal__overlay")
+        e.target.className.includes("navigation__overlay")
       ) {
         closeAllPopups();
       }
@@ -199,7 +199,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm onSubmit={handleSearchResults}>
+                <SearchForm onSubmit={handleNewsSearch}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}

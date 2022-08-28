@@ -1,6 +1,6 @@
 .header {
    max-height: 80px;
-   padding: 19px 0 10px; 
+   padding: 19px 104px 10px; 
    border-bottom: 3px solid rgba(196, 196, 196, 0.1);
 }
 
@@ -17,7 +17,7 @@
     .header {
         max-height: 40px;
         height: 100%;
-        padding: 14px 0 12px;
+        padding: 14px 40px 12px;
     }
 
     .header__container {
@@ -30,10 +30,6 @@
     .header {
         max-height: 24px;
         height: 100%;
-        padding: 16px 0 16px;
-    }
-
-    .header__container {
-        justify-content: space-around;
+        padding: 16px 16px 16px;
     }
 }

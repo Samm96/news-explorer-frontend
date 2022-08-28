@@ -44,7 +44,7 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick }) => {
   return (
     <section className="saved-news">
       <div className="saved-news__text-container">
-        <h2 className="saved-news__title">Saved articles</h2>
+        <h1 className="saved-news__title">Saved articles</h1>
         <p className="saved-news__saved">
           {currentUser || placeholder}, you have {articlesAmount} saved articles
         </p>

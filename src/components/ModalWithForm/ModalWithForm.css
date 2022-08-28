@@ -1,7 +1,12 @@
-.modal-form__input-container {
-    margin: 22px 0 0 36px;
+.modal-form {
+    margin: 0 auto 0;
     padding: 0;
     width: 358px;
+}
+
+.modal-form__input-container {
+    margin: 22px 0 0 0;
+    padding: 0;
 
     display: flex;
     flex-direction: column;
@@ -9,12 +14,12 @@
 }
 
 .modal-form__input-container:first-of-type {
-    margin: 22px 0 31px 36px;
+    margin: 22px 0 31px 0;
     padding: 0;
 }
 
 .modal-form__input-container_type_username {
-    margin: 31px 0 0 36px;
+    margin: 31px 0 0 0;
     padding: 0;
 }
 
@@ -102,6 +107,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px; 
+    text-align: center;
 }
 
 .modal-form__link {
