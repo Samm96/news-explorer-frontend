@@ -1,0 +1,169 @@
+.search-form {
+    background-image: url('../../images/Background-iPhone.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 576px;
+    margin: 0;
+    padding: 0;
+}
+
+.search-form__container {
+    margin: 0 auto 0;
+    padding: 80px 0 0 0;
+    width: 608px;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-form__text {
+    margin: 0 0 32px;
+    padding: 0;
+
+    color: #ffff;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 64px;
+}
+
+.search-form__subtext {
+    margin: 0 0 88px;
+    padding: 0;
+
+    color: #ffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.search-form__bar {
+    max-width: 608px;
+    height: 64px;
+    position: relative;
+    display: flex;
+}
+
+.search-form__input {
+    color: #1A1B22;
+    width: 608px;
+    height: 100%;
+    border-radius: 100px;
+    border: none;
+    padding: 0 0 0 24px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.search-form__input:focus {
+    outline: none;   
+}
+
+.search-form__button {
+    width: 168px;
+    height: 64px;
+    padding: 18px 56px 22px;
+    position: absolute;
+    right: 0;
+
+    color: #ffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    background-color: #2F71E5;
+    border: none;
+    border-radius: 100px;
+}
+
+.search-form__button:hover {
+    background-color: #347EFF;
+    cursor: pointer;
+}
+
+.search-form__button:active {
+    background-color: #2A65CC;
+}
+
+@media screen and (max-width: 768px) {
+    .search-form {
+        max-width: 768px;
+        height: 400px;
+    }
+
+    .search-form__container {
+        padding: 38px 0 0 0;
+        width: 452px;
+    }
+
+    .search-form__text {
+        margin: 0 0 16px;
+        padding: 0;
+
+        font-size: 36px;
+        line-height: 40px;
+    }
+    
+    .search-form__subtext {
+        margin: 0 0 48px;
+    }
+    
+    .search-form__bar {
+        max-width: 425px;
+        height: 56px;
+    }
+
+    .search-form__input {
+        width: 448px;
+    }
+    
+    .search-form__button {
+        width: 160px;
+        height: 56px;
+        padding: 16px 52px 16px;
+
+        right: -25px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .search-form {
+        max-width: 480px;
+        height: 536px;
+    }
+
+    .search-form__container {
+        padding: 30px 0 0 0;
+        width: 288px;
+    }
+
+    .search-form__subtext {
+        margin: 0 0 122px;
+    }
+
+    .search-form__bar {
+        width: 288px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .search-form__input {
+        margin: 0 0 16px;
+        padding: 17px 16px 16px 16px;
+        max-width: 256px;
+        width: 100%;
+        height: 56px;
+    }
+
+    .search-form__button {
+        position: static;
+        max-width: 288px;
+        width: 100%;
+        height: 56px;
+        padding: 17px 116px 16px;
+    }
+}

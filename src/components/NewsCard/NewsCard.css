@@ -1,0 +1,336 @@
+.news-card {
+    margin: 0;
+    padding: 0;
+    max-width: 400px;
+    width: 100%; 
+}
+
+.news-card__container {
+    margin: 0;
+    padding: 0;
+    height: 576px;
+    border-radius: 4%;
+    background-color: #ffff;
+    position: relative;
+}
+
+/** Disallows users to save articles if not signed in. Warning message **/
+.news-card__warning {
+    margin: 0;
+    padding: 13px 35px;
+    max-width: 182px;
+    background-color: #ffff;
+    border-radius: 10px;
+    position: absolute;
+    top: 24px;
+    right: 70px;
+    text-align: center;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    z-index: 3;
+}
+
+.news-card__warning_hidden {
+    display: none;
+}
+
+/** Info card that displays article's keyword **/
+.news-card__keyword {
+    margin: 0;
+    padding: 8px 22px;
+    max-width: 182px;
+    background-color: #ffff;
+    border-radius: 10px;
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    text-align: center;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;  
+}
+
+.news-card__keyword_hidden {
+    display: none;
+}
+
+.save-button {
+    background-image: url('../../images/Save-Button/save-button_default.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    width: 40px;
+    height: 40px;
+    border: none;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+.save-button__active {
+    background-image: url('../../images/Save-Button/save-button_active.svg');
+}
+
+.save-button:hover {
+    background-image: url('../../images/Save-Button/save-button_hover.svg');
+    cursor: pointer;
+}
+
+.save-button__active:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.delete-button {
+    background-image: url('../../images/Delete-Button/trash-button_default.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    width: 40px;
+    height: 40px;
+    border: none;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+.delete-button:hover {
+    background-image: url('../../images/Delete-Button/trash-bin_hover.svg');
+    cursor: pointer;
+}
+
+.news-card__image {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 272px;
+    object-fit: cover;
+    border-top-left-radius: 4%;
+    border-top-right-radius: 4%;
+}
+
+/** future endeavor ? */
+/* .news-card__loader-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 272px;
+    object-fit: cover;
+    position: relative;
+}
+
+.news-card__image-loader {
+    display: block;
+	width: 50px;
+	height: 50px;
+	border: 4px solid #444;
+	border-bottom-color: #888;
+	
+	border-radius: 50%;
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	
+	animation: spin .75s infinite linear;
+} */
+
+.news-card__text-container {
+    margin: 17px 0 0;
+    padding: 0 24px 24px;
+    max-width: 352px;
+    max-height: 260px;
+}
+
+.news-card__date {
+    margin: 0 0 12px 0;
+    padding: 0;
+
+    font-family: 'Roboto', sans-serif;
+    color: #B6BCBF;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.news-card__title {
+    margin: 0 0 16px 0;
+    padding: 0;
+
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.news-card__text {
+    margin: 0;
+    padding: 0;
+    max-width: 352px;
+    max-height: 110px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.news-card__source {
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+    bottom: 24px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    font-family: 'Roboto Slab', serif;
+    color: #B6BCBF;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .news-card {
+        max-width: 224px;
+    }
+
+    .news-card__container {
+        max-height: 420px;
+    }
+
+    .news-card__warning {
+        max-width: 90px;
+        top: 8px;
+        right: 56px;
+    }
+
+    .news-card__keyword {
+        margin: 0;
+        padding: 8px 20px;
+        max-width: 120px;
+        top: 8px;
+        left: 8px;
+    }
+
+    .save-button {
+        right: 8px;
+        top: 8px;
+    }
+    
+    .delete-button {
+        right: 8px;
+        top: 8px;
+    }
+
+    .news-card__image {
+        max-width: 224px;
+        width: 100%;
+        height: 150px;
+    }
+    
+    .news-card__text-container {
+        max-width: 193px;
+        max-height: 238px;
+        margin: 16px 0 0;
+        padding: 0 16px 16px 15px;
+    }
+    
+    .news-card__title {
+        margin: 0 0 10px 0;
+        font-size: 22px;
+        line-height: 24px;
+        -webkit-line-clamp: 3;
+    }
+    
+    .news-card__text {
+        margin: 0;
+        padding: 0;
+        max-width: 192px;
+        height: 88px;
+    }
+    
+    .news-card__source {
+        bottom: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .news-card {
+        max-width: 288px;
+    }
+    
+    .news-card__container {
+        width: 288px;
+        max-height: 440px;
+    }
+    
+    /** Disallows users to save articles if not signed in. Warning message **/
+    .news-card__warning {
+        padding: 13px 35px;
+        max-width: 182px;
+        top: 8px;
+        right: 57px;
+    }
+
+    /** Info card that displays article's keyword **/
+    .news-card__keyword {
+        margin: 0;
+        padding: 8px 22px;
+        max-width: 182px;
+        top: 8px;
+    }
+    
+    .news-card__image {
+        max-width: 288px;
+        height: 196px;
+    }
+    
+    .news-card__text-container {
+        max-width: 256px;
+        height: 184px;
+        margin: 16px 0 0;
+        padding: 0 16px 16px;
+    }
+    
+    .news-card__date {
+        margin: 0 0 10px 0;
+    }
+    
+    .news-card__title {
+        max-width: 256px;
+        margin: 0 0 14px 0;
+    }
+    
+    .news-card__text {
+        max-width: 256px;
+        height: 70px;
+
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+    }
+}

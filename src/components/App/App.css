@@ -1,0 +1,10 @@
+.page {
+  font-family: "Roboto-Slab", "Roboto", "Inter", serif;
+  max-width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0 auto;
+  color: #1a1b22;
+  background-color: #ffff;
+  box-sizing: border-box;
+}

@@ -1,0 +1,148 @@
+.modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    z-index: 999;
+    pointer-events: none;
+
+    justify-content: center;
+    align-items: center;
+
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity ease-out 0.5s, visibility 0s ease-out 0.5s;
+}
+
+.modal_overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal_open {
+    pointer-events: all;
+    opacity: 1;
+    height: auto;
+    visibility: visible;
+    transition: opacity 0.5s ease-out, visibility 0s ease-out;
+}
+
+.modal__container {
+    margin: 0;
+    background-color: #ffff;
+    width: 430px;
+    max-height: 458px;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+.close-button {
+    background-image: url('../../images/Icons/close-button.svg');
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border: none;
+
+    position: absolute;
+    right: -45px;
+    top: -45px;
+}
+
+.close-button_type_mobile {
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+
+    right: 0;
+    top: 0;
+    margin: 0 21px 0 0;
+    position: static;
+}
+
+.close-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.modal__title {
+    margin: 34px 0 0 36px;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.modal__title_type_success {
+    margin: 43px 0 0 36px;
+}
+
+.modal__link {
+    color: #2F71E5;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+
+    width: 228px;
+    height: 18px;
+    margin: 14px 0 51px 36px;
+    padding: 0;
+
+    text-align: start;
+
+    border: none;
+    background-color: transparent;
+}
+
+.modal__link:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 480px) {
+    .modal {
+        justify-content: end;
+        align-items: flex-end;
+    }
+
+    .modal__container {
+        width: 100%;
+        max-height: 564px;
+        height: 100%;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .close-button {
+        background-size: 24px 24px;
+        width: 24px;
+        height: 24px;
+    
+        right: 16px;
+    }
+
+    .modal__title {
+        margin: 16px 0 0 17px;
+    }
+
+    .modal__link {
+        font-size: 14px;
+        line-height: 17px;
+    
+        width: 226px;
+        height: 20px;
+        margin: 16px auto;
+
+        text-align: center;
+    }
+}
