@@ -168,7 +168,7 @@ const App = () => {
     const clickClose = (e) => {
       if (
         e.target.className.includes("modal_overlay") ||
-        e.target.className.includes("nav-modal__overlay")
+        e.target.className.includes("navigation__overlay")
       ) {
         closeAllPopups();
       }

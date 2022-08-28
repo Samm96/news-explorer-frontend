@@ -1,4 +1,3 @@
-import "./NavigationModal.css";
 import "../Navigation/Navigation.css";
 import Logo from "../Logo/Logo";
 import { NavLink } from "react-router-dom";
@@ -17,17 +16,21 @@ const NavigationModal = ({
   const placeholder = "Samantha";
 
   return (
-    <div className={`nav-modal ${isOpen && "nav-modal_open"}`}>
-      <div className="nav-modal__overlay">
+    <div
+      className={`navigation navigation_type_modal ${
+        isOpen && "navigation_type_modal_open"
+      }`}
+    >
+      <div className="navigation__overlay">
         <div className="navigation__container navigation__container_type_modal">
-          <div className="nav-modal__header-container">
+          <div className="navigation__header-container">
             <Logo logoColor={"white"} />
             <button
               className="close-button close-button_type_mobile"
               onClick={onClose}
             ></button>
           </div>
-          <div className="nav-modal__link-container">
+          <div className="navigation__link-container">
             <NavLink
               to="/"
               className={
@@ -60,7 +63,10 @@ const NavigationModal = ({
                 </button>
               </>
             ) : (
-              <button className="navigation__button navigation__button_type_modal" onClick={openLoginModal}>
+              <button
+                className="navigation__button navigation__button_type_modal"
+                onClick={openLoginModal}
+              >
                 Sign in
               </button>
             )}
