@@ -1,100 +1,96 @@
 /** Needed calls to API */
 
 class Api {
-    constructor({ baseURL, headers }) {
-        this._baseURL = baseURL;
-        this._headers = headers;
-    }
+  constructor({ baseURL, headers }) {
+    this._baseURL = baseURL;
+    this._headers = headers;
+  }
 
-    /** handles server response */
+  /** handles server response */
 
-    _handleServerResponse(res) {
-        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    }
+  _handleServerResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  }
 
+  getAppInfo() {
+    return Promise.all([this.getUserInfo(), this.getSavedNews()]);
+  }
 
-    getAppInfo() {
-        return Promise.all([
-            this.getUserInfo(),
-            this.getSavedNews(),
-        ])
-    }
+  /** gets user info */
 
+  getUserInfo({ username }, token) {
+    return fetch(`${this._baseURL}/users/me`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+        ...this._headers,
+      },
+      body: JSON.stringify({
+        username,
+      }),
+    }).then(this._handleServerResponse);
+  }
 
-    /** gets user info */
+  /** sets user's info (do I need this?) */
 
-    getUserInfo({ username }) {
-        return fetch(`${this._baseURL}/users/me`, {
-            headers: {
-                // authorization: `Bearer ${token}`,
-                ...this._headers,
-            },
-            body: JSON.stringify({
-                username,
-            }),
-        }).then(this._handleServerResponse);
-    }
+  setUserInfo({ username }, token) {
+    return fetch(`${this._baseURL}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${token}`,
+        ...this._headers,
+      },
+      body: JSON.stringify({
+        username,
+      }),
+    }).then(this._handleServerResponse);
+  }
 
+  /** Accesses Saved News articles by user. Get list. url may be different later */
 
-    /** sets user's info (do I need this?) */
+  getSavedNews(token) {
+    return fetch(`${this._baseURL}/articles`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+        ...this._headers,
+      },
+    }).then(this._handleServerResponse);
+  }
 
-    setUserInfo({ username }) {
-        return fetch(`${this._baseURL}/users/me`, {
-            method: 'PATCH',
-            headers: {
-                // authorization: `Bearer ${token}`,
-                ...this._headers,
-            },
-            body: JSON.stringify({
-                username,
-            }),
-        }).then(this._handleServerResponse);
-    }
+  /** Post Saved News articles. url may be different */
+  addSavedNews({ articleData }, token) {
+    return fetch(`${this._baseURL}/articles`, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${token}`,
+        ...this._headers,
+      },
+      body: JSON.stringify({
+        articleData,
+      }),
+    }).then(this._handleServerResponse);
+  }
 
-
-    /** Accesses Saved News articles by user. Get list. url may be different later */
-
-    getSavedNews() {
-        return fetch(`${this._baseURL}/saved-news`, {
-            method: 'GET',
-            headers: {
-                // authorization: `Bearer ${token}`,
-                ...this._headers,
-            }
-        }).then(this._handleServerResponse);
-    }
-
-    
-    /** Post Saved News articles. url may be different */
-    addSavedNews({ articleData }) {
-        return fetch(`${this._baseURL}/saved-news`, {
-            method: 'POST',
-            headers: {
-                // authorization: `Bearer ${token}`,
-                ...this._headers,
-            },
-            body: JSON.stringify({
-                articleData
-            }),
-        }).then(this._handleServerResponse);
-    }
-
-
-    /** delete saved news */
-    deleteNewsCard({ _id }) {
-        return fetch(`${this._baseURL}/saved-news/${_id}`, {
-            method: 'DELETE',
-            headers: {
-                // authorization: `Bearer ${token}`,
-                ...this._headers,
-            }
-        }).then(this._handleServerResponse);
-    }
+  /** delete saved news */
+  deleteNewsCard({ _id }, token) {
+    return fetch(`${this._baseURL}/articles/${_id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${token}`,
+        ...this._headers,
+      },
+    }).then(this._handleServerResponse);
+  }
 }
 
-export const api = new Api ({
-    baseURL: "http://localhost:3000",
-    headers: {
-        "Content-Type": "application/json",
-    }
-  });
+export const api = new Api({
+  baseURL:
+    process.env.NODE_ENV !== "production"
+      ? "http://api.sam-news-explorer.students.nomoredomainssbs.ru"
+      : "http://localhost:3000",
+  headers: {
+    "Access-Control-Allow-Origin":
+      "http://api.sam-news-explorer.students.nomoredomainssbs.ru",
+    "Content-Type": "application/json",
+  },
+});
