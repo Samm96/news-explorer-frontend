@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
@@ -30,6 +30,8 @@ const App = () => {
   });
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
+
+  const userNavigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
@@ -132,6 +134,7 @@ const App = () => {
     localStorage.removeItem("jwt");
     setCurrentUser("");
     setIsLoggedIn(false);
+    userNavigate("/");
     closeAllPopups();
   };
 
