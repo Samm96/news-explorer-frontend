@@ -100,7 +100,9 @@ const NewsCard = ({
         >
           {keyword}
         </span>
-        <img className="news-card__image" src={card.urlToImage} alt="Card" />
+        <a href={card.url}>
+          <img className="news-card__image" src={card.urlToImage} alt="Card" />
+        </a>
         <div className="news-card__text-container">
           <p className="news-card__date">{convertedPublishedDate}</p>
           <h2 className="news-card__title">{card.title}</h2>
