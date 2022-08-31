@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NotFoundIcon from '../../images/Icons/not-found_icon.svg';
 
 import "./NewsCard.css";
 
@@ -111,7 +112,7 @@ const NewsCard = ({
           {keyword}
         </span>
         <a href={newCard.link}>
-          <img className="news-card__image" src={newCard.image} alt="Card" />
+          <img className="news-card__image" src={newCard.image === "" ? NotFoundIcon : newCard.image} alt="Card" />
         </a>
         <div className="news-card__text-container">
           <p className="news-card__date">{newCard.date}</p>
