@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NotFoundIcon from '../../images/Icons/not-found_icon.svg';
 
 import "./NewsCard.css";
 
@@ -18,17 +19,6 @@ const NewsCard = ({
   const [isShown, setIsShown] = useState("_hidden");
   const [isSaved, setIsSaved] = useState("");
 
-  switch (buttonType) {
-    case "save":
-      message = "Sign in to save articles";
-      break;
-    case "delete":
-      message = "Remove from saved";
-      break;
-    default:
-      message = "Sign in to save articles";
-  }
-
   const convertedPublishedDate = new Date(card.publishedAt).toLocaleString(
     "default",
     {
@@ -40,15 +30,36 @@ const NewsCard = ({
 
   const keyword = card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1);
 
+  const newCard = {
+    keyword: keyword,
+    title: card.title,
+    text: card.description,
+    date: convertedPublishedDate,
+    source: card.source.name || card.source.id,
+    link: card.url,
+    image: card.urlToImage,
+  }
+
+  switch (buttonType) {
+    case "save":
+      message = "Sign in to save articles";
+      break;
+    case "delete":
+      message = "Remove from saved";
+      break;
+    default:
+      message = "Sign in to save articles";
+  }
+
   const handleSaveClick = () => {
     console.log("I'm saved!");
     setIsSaved("save-button__active");
-    onSaveClick(card);
+    onSaveClick(newCard);
   };
 
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
-    onDeleteClick(card);
+    // onDeleteClick(newCard);
   };
 
   const toggleSaveButton = () => {
@@ -100,12 +111,14 @@ const NewsCard = ({
         >
           {keyword}
         </span>
-        <img className="news-card__image" src={card.urlToImage} alt="Card" />
+        <a href={newCard.link}>
+          <img className="news-card__image" src={newCard.image === "" ? NotFoundIcon : newCard.image} alt="Card" />
+        </a>
         <div className="news-card__text-container">
-          <p className="news-card__date">{convertedPublishedDate}</p>
-          <h2 className="news-card__title">{card.title}</h2>
-          <p className="news-card__text">{card.description}</p>
-          <p className="news-card__source">{card.source.name.toUpperCase()}</p>
+          <p className="news-card__date">{newCard.date}</p>
+          <h2 className="news-card__title">{newCard.title}</h2>
+          <p className="news-card__text">{newCard.text}</p>
+          <p className="news-card__source">{newCard.source.toUpperCase()}</p>
         </div>
       </div>
     </div>

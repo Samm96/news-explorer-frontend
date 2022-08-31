@@ -42,7 +42,9 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           className="modal-form__input"
           type="email"
           name="email"
+          autoComplete="on"
           placeholder="Enter email"
+          onChange={(e) => setEmail(e.target.value)}
           minLength="2"
           maxLength="30"
           required
@@ -56,9 +58,11 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
         </label>
         <input
           className="modal-form__input"
-          type="current-password"
+          type="password"
           name="password"
+          autoComplete="current-password"
           placeholder="Enter password"
+          onChange={(e) => setPassword(e.target.value)}
           minLength="2"
           maxLength="30"
           required

@@ -13,7 +13,6 @@ import LoginModal from "../Login-Modal/Login-Modal";
 import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
 import { NewsApi } from "../../utils/NewsExplorerApi";
-import placeholderCard from "../../utils/constants"; // only being used for testing
 import Main from "../Main/Main";
 import SearchResults from "../SearchResults/SearchResults";
 import Preloader from "../Preloader/Preloader";
@@ -23,10 +22,9 @@ import * as auth from "../../utils/auth";
 import { api } from "../../utils/Api";
 
 const App = () => {
-  // placeholder
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({
-    username: "",
+    name: "",
   });
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
@@ -45,6 +43,28 @@ const App = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   /******************************************************************************************** */
+  /** ****************************** Check for token & Get App Info *************************** */
+
+  useEffect(() => {
+    const userToken = localStorage.getItem("jwt");
+    if (userToken) {
+      auth.checkToken(userToken).then(() => {
+        if (userToken && isLoggedIn) {
+          api
+            .getAppInfo(userToken)
+            .then(([userData, savedArticleData]) => {
+              setCurrentUser(userData.data);
+              setSavedCards(savedArticleData);
+            })
+            .catch((err) => console.log(err));
+        } else {
+          localStorage.removeItem("jwt");
+        }
+      }).catch((err) => console.log(err));
+    }
+  }, [isLoggedIn]);
+
+  /******************************************************************************************** */
   /** **************************************** News API **************************************** */
 
   const handleNewsSearch = (userKeyword) => {
@@ -56,15 +76,15 @@ const App = () => {
         localStorage.setItem("cards", JSON.stringify(cardData));
       })
       .then(() => {
-        handleSearchSuccess()
+        handleSearchSuccess();
       })
       .catch((err) => {
         if (err.status === 404) {
-          handleNothingFound()
+          handleNothingFound();
         } else {
-          handleInternalIssue()
+          handleInternalIssue();
         }
-        console.log(err)
+        console.log(err);
       });
   };
 
@@ -98,30 +118,38 @@ const App = () => {
   /******************************************************************************************** */
   /** ***************************** Handles `Register` & `Login` Logic *************************** */
 
-  const onRegister = ({ email, password, username }) => {
+  const onRegister = ({ email, password, name }) => {
     auth
-      .register(email, password, username)
+      .register(email, password, name)
       .then((res) => {
-        setIsSuccessOpen(true);
+        if (res) {
+          setIsRegisterOpen(false);
+          setIsSuccessOpen(true);
+        }
       })
       .catch((err) => console.log(err));
   };
 
-  const onLogin = ({ email, password, username }) => {
+  const onLogin = ({ email, password }) => {
     auth
       .login(email, password)
       .then((res) => {
-        console.log(res);
-        localStorage.setItem("email", email);
-        localStorage.setItem("username", username);
-        setCurrentUser(username);
-        setIsLoggedIn(true);
-        closeAllPopups();
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setIsLoggedIn(true);
+          setCurrentUser(res.data.name);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        closeAllPopups();
+      });
   };
 
   const onLogout = () => {
+    localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     closeAllPopups();
   };
@@ -130,8 +158,9 @@ const App = () => {
   /******************************* Handles `Save` & `Delete` Cards ********************************/
 
   const onSave = (card) => {
+    const userToken = localStorage.getItem("jwt");
     api
-      .addSavedNews(card)
+      .addSavedNews(card, userToken)
       .then((newSave) => {
         setSavedCards([newSave, ...savedCards]);
       })
@@ -241,13 +270,12 @@ const App = () => {
                 <SavedNews
                   onDeleteClick={onDelete}
                   onSaveClick={null}
-                  cards={placeholderCard || savedCards}
+                  cards={savedCards}
                 />
               </ProtectedRoute>
             }
           />
         </Routes>
-
         <RegisterModal
           isOpen={isRegisterOpen}
           openModal={() => {

@@ -1,21 +1,24 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL =
+  process.env.NODE_ENV !== "production"
+    ? "https://api.sam-news-explorer.students.nomoredomainssbs.ru"
+    : "https://localhost:3000";
 
-export const register = (email, password, username) => {
+export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": BASE_URL,
     },
-    body: JSON.stringify({ email, password, username }),
+    body: JSON.stringify({ email, password, name }),
   }).then((res) => {
     if (res.status === 201) {
       return res.json();
     }
-  });
+  }).catch((res) => { return res })
 };
 
-export const login = (email, password, username) => {
+export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
@@ -23,7 +26,7 @@ export const login = (email, password, username) => {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": BASE_URL,
     },
-    body: JSON.stringify({ email, password, username }),
+    body: JSON.stringify({ email, password }),
   }).then((res) => res.json());
 };
 

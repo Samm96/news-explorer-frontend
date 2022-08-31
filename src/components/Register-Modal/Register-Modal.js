@@ -4,14 +4,14 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 const Register = ({ isOpen, openModal, onClose, onRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const userRegisterData = {
       email,
       password,
-      username,
+      name,
     };
     onRegister(userRegisterData);
   };
@@ -19,7 +19,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
   const handleInputReset = () => {
     setEmail("");
     setPassword("");
-    setUsername("");
+    setName("");
   };
 
   useEffect(() => {
@@ -44,6 +44,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           className="modal-form__input"
           type="email"
           name="email"
+          autoComplete="off"
           placeholder="Enter email"
           onChange={(e) => setEmail(e.target.value)}
           minLength="2"
@@ -59,8 +60,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
         </label>
         <input
           className="modal-form__input"
-          type="new-password"
+          type="password"
           name="password"
+          autoComplete="off"
           placeholder="Enter password"
           onChange={(e) => setPassword(e.target.value)}
           minLength="2"
@@ -77,8 +79,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           className="modal-form__input"
           type="text"
           name="username"
+          autoComplete="off"
           placeholder="Enter your username"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
           minLength="2"
           maxLength="30"
           required
