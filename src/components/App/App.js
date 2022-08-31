@@ -45,7 +45,7 @@ const App = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   /******************************************************************************************** */
-  /** ************************************* Check for token ************************************* */
+  /** ****************************** Check for token & Get App Info *************************** */
 
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
