@@ -55,16 +55,14 @@ class Api {
   }
 
   /** Post Saved News articles. url may be different */
-  addSavedNews({ articleData }, token) {
+  addSavedNews(articleData, token) {
     return fetch(`${this._baseURL}/articles`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,
         ...this._headers,
       },
-      body: JSON.stringify({
-        articleData,
-      }),
+      body: JSON.stringify(articleData),
     }).then(this._handleServerResponse);
   }
 
