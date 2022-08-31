@@ -26,7 +26,7 @@ const App = () => {
   // placeholder
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({
-    username: "",
+    name: "",
   });
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
@@ -56,15 +56,15 @@ const App = () => {
         localStorage.setItem("cards", JSON.stringify(cardData));
       })
       .then(() => {
-        handleSearchSuccess()
+        handleSearchSuccess();
       })
       .catch((err) => {
         if (err.status === 404) {
-          handleNothingFound()
+          handleNothingFound();
         } else {
-          handleInternalIssue()
+          handleInternalIssue();
         }
-        console.log(err)
+        console.log(err);
       });
   };
 
@@ -98,30 +98,39 @@ const App = () => {
   /******************************************************************************************** */
   /** ***************************** Handles `Register` & `Login` Logic *************************** */
 
-  const onRegister = ({ email, password, username }) => {
+  const onRegister = ({ email, password, name }) => {
     auth
-      .register(email, password, username)
+      .register(email, password, name)
       .then((res) => {
-        setIsSuccessOpen(true);
+        if (res) {
+          setIsRegisterOpen(false);
+          setIsSuccessOpen(true);
+        }
       })
       .catch((err) => console.log(err));
   };
 
-  const onLogin = ({ email, password, username }) => {
+  const onLogin = ({ email, password }) => {
     auth
       .login(email, password)
       .then((res) => {
-        console.log(res);
-        localStorage.setItem("email", email);
-        localStorage.setItem("username", username);
-        setCurrentUser(username);
-        setIsLoggedIn(true);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token)
+          setIsLoggedIn(true);
+          setCurrentUser(res.data.name);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
   };
 
   const onLogout = () => {
+    localStorage.removeItem("jwt");
+    setCurrentUser("");
     setIsLoggedIn(false);
     closeAllPopups();
   };
@@ -247,7 +256,6 @@ const App = () => {
             }
           />
         </Routes>
-
         <RegisterModal
           isOpen={isRegisterOpen}
           openModal={() => {

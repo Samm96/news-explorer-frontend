@@ -44,6 +44,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           name="email"
           autoComplete="on"
           placeholder="Enter email"
+          onChange={(e) => setEmail(e.target.value)}
           minLength="2"
           maxLength="30"
           required
@@ -61,6 +62,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           name="password"
           autoComplete="current-password"
           placeholder="Enter password"
+          onChange={(e) => setPassword(e.target.value)}
           minLength="2"
           maxLength="30"
           required
