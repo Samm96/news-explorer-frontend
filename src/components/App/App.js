@@ -49,14 +49,20 @@ const App = () => {
 
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
-    if (userToken && isLoggedIn) {
-      api
-        .getAppInfo(userToken)
-        .then(([userData, savedArticleData]) => {
-          setCurrentUser(userData.data);
-          setSavedCards(savedArticleData);
-        })
-        .catch((err) => console.log(err));
+    if (userToken) {
+      auth.checkToken(userToken).then(() => {
+        if (userToken && isLoggedIn) {
+          api
+            .getAppInfo(userToken)
+            .then(([userData, savedArticleData]) => {
+              setCurrentUser(userData.data);
+              setSavedCards(savedArticleData);
+            })
+            .catch((err) => console.log(err));
+        } else {
+          localStorage.removeItem("jwt");
+        }
+      }).catch((err) => console.log(err));
     }
   }, [isLoggedIn]);
 
@@ -146,7 +152,6 @@ const App = () => {
 
   const onLogout = () => {
     localStorage.removeItem("jwt");
-    setCurrentUser("");
     setIsLoggedIn(false);
     closeAllPopups();
   };
