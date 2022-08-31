@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
@@ -13,7 +13,7 @@ import LoginModal from "../Login-Modal/Login-Modal";
 import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
 import { NewsApi } from "../../utils/NewsExplorerApi";
-import placeholderCard from "../../utils/constants"; // only being used for testing
+// import placeholderCard from "../../utils/constants"; // only being used for testing
 import Main from "../Main/Main";
 import SearchResults from "../SearchResults/SearchResults";
 import Preloader from "../Preloader/Preloader";
@@ -31,8 +31,6 @@ const App = () => {
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
 
-  const userNavigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
   const [isResults, setResults] = useState("_hidden");
@@ -45,6 +43,22 @@ const App = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  /******************************************************************************************** */
+  /** ************************************* Check for token ************************************* */
+
+useEffect(() => {
+  const userToken = localStorage.getItem("jwt");
+  if (userToken && isLoggedIn) {
+    api
+      .getAppInfo(userToken)
+      .then(([userData, savedArticleData]) => {
+        setCurrentUser(userData.data);
+        setSavedCards(savedArticleData);
+      })
+      .catch((err) => console.log(err));
+  }
+}, [isLoggedIn]);
 
   /******************************************************************************************** */
   /** **************************************** News API **************************************** */
@@ -134,7 +148,6 @@ const App = () => {
     localStorage.removeItem("jwt");
     setCurrentUser("");
     setIsLoggedIn(false);
-    userNavigate("/");
     closeAllPopups();
   };
 
@@ -253,7 +266,7 @@ const App = () => {
                 <SavedNews
                   onDeleteClick={onDelete}
                   onSaveClick={null}
-                  cards={placeholderCard || savedCards}
+                  cards={savedCards}
                 />
               </ProtectedRoute>
             }

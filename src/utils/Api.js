@@ -12,27 +12,24 @@ class Api {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   }
 
-  getAppInfo() {
-    return Promise.all([this.getUserInfo(), this.getSavedNews()]);
+  getAppInfo(token) {
+    return Promise.all([this.getUserInfo(token), this.getSavedNews(token)]);
   }
 
   /** gets user info */
 
-  getUserInfo({ username }, token) {
+  getUserInfo(token) {
     return fetch(`${this._baseURL}/users/me`, {
       headers: {
         authorization: `Bearer ${token}`,
         ...this._headers,
       },
-      body: JSON.stringify({
-        username,
-      }),
     }).then(this._handleServerResponse);
   }
 
   /** sets user's info (do I need this?) */
 
-  setUserInfo({ username }, token) {
+  setUserInfo({ name }, token) {
     return fetch(`${this._baseURL}/users/me`, {
       method: "PATCH",
       headers: {
@@ -40,7 +37,7 @@ class Api {
         ...this._headers,
       },
       body: JSON.stringify({
-        username,
+        name,
       }),
     }).then(this._handleServerResponse);
   }
