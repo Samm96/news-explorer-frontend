@@ -47,18 +47,18 @@ const App = () => {
   /******************************************************************************************** */
   /** ************************************* Check for token ************************************* */
 
-useEffect(() => {
-  const userToken = localStorage.getItem("jwt");
-  if (userToken && isLoggedIn) {
-    api
-      .getAppInfo(userToken)
-      .then(([userData, savedArticleData]) => {
-        setCurrentUser(userData.data);
-        setSavedCards(savedArticleData);
-      })
-      .catch((err) => console.log(err));
-  }
-}, [isLoggedIn]);
+  useEffect(() => {
+    const userToken = localStorage.getItem("jwt");
+    if (userToken && isLoggedIn) {
+      api
+        .getAppInfo(userToken)
+        .then(([userData, savedArticleData]) => {
+          setCurrentUser(userData.data);
+          setSavedCards(savedArticleData);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isLoggedIn]);
 
   /******************************************************************************************** */
   /** **************************************** News API **************************************** */
@@ -131,7 +131,7 @@ useEffect(() => {
       .login(email, password)
       .then((res) => {
         if (res.token) {
-          localStorage.setItem("jwt", res.token)
+          localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
           setCurrentUser(res.data.name);
         }
@@ -141,7 +141,7 @@ useEffect(() => {
       })
       .finally(() => {
         closeAllPopups();
-      })
+      });
   };
 
   const onLogout = () => {
@@ -155,8 +155,9 @@ useEffect(() => {
   /******************************* Handles `Save` & `Delete` Cards ********************************/
 
   const onSave = (card) => {
+    const userToken = localStorage.getItem("jwt");
     api
-      .addSavedNews(card)
+      .addSavedNews(card, userToken)
       .then((newSave) => {
         setSavedCards([newSave, ...savedCards]);
       })
