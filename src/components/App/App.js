@@ -13,7 +13,6 @@ import LoginModal from "../Login-Modal/Login-Modal";
 import RegisterSuccess from "../RegisterSuccess-Modal/RegisterSuccess-Modal";
 import NavigationModal from "../NavigationModal/NavigationModal";
 import { NewsApi } from "../../utils/NewsExplorerApi";
-// import placeholderCard from "../../utils/constants"; // only being used for testing
 import Main from "../Main/Main";
 import SearchResults from "../SearchResults/SearchResults";
 import Preloader from "../Preloader/Preloader";
@@ -23,7 +22,6 @@ import * as auth from "../../utils/auth";
 import { api } from "../../utils/Api";
 
 const App = () => {
-  // placeholder
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({
     name: "",
