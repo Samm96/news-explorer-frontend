@@ -42,6 +42,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
           className="modal-form__input"
           type="email"
           name="email"
+          autoComplete="on"
           placeholder="Enter email"
           minLength="2"
           maxLength="30"
@@ -56,8 +57,9 @@ const Login = ({ isOpen, openModal, onClose, onLogin }) => {
         </label>
         <input
           className="modal-form__input"
-          type="current-password"
+          type="password"
           name="password"
+          autoComplete="current-password"
           placeholder="Enter password"
           minLength="2"
           maxLength="30"

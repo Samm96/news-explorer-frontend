@@ -86,11 +86,13 @@ class Api {
 export const api = new Api({
   baseURL:
     process.env.NODE_ENV !== "production"
-      ? "http://api.sam-news-explorer.students.nomoredomainssbs.ru"
-      : "http://localhost:3000",
+      ? "https://api.sam-news-explorer.students.nomoredomainssbs.ru"
+      : "localhost:3000",
   headers: {
     "Access-Control-Allow-Origin":
-      "http://api.sam-news-explorer.students.nomoredomainssbs.ru",
+      process.env.NODE_ENV === "production"
+        ? "https://api.sam-news-explorer.students.nomoredomainssbs.ru"
+        : "localhost:3000",
     "Content-Type": "application/json",
   },
 });
