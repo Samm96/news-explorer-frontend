@@ -159,25 +159,41 @@ const App = () => {
   /******************************************************************************************** */
   /******************************* Handles `Save` & `Delete` Cards ********************************/
 
-  const onSave = useCallback((card) => {
+  const onSave = (card) => {
     const userToken = localStorage.getItem("jwt");
-    api
-      .addSavedNews(card, userToken)
-      .then((newSave) => {
-        setSavedCards([newSave.data, ...savedCards]);
-      })
-      .catch((err) => console.log(err));
-  }, [savedCards]);
 
-  const onDelete = useCallback((card) => {
-    const userToken = localStorage.getItem("jwt");
-    api
-      .deleteNewsCard(card, userToken)
+    const existingCard = savedCards.find(
+      (savedCard) => savedCard.link === card.link
+    );
+
+    if (existingCard) {
+      api.deleteNewsCard(existingCard, userToken)
       .then((data) => {
         setSavedCards(() => savedCards.filter((c) => c._id !== data.data));
       })
       .catch((err) => console.log(err));
-  }, [savedCards]);
+    } else {
+      api
+        .addSavedNews(card, userToken)
+        .then((newSave) => {
+          setSavedCards([newSave.data, ...savedCards]);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
+  const onDelete = useCallback(
+    (card) => {
+      const userToken = localStorage.getItem("jwt");
+      api
+        .deleteNewsCard(card, userToken)
+        .then((data) => {
+          setSavedCards(() => savedCards.filter((c) => c._id !== data.data));
+        })
+        .catch((err) => console.log(err));
+    },
+    [savedCards]
+  );
 
   /******************************************************************************************** */
   /** ************************************ Closes `Modal`s ************************************** */

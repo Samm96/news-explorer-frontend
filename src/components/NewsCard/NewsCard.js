@@ -64,11 +64,10 @@ const NewsCard = ({
       } else if (isSaved === "save-button__active") {
         setIsSaved("");
         console.log("I'm unsaved!");
-        onDeleteClick(newCard);
+        onSaveClick(newCard);
       }
     } else if (buttonType === "delete") {
       console.log("I should be deleted!");
-      debugger
       onDeleteClick(newCard);
     }
   };
