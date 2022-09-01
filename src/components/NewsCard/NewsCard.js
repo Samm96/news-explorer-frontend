@@ -54,19 +54,20 @@ const NewsCard = ({
       message = "Sign in to save articles";
   }
 
-  const handleDeleteClick = () => {
-    console.log("I should be deleted!");
-    // onDeleteClick(newCard);
-  };
-
-  const handleSaveClick = () => {
-    console.log("I'm saved!");
-    if (isSaved === "") {
-      setIsSaved("save-button__active")
-      onSaveClick(newCard);
-    } else {
-      setIsSaved("");
-      onDeleteClick(newCard)
+  const handleButtonClick = () => {
+    if (isLoggedIn && buttonType === "save") {
+      if (isSaved === "") {
+        setIsSaved("save-button__active");
+        console.log("I'm saved!");
+        // onSaveClick(newCard);
+      } else {
+        setIsSaved("");
+        console.log("I'm unsaved!");
+        // onDeleteClick(newCard);
+      }
+    } else if (buttonType === "delete") {
+      console.log("I should be deleted!");
+      // onDeleteClick(newCard);
     }
   };
 
@@ -76,31 +77,18 @@ const NewsCard = ({
         <span className={`news-card__warning news-card__warning${isShown}`}>
           {message}
         </span>
-        {isLoggedIn ? (
-          <button
-            onClick={
-              buttonType === "save" ? handleSaveClick : handleDeleteClick
-            }
-            onMouseEnter={() => {
-              if (buttonType === "delete") {
-                setIsShown("");
-              }
-            }}
-            onMouseLeave={() => setIsShown("_hidden")}
-            className={
-              buttonType === "save"
-                ? `${buttonType}-button ${isSaved}`
-                : `${buttonType}-button`
-            }
-          ></button>
-        ) : (
-          <button
-            onMouseEnter={() => setIsShown("")}
-            onMouseLeave={() => setIsShown("_hidden")}
-            className={`${buttonType}-button`}
-            onClick={null}
-          ></button>
-        )}
+        <button
+          onClick={handleButtonClick}
+          onMouseEnter={() => {
+            isLoggedIn && buttonType === "save" ? setIsShown("_hidden") : setIsShown("");
+          }}
+          onMouseLeave={() => setIsShown("_hidden")}
+          className={
+            buttonType === "save"
+              ? `${buttonType}-button ${isSaved}`
+              : `${buttonType}-button`
+          }
+        ></button>
         <span
           className={
             buttonType === "delete"
