@@ -52,8 +52,8 @@ class Api {
   }
 
   /** delete saved news */
-  deleteNewsCard({ _id }, token) {
-    return fetch(`${this._baseURL}/articles/${_id}`, {
+  deleteNewsCard(card, token) {
+    return fetch(`${this._baseURL}/articles/${card._id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${token}`,

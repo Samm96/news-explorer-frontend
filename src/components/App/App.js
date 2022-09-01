@@ -71,23 +71,23 @@ const App = () => {
 
   const handleNewsSearch = (userKeyword) => {
     console.log(userKeyword);
-    setIsLoading("");
-    NewsApi.getNews(userKeyword)
-      .then((cardData) => {
-        cardData["keyword"] = userKeyword;
-        localStorage.setItem("cards", JSON.stringify(cardData));
-      })
-      .then(() => {
-        handleSearchSuccess();
-      })
-      .catch((err) => {
-        if (err.status === 404) {
-          handleNothingFound();
-        } else {
-          handleInternalIssue();
-        }
-        console.log(err);
-      });
+    // setIsLoading("");
+    // NewsApi.getNews(userKeyword)
+    //   .then((cardData) => {
+    //     cardData["keyword"] = userKeyword;
+    //     localStorage.setItem("cards", JSON.stringify(cardData));
+    //   })
+    //   .then(() => {
+    //     handleSearchSuccess();
+    //   })
+    //   .catch((err) => {
+    //     if (err.status === 404) {
+    //       handleNothingFound();
+    //     } else {
+    //       handleInternalIssue();
+    //     }
+    //     console.log(err);
+    //   });
   };
 
   const handleSearchResults = () => {
@@ -95,7 +95,7 @@ const App = () => {
     const newsArticles = cardData.articles;
     newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
     setCards(newsArticles);
-    // setResults(""); // placeholder
+    setResults(""); // placeholder
   };
 
   /******************************************************************************************** */
@@ -169,14 +169,15 @@ const App = () => {
       .catch((err) => console.log(err));
   }, [savedCards]);
 
-  const onDelete = (card) => {
+  const onDelete = useCallback((card) => {
+    const userToken = localStorage.getItem("jwt");
     api
-      .deleteNewsCard(card._id)
-      .then(() => {
-        setSavedCards((cardData) => cardData.filter((c) => c._id !== card._id));
+      .deleteNewsCard(card, userToken)
+      .then((data) => {
+        setSavedCards(() => savedCards.filter((c) => c._id !== data.data));
       })
       .catch((err) => console.log(err));
-  };
+  }, [savedCards]);
 
   /******************************************************************************************** */
   /** ************************************ Closes `Modal`s ************************************** */
@@ -231,7 +232,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <SearchForm onSubmit={handleNewsSearch}>
+                <SearchForm onSubmit={handleSearchResults}>
                   <Header
                     isLoggedIn={isLoggedIn}
                     logoColor={"white"}
@@ -248,7 +249,7 @@ const App = () => {
                     cards={cards}
                     isLoggedIn={isLoggedIn}
                     onSaveClick={onSave}
-                    onDeleteClick={null}
+                    onDeleteClick={onDelete}
                   />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />
