@@ -31,6 +31,7 @@ const NewsCard = ({
   const keyword = card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1);
 
   const newCard = {
+    _id: card._id,
     keyword: keyword || card.keyword,
     title: card.title,
     text: card.description || card.text,
@@ -59,15 +60,16 @@ const NewsCard = ({
       if (isSaved === "") {
         setIsSaved("save-button__active");
         console.log("I'm saved!");
-        // onSaveClick(newCard);
-      } else {
+        onSaveClick(newCard);
+      } else if (isSaved === "save-button__active") {
         setIsSaved("");
         console.log("I'm unsaved!");
-        // onDeleteClick(newCard);
+        onDeleteClick(newCard);
       }
     } else if (buttonType === "delete") {
       console.log("I should be deleted!");
-      // onDeleteClick(newCard);
+      debugger
+      onDeleteClick(newCard);
     }
   };
 

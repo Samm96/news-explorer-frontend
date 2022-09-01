@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -159,7 +159,7 @@ const App = () => {
   /******************************************************************************************** */
   /******************************* Handles `Save` & `Delete` Cards ********************************/
 
-  const onSave = (card) => {
+  const onSave = useCallback((card) => {
     const userToken = localStorage.getItem("jwt");
     api
       .addSavedNews(card, userToken)
@@ -167,7 +167,7 @@ const App = () => {
         setSavedCards([newSave.data, ...savedCards]);
       })
       .catch((err) => console.log(err));
-  };
+  }, [savedCards]);
 
   const onDelete = (card) => {
     api
