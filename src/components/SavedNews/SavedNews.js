@@ -1,13 +1,9 @@
-import React, { Children, useContext } from "react";
+import React, { Children} from "react";
 import "./SavedNews.css";
 import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-const SavedNews = ({ cards, onDeleteClick, onSaveClick }) => {
-  const { currentUser } = useContext(CurrentUserContext);
-
-  const placeholder = "Samantha";
+const SavedNews = ({ cards, onDeleteClick, onSaveClick, user }) => {
 
   let articlesAmount = cards.length === 0 ? 0 : cards.length;
   let cardKeywords = [];
@@ -46,7 +42,7 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick }) => {
       <div className="saved-news__text-container">
         <h1 className="saved-news__title">Saved articles</h1>
         <p className="saved-news__saved">
-          {currentUser || placeholder}, you have {articlesAmount} saved articles
+          {user}, you have {articlesAmount} saved article(s)
         </p>
         <p className="saved-news__keywords">
           By keywords: <b>{keywords}</b>

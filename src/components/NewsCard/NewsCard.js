@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NotFoundIcon from '../../images/Icons/not-found_icon.svg';
+import NotFoundIcon from "../../images/Icons/not-found_icon.svg";
 
 import "./NewsCard.css";
 
@@ -31,14 +31,17 @@ const NewsCard = ({
   const keyword = card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1);
 
   const newCard = {
-    keyword: keyword,
+    keyword: keyword || card.keyword,
     title: card.title,
-    text: card.description,
-    date: convertedPublishedDate,
-    source: card.source.name || card.source.id,
-    link: card.url,
-    image: card.urlToImage,
-  }
+    text: card.description || card.text,
+    date:
+      convertedPublishedDate === "Invalid Date"
+        ? card.date
+        : convertedPublishedDate,
+    source: card.source.name || card.source.id || card.source,
+    link: card.url || card.link,
+    image: card.urlToImage || card.image,
+  };
 
   switch (buttonType) {
     case "save":
@@ -51,23 +54,19 @@ const NewsCard = ({
       message = "Sign in to save articles";
   }
 
-  const handleSaveClick = () => {
-    console.log("I'm saved!");
-    setIsSaved("save-button__active");
-    onSaveClick(newCard);
-  };
-
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
     // onDeleteClick(newCard);
   };
 
-  const toggleSaveButton = () => {
+  const handleSaveClick = () => {
+    console.log("I'm saved!");
     if (isSaved === "") {
-      handleSaveClick();
+      setIsSaved("save-button__active")
+      onSaveClick(newCard);
     } else {
       setIsSaved("");
-      handleDeleteClick();
+      onDeleteClick(newCard)
     }
   };
 
@@ -80,7 +79,7 @@ const NewsCard = ({
         {isLoggedIn ? (
           <button
             onClick={
-              buttonType === "save" ? toggleSaveButton : handleDeleteClick
+              buttonType === "save" ? handleSaveClick : handleDeleteClick
             }
             onMouseEnter={() => {
               if (buttonType === "delete") {
@@ -109,10 +108,14 @@ const NewsCard = ({
               : "news-card__keyword news-card__keyword_hidden"
           }
         >
-          {keyword}
+          {newCard.keyword}
         </span>
-        <a href={newCard.link}>
-          <img className="news-card__image" src={newCard.image === "" ? NotFoundIcon : newCard.image} alt="Card" />
+        <a href={newCard.link} target="__blank">
+          <img
+            className="news-card__image"
+            src={newCard.image === "" ? NotFoundIcon : newCard.image}
+            alt="Card"
+          />
         </a>
         <div className="news-card__text-container">
           <p className="news-card__date">{newCard.date}</p>

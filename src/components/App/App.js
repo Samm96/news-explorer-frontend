@@ -6,7 +6,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import RegisterModal from "../Register-Modal/Register-Modal";
 import LoginModal from "../Login-Modal/Login-Modal";
@@ -22,9 +22,11 @@ import * as auth from "../../utils/auth";
 import { api } from "../../utils/Api";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: "",
+    _id: "",
+    email: "",
   });
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
@@ -43,24 +45,24 @@ const App = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   /******************************************************************************************** */
-  /** ****************************** Check for token & Get App Info *************************** */
+  /** ************************ Check for token & Get Saved Articles Info ********************** */
 
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
     if (userToken) {
-      auth.checkToken(userToken).then(() => {
-        if (userToken && isLoggedIn) {
-          api
-            .getAppInfo(userToken)
-            .then(([userData, savedArticleData]) => {
-              setCurrentUser(userData.data);
-              setSavedCards(savedArticleData);
-            })
-            .catch((err) => console.log(err));
-        } else {
-          localStorage.removeItem("jwt");
-        }
-      }).catch((err) => console.log(err));
+      auth
+        .checkToken(userToken)
+        .then(() => {
+          if (userToken && isLoggedIn) {
+            api
+              .getSavedNews(userToken)
+              .then((savedArticleData) => {
+                setSavedCards(savedArticleData.reverse());
+              })
+              .catch((err) => console.log(err));
+          }
+        })
+        .catch((err) => console.log(err));
     }
   }, [isLoggedIn]);
 
@@ -162,7 +164,7 @@ const App = () => {
     api
       .addSavedNews(card, userToken)
       .then((newSave) => {
-        setSavedCards([newSave, ...savedCards]);
+        setSavedCards([newSave.data, ...savedCards]);
       })
       .catch((err) => console.log(err));
   };
@@ -220,6 +222,7 @@ const App = () => {
           isLoggedIn={isLoggedIn}
           openLoginModal={() => setIsLoginOpen(true)}
           onLogout={onLogout}
+          user={currentUser}
           onClose={closeAllPopups}
         />
         <Routes>
@@ -236,6 +239,7 @@ const App = () => {
                     openLoginModal={() => setIsLoginOpen(true)}
                     openMobileModal={() => setIsMobileNavOpen(true)}
                     onLogout={onLogout}
+                    user={currentUser}
                   />
                 </SearchForm>
                 <Main>
@@ -266,11 +270,13 @@ const App = () => {
                   textColor={"black"}
                   openLoginModal={() => setIsLoginOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
+                  user={currentUser}
                 />
                 <SavedNews
                   onDeleteClick={onDelete}
                   onSaveClick={null}
                   cards={savedCards}
+                  user={currentUser}
                 />
               </ProtectedRoute>
             }

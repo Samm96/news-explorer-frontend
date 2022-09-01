@@ -1,9 +1,7 @@
 import "../Navigation/Navigation.css";
 import Logo from "../Logo/Logo";
 import { NavLink } from "react-router-dom";
-// import React, { useContext } from "react";
 import whiteIcon from "../../images/Icons/button-icon-white.svg";
-// import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const NavigationModal = ({
   isOpen,
@@ -11,9 +9,8 @@ const NavigationModal = ({
   openLoginModal,
   isLoggedIn,
   onLogout,
+  user
 }) => {
-  // const { currentUser } = useContext(CurrentUserContext);
-  const placeholder = "Samantha";
 
   return (
     <div
@@ -55,7 +52,7 @@ const NavigationModal = ({
                   className="navigation__button navigation__button_type_modal navigation__button_type_user"
                   onClick={onLogout}
                 >
-                  {placeholder}
+                  {user}
                   <img
                     className="navigation__button-img navigation__button-img_type_modal"
                     src={whiteIcon}
