@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NotFoundIcon from '../../images/Icons/not-found_icon.svg';
 
 import "./NewsCard.css";
@@ -31,25 +31,27 @@ const NewsCard = ({
   const keyword = card.keyword.charAt(0).toUpperCase() + card.keyword.slice(1);
 
   const newCard = {
-    keyword: keyword,
+    keyword: keyword || card.keyword,
     title: card.title,
-    text: card.description,
-    date: convertedPublishedDate,
-    source: card.source.name || card.source.id,
-    link: card.url,
-    image: card.urlToImage,
+    text: card.description || card.text,
+    date: convertedPublishedDate === 'Invalid Date' ? card.date : convertedPublishedDate,
+    source: (card.source.name || card.source.id) || card.source,
+    link: card.url || card.link,
+    image: card.urlToImage || card.image,
   }
 
-  switch (buttonType) {
-    case "save":
-      message = "Sign in to save articles";
-      break;
-    case "delete":
-      message = "Remove from saved";
-      break;
-    default:
-      message = "Sign in to save articles";
-  }
+  useEffect((message) => {
+    switch (buttonType) {
+      case "save":
+        message = "Sign in to save articles";
+        break;
+      case "delete":
+        message = "Remove from saved";
+        break;
+      default:
+        message = "Sign in to save articles";
+    }
+  }, [buttonType, message])
 
   const handleSaveClick = () => {
     console.log("I'm saved!");
@@ -109,7 +111,7 @@ const NewsCard = ({
               : "news-card__keyword news-card__keyword_hidden"
           }
         >
-          {keyword}
+          {newCard.keyword}
         </span>
         <a href={newCard.link}>
           <img className="news-card__image" src={newCard.image === "" ? NotFoundIcon : newCard.image} alt="Card" />

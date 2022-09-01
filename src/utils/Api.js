@@ -27,21 +27,6 @@ class Api {
     }).then(this._handleServerResponse);
   }
 
-  /** sets user's info (do I need this?) */
-
-  setUserInfo({ name }, token) {
-    return fetch(`${this._baseURL}/users/me`, {
-      method: "PATCH",
-      headers: {
-        authorization: `Bearer ${token}`,
-        ...this._headers,
-      },
-      body: JSON.stringify({
-        name,
-      }),
-    }).then(this._handleServerResponse);
-  }
-
   /** Accesses Saved News articles by user. Get list. url may be different later */
 
   getSavedNews(token) {
