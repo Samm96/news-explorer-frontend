@@ -113,7 +113,7 @@ const NewsCard = ({
         >
           {newCard.keyword}
         </span>
-        <a href={newCard.link}>
+        <a href={newCard.link} target="__blank">
           <img className="news-card__image" src={newCard.image === "" ? NotFoundIcon : newCard.image} alt="Card" />
         </a>
         <div className="news-card__text-container">
