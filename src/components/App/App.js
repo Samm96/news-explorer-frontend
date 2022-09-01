@@ -57,7 +57,7 @@ const App = () => {
             api
               .getSavedNews(userToken)
               .then((savedArticleData) => {
-                setSavedCards(savedArticleData);
+                setSavedCards(savedArticleData.reverse());
               })
               .catch((err) => console.log(err));
           }
@@ -164,7 +164,7 @@ const App = () => {
     api
       .addSavedNews(card, userToken)
       .then((newSave) => {
-        setSavedCards([newSave, ...savedCards]);
+        setSavedCards([newSave.data, ...savedCards]);
       })
       .catch((err) => console.log(err));
   };

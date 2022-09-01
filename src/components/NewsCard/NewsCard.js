@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import NotFoundIcon from '../../images/Icons/not-found_icon.svg';
+import React, { useState } from "react";
+import NotFoundIcon from "../../images/Icons/not-found_icon.svg";
 
 import "./NewsCard.css";
 
@@ -34,42 +34,39 @@ const NewsCard = ({
     keyword: keyword || card.keyword,
     title: card.title,
     text: card.description || card.text,
-    date: convertedPublishedDate === 'Invalid Date' ? card.date : convertedPublishedDate,
-    source: (card.source.name || card.source.id) || card.source,
+    date:
+      convertedPublishedDate === "Invalid Date"
+        ? card.date
+        : convertedPublishedDate,
+    source: card.source.name || card.source.id || card.source,
     link: card.url || card.link,
     image: card.urlToImage || card.image,
-  }
-
-  useEffect((message) => {
-    switch (buttonType) {
-      case "save":
-        message = "Sign in to save articles";
-        break;
-      case "delete":
-        message = "Remove from saved";
-        break;
-      default:
-        message = "Sign in to save articles";
-    }
-  }, [buttonType, message])
-
-  const handleSaveClick = () => {
-    console.log("I'm saved!");
-    setIsSaved("save-button__active");
-    onSaveClick(newCard);
   };
+
+  switch (buttonType) {
+    case "save":
+      message = "Sign in to save articles";
+      break;
+    case "delete":
+      message = "Remove from saved";
+      break;
+    default:
+      message = "Sign in to save articles";
+  }
 
   const handleDeleteClick = () => {
     console.log("I should be deleted!");
     // onDeleteClick(newCard);
   };
 
-  const toggleSaveButton = () => {
+  const handleSaveClick = () => {
+    console.log("I'm saved!");
     if (isSaved === "") {
-      handleSaveClick();
+      setIsSaved("save-button__active")
+      onSaveClick(newCard);
     } else {
       setIsSaved("");
-      handleDeleteClick();
+      onDeleteClick(newCard)
     }
   };
 
@@ -82,7 +79,7 @@ const NewsCard = ({
         {isLoggedIn ? (
           <button
             onClick={
-              buttonType === "save" ? toggleSaveButton : handleDeleteClick
+              buttonType === "save" ? handleSaveClick : handleDeleteClick
             }
             onMouseEnter={() => {
               if (buttonType === "delete") {
@@ -114,7 +111,11 @@ const NewsCard = ({
           {newCard.keyword}
         </span>
         <a href={newCard.link} target="__blank">
-          <img className="news-card__image" src={newCard.image === "" ? NotFoundIcon : newCard.image} alt="Card" />
+          <img
+            className="news-card__image"
+            src={newCard.image === "" ? NotFoundIcon : newCard.image}
+            alt="Card"
+          />
         </a>
         <div className="news-card__text-container">
           <p className="news-card__date">{newCard.date}</p>
