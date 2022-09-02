@@ -5,6 +5,7 @@ import { useFormValidator } from "../../hooks/useFormValidation";
 const Register = ({ isOpen, openModal, onClose, onRegister }) => {
 
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isButtonDisabled, setButtonDisabled] = useState("");
 
   const { values, isValid, errors, handleChange, resetForm } =
     useFormValidator([
@@ -12,7 +13,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
       "register-password",
       "register-username",
     ]);
-
+  
   const {
     "register-email": email,
     "register-password": password,
@@ -26,7 +27,6 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
   };
 
   const initialValuesRef = useRef(initialValues);
-  const newValuesRef = useRef(values);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,13 +35,23 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
       password: password,
       name: username,
     };
-    onRegister(userRegisterData);
-    handleFormReset();
+    if (isFormValid === true) {
+      onRegister(userRegisterData);
+      handleFormReset();
+    }
   };
 
   const handleFormChange = () => {
-    setIsFormValid(isValid && newValuesRef.current.checkValidity() === true);
+    isValid ? setIsFormValid(true) : setIsFormValid(false);
   };
+
+  useEffect(() => {
+    if (isFormValid === false) {
+      setButtonDisabled('modal-form__button_disabled');
+    } else if (isFormValid === true) {
+      setButtonDisabled("");
+    }
+  }, [isFormValid])
 
   const handleFormReset = useCallback(() => {
     resetForm({ ...initialValuesRef }, { ...initialValuesRef }, true);
@@ -74,7 +84,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           autoComplete="off"
           placeholder="Enter email"
           onChange={handleChange}
-          value={email}
+          defaultValue={email || ""}
           minLength="2"
           maxLength="30"
           required
@@ -93,7 +103,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           autoComplete="off"
           placeholder="Enter password"
           onChange={handleChange}
-          value={password}
+          defaultValue={password || ""}
           minLength="2"
           maxLength="30"
           required
@@ -111,7 +121,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           autoComplete="off"
           placeholder="Enter your username"
           onChange={handleChange}
-          value={username}
+          defaultValue={username || ""}
           minLength="2"
           maxLength="30"
           required
@@ -119,7 +129,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
         <span className="modal-form__error-message username-error"></span>
       </div>
       <div className="modal-form__button-container">
-        <button className="modal-form__button">Sign up</button>
+        <button className={`modal-form__button ${isButtonDisabled}`}>Sign up</button>
       </div>
     </ModalWithForm>
   );

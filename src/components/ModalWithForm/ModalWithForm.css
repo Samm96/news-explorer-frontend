@@ -58,6 +58,15 @@
     border-bottom: 1px solid rgba(26, 27, 34, 1);
 }
 
+.modal-form__input_type_error {
+    border-bottom: 1px solid #FF0000;
+}
+
+.modal-form__input_type_error:focus {
+    outline-color: transparent;
+    border-bottom: 1px solid #FF0000;  
+}
+
 .modal-form__error-message {
     margin: 0;
     padding: 0;
@@ -99,6 +108,11 @@
 .modal-form__button_disabled {
     background-color: #E6E8EB;
     color: #B6BCBF;
+}
+
+.modal-form__button_disabled:hover {
+    cursor: default;
+    opacity: 1;
 }
 
 .modal-form__text {
