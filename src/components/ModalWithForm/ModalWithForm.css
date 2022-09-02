@@ -84,6 +84,14 @@
     visibility: visible;
 }
 
+.modal-form__error-message_type_form {
+    position: absolute;
+    left: 56.5%;
+    margin-left: -50px;
+    top: 40%;
+    margin-top: -20px;
+}
+
 .modal-form__button {
     width: 360px;
     height: 64px;
@@ -98,6 +106,7 @@
 .modal-form__button-container {
     display: flex;
     justify-items: center;
+    position: relative;
 }
 
 .modal-form__button:hover {
@@ -167,5 +176,9 @@
     .modal-form__button {
         width: 288px;
         margin: 23px auto 0;
+    }
+
+    .modal-form__error-message_type_form {
+        top: 30%;
     }
 }

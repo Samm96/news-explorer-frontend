@@ -129,6 +129,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
         <span className="modal-form__error-message username-error"></span>
       </div>
       <div className="modal-form__button-container">
+        <span className="modal-form__error-message modal-form__error-message_type_form form-error"></span>
         <button className={`modal-form__button ${isButtonDisabled}`}>Sign up</button>
       </div>
     </ModalWithForm>
