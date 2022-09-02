@@ -1,30 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useFormValidator } from "../../hooks/useFormValidation";
 
 const Register = ({ isOpen, openModal, onClose, onRegister }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const { values, isValid, errors, handleChange, resetForm } =
+    useFormValidator([
+      "register-email",
+      "register-password",
+      "register-username",
+    ]);
+
+  const {
+    "register-email": email,
+    "register-password": password,
+    "register-username": username,
+  } = values;
+
+  const initialValues = {
+    "register-email": "",
+    "register-password": "",
+    "register-username": "",
+  };
+
+  const initialValuesRef = useRef(initialValues);
+  const newValuesRef = useRef(values);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const userRegisterData = {
-      email,
-      password,
-      name,
+      email: email,
+      password: password,
+      name: username,
     };
     onRegister(userRegisterData);
+    handleFormReset();
   };
 
-  const handleInputReset = () => {
-    setEmail("");
-    setPassword("");
-    setName("");
+  const handleFormChange = () => {
+    setIsFormValid(isValid && newValuesRef.current.checkValidity() === true);
   };
+
+  const handleFormReset = useCallback(() => {
+    resetForm({ ...initialValuesRef }, { ...initialValuesRef }, true);
+  }, [initialValuesRef, resetForm]);
 
   useEffect(() => {
-    handleInputReset();
-  }, []);
+    handleFormReset();
+  }, [onClose, handleFormReset]);
+
 
   return (
     <ModalWithForm
@@ -35,6 +61,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
       formName="register"
       onClose={onClose}
       onSubmit={handleSubmit}
+      onChange={handleFormChange}
     >
       <div className="modal-form__input-container">
         <label className="modal-form__input-label" aria-label="email">
@@ -46,7 +73,8 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           name="email"
           autoComplete="off"
           placeholder="Enter email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleChange}
+          value={email}
           minLength="2"
           maxLength="30"
           required
@@ -64,7 +92,8 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           name="password"
           autoComplete="off"
           placeholder="Enter password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange}
+          value={password}
           minLength="2"
           maxLength="30"
           required
@@ -81,7 +110,8 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           name="username"
           autoComplete="off"
           placeholder="Enter your username"
-          onChange={(e) => setName(e.target.value)}
+          onChange={handleChange}
+          value={username}
           minLength="2"
           maxLength="30"
           required
