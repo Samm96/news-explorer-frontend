@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -95,7 +95,7 @@ const App = () => {
     const newsArticles = cardData.articles;
     newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
     setCards(newsArticles);
-    // setResults(""); // placeholder
+    setResults(""); // placeholder
   };
 
   /******************************************************************************************** */
@@ -161,22 +161,39 @@ const App = () => {
 
   const onSave = (card) => {
     const userToken = localStorage.getItem("jwt");
-    api
-      .addSavedNews(card, userToken)
-      .then((newSave) => {
-        setSavedCards([newSave.data, ...savedCards]);
+
+    const existingCard = savedCards.find(
+      (savedCard) => savedCard.link === card.link
+    );
+
+    if (existingCard) {
+      api.deleteNewsCard(existingCard, userToken)
+      .then((data) => {
+        setSavedCards(() => savedCards.filter((c) => c._id !== data.data));
       })
       .catch((err) => console.log(err));
+    } else {
+      api
+        .addSavedNews(card, userToken)
+        .then((newSave) => {
+          setSavedCards([newSave.data, ...savedCards]);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
-  const onDelete = (card) => {
-    api
-      .deleteNewsCard(card._id)
-      .then(() => {
-        setSavedCards((cardData) => cardData.filter((c) => c._id !== card._id));
-      })
-      .catch((err) => console.log(err));
-  };
+  const onDelete = useCallback(
+    (card) => {
+      const userToken = localStorage.getItem("jwt");
+      api
+        .deleteNewsCard(card, userToken)
+        .then((data) => {
+          setSavedCards(() => savedCards.filter((c) => c._id !== data.data));
+        })
+        .catch((err) => console.log(err));
+    },
+    [savedCards]
+  );
 
   /******************************************************************************************** */
   /** ************************************ Closes `Modal`s ************************************** */
@@ -248,7 +265,7 @@ const App = () => {
                     cards={cards}
                     isLoggedIn={isLoggedIn}
                     onSaveClick={onSave}
-                    onDeleteClick={null}
+                    onDeleteClick={onDelete}
                   />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />
