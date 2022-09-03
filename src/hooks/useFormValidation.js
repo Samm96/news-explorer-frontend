@@ -7,7 +7,7 @@ export const useFormValidator = (inputsArr) => {
 
   const [values, setValues] = React.useState(intValues);
   const [errors, setErrors] = React.useState(intValues);
-  const [isValid, setIsValid] = React.useState(true);
+  const [isValid, setIsValid] = React.useState(false);
 
   const handleChange = (e) => {
 
