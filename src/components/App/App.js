@@ -167,11 +167,12 @@ const App = () => {
     );
 
     if (existingCard) {
-      api.deleteNewsCard(existingCard, userToken)
-      .then((data) => {
-        setSavedCards(() => savedCards.filter((c) => c._id !== data.data));
-      })
-      .catch((err) => console.log(err));
+      api
+        .deleteNewsCard(existingCard, userToken)
+        .then((data) => {
+          setSavedCards(() => savedCards.filter((c) => c._id !== data.data));
+        })
+        .catch((err) => console.log(err));
     } else {
       api
         .addSavedNews(card, userToken)

@@ -8,7 +8,6 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [usernameError, setUsernameError] = useState("");
-  const [formError, setFormError] = useState("");
 
   const { values, isValid, errors, handleChange, resetForm } = useFormValidator(
     ["register-email", "register-password", "register-name"]
@@ -20,15 +19,14 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
     "register-name": name,
   } = values;
 
-  console.log(values);
 
-  // const initialValues = {
-  //   "register-email": "",
-  //   "register-password": "",
-  //   "register-name": "",
-  // };
+  const initialValues = {
+    "register-email": "",
+    "register-password": "",
+    "register-name": "",
+  };
 
-  // const initialValuesRef = useRef(initialValues);
+  const initialValuesRef = useRef(initialValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,12 +35,8 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
       password: password,
       name: name,
     };
-    if (isValid === true) {
-      onRegister(userRegisterData);
-      // handleFormReset();
-    } else {
-      setFormError("modal-form__error-message_visible");
-    }
+    onRegister(userRegisterData);
+    handleFormReset();
   };
 
   const handleFormChange = () => {
@@ -77,13 +71,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
     }
   }, [isFormValid, isValid]);
 
-  // const handleFormReset = useCallback(() => {
-  //   resetForm({ ...initialValuesRef }, { ...initialValuesRef }, true);
-  // }, [initialValuesRef, resetForm]);
-
-  // useEffect(() => {
-  //   handleFormReset();
-  // }, [onClose, handleFormReset]);
+  const handleFormReset = () => {
+    resetForm({ ...initialValuesRef }, { ...initialValuesRef }, true);
+  };
 
   return (
     <ModalWithForm
@@ -168,9 +158,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
       </div>
       <div className="modal-form__button-container">
         <span
-          className={`modal-form__error-message modal-form__error-message_type_form ${formError} form-error`}
+          className={`modal-form__error-message modal-form__error-message_type_form form-error`}
         >
-          No
+          Email already in use
         </span>
         <button className={`modal-form__button ${isButtonDisabled}`}>
           Sign up
