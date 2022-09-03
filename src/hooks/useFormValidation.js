@@ -10,7 +10,6 @@ export const useFormValidator = (inputsArr) => {
   const [isValid, setIsValid] = React.useState(false);
 
   const handleChange = (e) => {
-
     const { name, value, validationMessage } = e.target;
 
     setValues({ ...values, [name]: value });

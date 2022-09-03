@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormValidator } from "../../hooks/useFormValidation";
-import { errorMsgs } from "../../utils/constants";
 
 const Register = ({ isOpen, openModal, onClose, onRegister }) => {
   const [isFormValid, setIsFormValid] = useState(false);
@@ -9,35 +8,40 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [usernameError, setUsernameError] = useState("");
+  const [formError, setFormError] = useState("");
 
   const { values, isValid, errors, handleChange, resetForm } = useFormValidator(
-    ["register-email", "register-password", "register-username"]
+    ["register-email", "register-password", "register-name"]
   );
 
   const {
     "register-email": email,
     "register-password": password,
-    "register-username": username,
+    "register-name": name,
   } = values;
 
-  const initialValues = {
-    "register-email": "",
-    "register-password": "",
-    "register-username": "",
-  };
+  console.log(values);
 
-  const initialValuesRef = useRef(initialValues);
+  // const initialValues = {
+  //   "register-email": "",
+  //   "register-password": "",
+  //   "register-name": "",
+  // };
+
+  // const initialValuesRef = useRef(initialValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const userRegisterData = {
       email: email,
       password: password,
-      name: username,
+      name: name,
     };
-    if (isFormValid === true) {
+    if (isValid === true) {
       onRegister(userRegisterData);
-      handleFormReset();
+      // handleFormReset();
+    } else {
+      setFormError("modal-form__error-message_visible");
     }
   };
 
@@ -46,26 +50,24 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
   };
 
   useEffect(() => {
-
-    if (!isValid && errors.email) {
-      setEmailError('modal-form__error-message_visible');
+    if (!isValid && errors["register-email"]) {
+      setEmailError("modal-form__error-message_visible");
     } else {
       setEmailError("");
     }
 
-    if (!isValid && errors.password) {
-      setPasswordError('modal-form__error-message_visible');
+    if (!isValid && errors["register-password"]) {
+      setPasswordError("modal-form__error-message_visible");
     } else {
       setPasswordError("");
     }
 
-    if (!isValid && errors.username) {
-      setUsernameError('modal-form__error-message_visible');
+    if (!isValid && errors["register-name"]) {
+      setUsernameError("modal-form__error-message_visible");
     } else {
       setUsernameError("");
     }
-  }, [errors.email, errors.password, errors.username, isValid])
-
+  }, [errors, errors.email, errors.password, errors.username, isValid]);
 
   useEffect(() => {
     if (isFormValid === false) {
@@ -75,13 +77,13 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
     }
   }, [isFormValid, isValid]);
 
-  const handleFormReset = useCallback(() => {
-    resetForm({ ...initialValuesRef }, { ...initialValuesRef }, true);
-  }, [initialValuesRef, resetForm]);
+  // const handleFormReset = useCallback(() => {
+  //   resetForm({ ...initialValuesRef }, { ...initialValuesRef }, true);
+  // }, [initialValuesRef, resetForm]);
 
-  useEffect(() => {
-    handleFormReset();
-  }, [onClose, handleFormReset]);
+  // useEffect(() => {
+  //   handleFormReset();
+  // }, [onClose, handleFormReset]);
 
   return (
     <ModalWithForm
@@ -99,9 +101,10 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           Email
         </label>
         <input
-          className="modal-form__input"
+          className="modal-form__input register-email"
+          id="register-email"
           type="email"
-          name="email"
+          name="register-email"
           autoComplete="off"
           placeholder="Enter email"
           onChange={handleChange}
@@ -110,7 +113,11 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           maxLength="30"
           required
         />
-        <span className={`modal-form__error-message ${emailError} register-email`}>hello</span>
+        <span
+          className={`modal-form__error-message ${emailError} register-email`}
+        >
+          {errors["register-email"]}
+        </span>
       </div>
 
       <div className="modal-form__input-container">
@@ -118,9 +125,10 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           Password
         </label>
         <input
-          className="modal-form__input"
+          className="modal-form__input register-password"
+          id="register-password"
           type="password"
-          name="password"
+          name="register-password"
           autoComplete="off"
           placeholder="Enter password"
           onChange={handleChange}
@@ -129,28 +137,41 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           maxLength="30"
           required
         />
-        <span className={`modal-form__error-message ${passwordError} register-password`}>hello</span>
+        <span
+          className={`modal-form__error-message ${passwordError} register-password`}
+        >
+          {errors["register-password"]}
+        </span>
       </div>
       <div className="modal-form__input-container modal-form__input-container_type_username">
         <label className="modal-form__input-label" aria-label="username">
           Username
         </label>
         <input
-          className="modal-form__input"
+          className="modal-form__input register-name"
+          id="register-name"
           type="text"
-          name="username"
+          name="register-name"
           autoComplete="off"
           placeholder="Enter your username"
           onChange={handleChange}
-          defaultValue={username || ""}
+          defaultValue={name || ""}
           minLength="2"
           maxLength="30"
           required
         />
-        <span className={`modal-form__error-message ${usernameError} register-username`}>hello</span>
+        <span
+          className={`modal-form__error-message ${usernameError} register-name`}
+        >
+          {errors["register-name"]}
+        </span>
       </div>
       <div className="modal-form__button-container">
-        <span className="modal-form__error-message modal-form__error-message_type_form form-error"></span>
+        <span
+          className={`modal-form__error-message modal-form__error-message_type_form ${formError} form-error`}
+        >
+          No
+        </span>
         <button className={`modal-form__button ${isButtonDisabled}`}>
           Sign up
         </button>
