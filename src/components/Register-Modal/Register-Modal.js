@@ -19,7 +19,6 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
     "register-name": name,
   } = values;
 
-
   const initialValues = {
     "register-email": "",
     "register-password": "",
@@ -71,9 +70,13 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
     }
   }, [isFormValid, isValid]);
 
-  const handleFormReset = () => {
-    resetForm({ ...initialValuesRef }, { ...initialValuesRef }, true);
-  };
+  const handleFormReset = useCallback(() => {
+    resetForm({ ...initialValuesRef }, { ...initialValuesRef }, false);
+  }, [initialValuesRef, resetForm]);
+
+  useEffect(() => {
+    handleFormReset();
+  }, [onClose, handleFormReset]);
 
   return (
     <ModalWithForm
