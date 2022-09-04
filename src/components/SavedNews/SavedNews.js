@@ -1,10 +1,9 @@
-import React, { Children} from "react";
+import React, { Children } from "react";
 import "./SavedNews.css";
 import Footer from "../Footer/Footer";
 import NewsCard from "../NewsCard/NewsCard";
 
 const SavedNews = ({ cards, onDeleteClick, onSaveClick, user }) => {
-
   let articlesAmount = cards.length === 0 ? 0 : cards.length;
   let cardKeywords = [];
 
@@ -19,10 +18,15 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick, user }) => {
   let keywords;
 
   switch (findDuplicates.length) {
-    case findDuplicates.length > 2:
+    case (findDuplicates.length):
       keywords =
-        findDuplicates.splice(0, 2).toString().split(",").join(", ") +
-        ` and ${findDuplicates.length - 2} others`;
+        findDuplicates.slice(0, 2).toString().split(",").join(", ") +
+        ` and ${findDuplicates.length - 2} other(s)`;
+      break;
+    case (findDuplicates.length = 3):
+      keywords =
+        findDuplicates.slice(0, 2).toString().split(",").join(", ") +
+        ` and ${findDuplicates.length - 2} other(s)`;
       break;
     case (findDuplicates.length = 2):
       keywords = findDuplicates.toString().split(",").join(" and ");
