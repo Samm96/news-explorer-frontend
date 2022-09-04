@@ -21,7 +21,7 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick, user }) => {
     case (findDuplicates.length):
       keywords =
         findDuplicates.slice(0, 2).toString().split(",").join(", ") +
-        ` and ${findDuplicates.length - 2} others`;
+        ` and ${findDuplicates.length - 2} other(s)`;
       break;
     case (findDuplicates.length = 3):
       keywords =
