@@ -36,17 +36,17 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
       name: name,
     };
     onRegister(userRegisterData);
-    handleFormReset();
+    if (!submitError) {
+      handleReset();
+      setFormError("");
+    } else {
+      setFormError("modal-form__error-message_visible");
+    }
   };
 
   const handleFormChange = () => {
     isValid ? setIsFormValid(true) : setIsFormValid(false);
   };
-
-  const handleFormReset = useCallback(() => {
-    resetForm({ ...initialValuesRef }, { ...initialValuesRef }, false);
-  }, [initialValuesRef, resetForm]);
-
  
   useEffect(() => {
     if (!isValid && errors["register-email"]) {
@@ -72,14 +72,18 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
     } else if (isFormValid === true) {
       setButtonDisabled("");
     }
-
-    if (submitError) {
-      setFormError("modal-form__error-message_visible");
-    } else {
-      setFormError("");
-    }
   }, [errors, errors.email, errors.password, errors.username, isFormValid, isValid, submitError]);
 
+  const handleReset = useCallback(() => {
+    resetForm({...initialValuesRef.current}, {...initialValuesRef.current}, true);
+    setFormError("");
+  }, [initialValuesRef, resetForm]);
+
+  useEffect(() => {
+    if (onClose) {
+      handleReset();
+    }
+  }, [handleReset, onClose])
 
   return (
     <ModalWithForm
@@ -104,7 +108,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
           autoComplete="off"
           placeholder="Enter email"
           onChange={handleChange}
-          defaultValue={email}
+          value={email}
           minLength="2"
           maxLength="30"
           required
@@ -128,7 +132,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
           autoComplete="off"
           placeholder="Enter password"
           onChange={handleChange}
-          defaultValue={password}
+          value={password}
           minLength="2"
           maxLength="30"
           required
@@ -151,7 +155,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
           autoComplete="off"
           placeholder="Enter your username"
           onChange={handleChange}
-          defaultValue={name}
+          value={name}
           minLength="2"
           maxLength="30"
           required

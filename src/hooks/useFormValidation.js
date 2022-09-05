@@ -16,7 +16,7 @@ export const useFormValidator = (inputsArr) => {
     setErrors({ ...errors, [name]: validationMessage });
     setIsValid(e.target.closest("form").checkValidity());
   };
-
+  
   const resetForm = React.useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {
       setValues(newValues);
