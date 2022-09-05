@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
@@ -25,8 +25,6 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: "",
-    _id: "",
-    email: "",
   });
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
@@ -47,24 +45,40 @@ const App = () => {
   /******************************************************************************************** */
   /** ************************ Check for token & Get Saved Articles Info ********************** */
 
+const userHistory = useNavigate();
+
+  useEffect(() => {
+    const userToken = localStorage.getItem("jwt");
+    if (userToken && isLoggedIn) {
+      api
+        .getAppInfo(userToken)
+        .then(([userData, savedArticleData]) => {
+          const user = userData.data;
+          setCurrentUser(user.name);
+          setSavedCards(savedArticleData.reverse());
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isLoggedIn]);
+  
+
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
     if (userToken) {
       auth
         .checkToken(userToken)
-        .then(() => {
-          if (userToken && isLoggedIn) {
-            api
-              .getSavedNews(userToken)
-              .then((savedArticleData) => {
-                setSavedCards(savedArticleData.reverse());
-              })
-              .catch((err) => console.log(err));
+        .then((res) => {
+          if (res) {
+            setCurrentUser(res.data.name);
+            setIsLoggedIn(true);
+            userHistory("/");
+          } else {
+            localStorage.removeItem("jwt");
           }
         })
         .catch((err) => console.log(err));
     }
-  }, [isLoggedIn]);
+  }, [userHistory]);
 
   /******************************************************************************************** */
   /** **************************************** News API **************************************** */
@@ -138,6 +152,7 @@ const App = () => {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
+          debugger;
           setIsLoggedIn(true);
           setCurrentUser(res.data.name);
         }
@@ -167,11 +182,12 @@ const App = () => {
     );
 
     if (existingCard) {
-      api.deleteNewsCard(existingCard, userToken)
-      .then((data) => {
-        setSavedCards(() => savedCards.filter((c) => c._id !== data.data));
-      })
-      .catch((err) => console.log(err));
+      api
+        .deleteNewsCard(existingCard, userToken)
+        .then((data) => {
+          setSavedCards(() => savedCards.filter((c) => c._id !== data.data));
+        })
+        .catch((err) => console.log(err));
     } else {
       api
         .addSavedNews(card, userToken)
