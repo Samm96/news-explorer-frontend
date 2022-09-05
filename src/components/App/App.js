@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
@@ -25,8 +25,6 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: "",
-    _id: "",
-    email: "",
   });
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
@@ -47,24 +45,40 @@ const App = () => {
   /******************************************************************************************** */
   /** ************************ Check for token & Get Saved Articles Info ********************** */
 
+const userHistory = useNavigate();
+
+  useEffect(() => {
+    const userToken = localStorage.getItem("jwt");
+    if (userToken && isLoggedIn) {
+      api
+        .getAppInfo(userToken)
+        .then(([userData, savedArticleData]) => {
+          const user = userData.data;
+          setCurrentUser(user.name);
+          setSavedCards(savedArticleData.reverse());
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isLoggedIn]);
+
+
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
     if (userToken) {
       auth
         .checkToken(userToken)
-        .then(() => {
-          if (userToken && isLoggedIn) {
-            api
-              .getSavedNews(userToken)
-              .then((savedArticleData) => {
-                setSavedCards(savedArticleData.reverse());
-              })
-              .catch((err) => console.log(err));
+        .then((res) => {
+          if (res) {
+            setCurrentUser(res.data.name);
+            setIsLoggedIn(true);
+            userHistory({"/" : "/saved-news"});
+          } else {
+            localStorage.removeItem("jwt");
           }
         })
         .catch((err) => console.log(err));
     }
-  }, [isLoggedIn]);
+  }, [userHistory]);
 
   /******************************************************************************************** */
   /** **************************************** News API **************************************** */
@@ -153,6 +167,7 @@ const App = () => {
   const onLogout = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    userHistory("/");
     closeAllPopups();
   };
 
@@ -288,6 +303,7 @@ const App = () => {
                   textColor={"black"}
                   openLoginModal={() => setIsLoginOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
+                  onLogout={onLogout}
                   user={currentUser}
                 />
                 <SavedNews

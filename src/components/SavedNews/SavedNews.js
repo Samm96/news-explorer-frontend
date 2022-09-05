@@ -18,11 +18,6 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick, user }) => {
   let keywords;
 
   switch (findDuplicates.length) {
-    case (findDuplicates.length):
-      keywords =
-        findDuplicates.slice(0, 2).toString().split(",").join(", ") +
-        ` and ${findDuplicates.length - 2} other(s)`;
-      break;
     case (findDuplicates.length = 3):
       keywords =
         findDuplicates.slice(0, 2).toString().split(",").join(", ") +
@@ -36,6 +31,11 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick, user }) => {
       break;
     case (findDuplicates.length = 0):
       keywords = "";
+      break;
+    case findDuplicates.length:
+      keywords =
+        findDuplicates.slice(0, 2).toString().split(",").join(", ") +
+        ` and ${findDuplicates.length - 2} other(s)`;
       break;
     default:
       keywords = "";
