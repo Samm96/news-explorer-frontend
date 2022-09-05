@@ -60,7 +60,7 @@ const userHistory = useNavigate();
         .catch((err) => console.log(err));
     }
   }, [isLoggedIn]);
-  
+
 
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
@@ -71,7 +71,7 @@ const userHistory = useNavigate();
           if (res) {
             setCurrentUser(res.data.name);
             setIsLoggedIn(true);
-            userHistory("/");
+            userHistory({"/" : "/saved-news"});
           } else {
             localStorage.removeItem("jwt");
           }
@@ -152,7 +152,6 @@ const userHistory = useNavigate();
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          debugger;
           setIsLoggedIn(true);
           setCurrentUser(res.data.name);
         }
@@ -168,6 +167,7 @@ const userHistory = useNavigate();
   const onLogout = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    userHistory("/");
     closeAllPopups();
   };
 
@@ -303,6 +303,7 @@ const userHistory = useNavigate();
                   textColor={"black"}
                   openLoginModal={() => setIsLoginOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
+                  onLogout={onLogout}
                   user={currentUser}
                 />
                 <SavedNews
