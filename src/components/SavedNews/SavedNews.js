@@ -17,28 +17,20 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick, user }) => {
 
   let keywords;
 
-  switch (findDuplicates.length) {
-    case (findDuplicates.length = 3):
-      keywords =
-        findDuplicates.slice(0, 2).toString().split(",").join(", ") +
-        ` and ${findDuplicates.length - 2} other(s)`;
-      break;
-    case (findDuplicates.length = 2):
-      keywords = findDuplicates.toString().split(",").join(" and ");
-      break;
-    case (findDuplicates.length = 1):
-      keywords = findDuplicates.toString();
-      break;
-    case (findDuplicates.length = 0):
-      keywords = "";
-      break;
-    case findDuplicates.length:
-      keywords =
-        findDuplicates.slice(0, 2).toString().split(",").join(", ") +
-        ` and ${findDuplicates.length - 2} other(s)`;
-      break;
-    default:
-      keywords = "";
+  if (findDuplicates.length > 3) {
+    keywords =
+      findDuplicates.slice(0, 2).toString().split(",").join(", ") +
+      ` and ${findDuplicates.length - 2} other(s)`;
+  } else if (findDuplicates.length === 3) {
+    keywords = findDuplicates.toString().split(",").join(" and ");
+  } else if (findDuplicates.length === 1) {
+    keywords = findDuplicates.toString();
+  } else if (findDuplicates.length === 0) {
+    keywords = "";
+  } else {
+    keywords =
+      findDuplicates.slice(0, 2).toString().split(",").join(", ") +
+      ` and ${findDuplicates.length - 2} other(s)`;
   }
 
   return (
