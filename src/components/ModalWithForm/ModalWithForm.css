@@ -86,16 +86,13 @@
 
 .modal-form__error-message_type_form {
     position: absolute;
-    left: 56.5%;
-    margin-left: -50px;
-    top: 40%;
-    margin-top: -20px;
+    top: -20px;
+    left: 35%;
 }
 
 .modal-form__button {
     width: 360px;
     height: 64px;
-    margin: 38px auto 0;
     padding: 0;
     background-color: #2F71E5;
     color: #ffff;
@@ -104,8 +101,10 @@
 }
 
 .modal-form__button-container {
+    margin: 38px auto 0;
     display: flex;
     justify-items: center;
+    text-align: center;
     position: relative;
 }
 
@@ -179,6 +178,6 @@
     }
 
     .modal-form__error-message_type_form {
-        top: 30%;
+        top: 5%;
     }
 }

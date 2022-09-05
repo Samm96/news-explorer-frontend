@@ -41,6 +41,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
       setFormError("");
     } else {
       setFormError("modal-form__error-message_visible");
+      setButtonDisabled("modal-form__button_disabled");
     }
   };
 
