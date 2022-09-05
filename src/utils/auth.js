@@ -12,7 +12,7 @@ export const register = (email, password, name) => {
     },
     body: JSON.stringify({ email, password, name }),
   }).then((res) => {
-    if (res.status === 201) {
+    if (res.status === 201 || 409 || 400 || 429 || 500) {
       return res.json();
     }
   }).catch((res) => { return res })

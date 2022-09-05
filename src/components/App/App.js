@@ -28,6 +28,7 @@ const App = () => {
   });
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
+  const [submitError, setSubmitError] = useState(null);
 
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
@@ -138,9 +139,13 @@ const userHistory = useNavigate();
     auth
       .register(email, password, name)
       .then((res) => {
-        if (res) {
+        if (res.status === 201) {
           setIsRegisterOpen(false);
           setIsSuccessOpen(true);
+        }
+
+        if (res.status === 409 || 500 || 400) {
+          setSubmitError(res.message);
         }
       })
       .catch((err) => console.log(err));
@@ -323,6 +328,7 @@ const userHistory = useNavigate();
             setIsLoginOpen(true);
           }}
           onRegister={onRegister}
+          submitError={submitError}
           onClose={closeAllPopups}
         />
         <LoginModal

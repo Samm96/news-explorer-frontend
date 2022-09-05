@@ -2,12 +2,13 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormValidator } from "../../hooks/useFormValidation";
 
-const Register = ({ isOpen, openModal, onClose, onRegister }) => {
+const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isButtonDisabled, setButtonDisabled] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [usernameError, setUsernameError] = useState("");
+  const [formError, setFormError] = useState("");
 
   const { values, isValid, errors, handleChange, resetForm } = useFormValidator(
     ["register-email", "register-password", "register-name"]
@@ -42,6 +43,11 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
     isValid ? setIsFormValid(true) : setIsFormValid(false);
   };
 
+  const handleFormReset = useCallback(() => {
+    resetForm({ ...initialValuesRef }, { ...initialValuesRef }, false);
+  }, [initialValuesRef, resetForm]);
+
+ 
   useEffect(() => {
     if (!isValid && errors["register-email"]) {
       setEmailError("modal-form__error-message_visible");
@@ -60,23 +66,20 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
     } else {
       setUsernameError("");
     }
-  }, [errors, errors.email, errors.password, errors.username, isValid]);
 
-  useEffect(() => {
     if (isFormValid === false) {
       setButtonDisabled("modal-form__button_disabled");
     } else if (isFormValid === true) {
       setButtonDisabled("");
     }
-  }, [isFormValid, isValid]);
 
-  const handleFormReset = useCallback(() => {
-    resetForm({ ...initialValuesRef }, { ...initialValuesRef }, false);
-  }, [initialValuesRef, resetForm]);
+    if (submitError) {
+      setFormError("modal-form__error-message_visible");
+    } else {
+      setFormError("");
+    }
+  }, [errors, errors.email, errors.password, errors.username, isFormValid, isValid, submitError]);
 
-  useEffect(() => {
-    handleFormReset();
-  }, [onClose, handleFormReset]);
 
   return (
     <ModalWithForm
@@ -101,7 +104,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           autoComplete="off"
           placeholder="Enter email"
           onChange={handleChange}
-          defaultValue={email || ""}
+          defaultValue={email}
           minLength="2"
           maxLength="30"
           required
@@ -125,7 +128,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           autoComplete="off"
           placeholder="Enter password"
           onChange={handleChange}
-          defaultValue={password || ""}
+          defaultValue={password}
           minLength="2"
           maxLength="30"
           required
@@ -148,7 +151,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
           autoComplete="off"
           placeholder="Enter your username"
           onChange={handleChange}
-          defaultValue={name || ""}
+          defaultValue={name}
           minLength="2"
           maxLength="30"
           required
@@ -161,9 +164,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister }) => {
       </div>
       <div className="modal-form__button-container">
         <span
-          className={`modal-form__error-message modal-form__error-message_type_form form-error`}
+          className={`modal-form__error-message modal-form__error-message_type_form ${formError} form-error`}
         >
-          Email already in use
+          {submitError}
         </span>
         <button className={`modal-form__button ${isButtonDisabled}`}>
           Sign up
