@@ -32,13 +32,14 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick, user }) => {
   }
 
   
-  /** reorders the values from highest to lowest count number (of which the keyword appeared)
-   * of each keyword*/
+  /** reorders the values from highest to lowest count number of each keyword
+   * Result: still an array of smaller arrays. i.e. [["Dogs", 3], ...] */
   results.sort(function(a, b) {
       return b[1] - a[1];
   });
 
-  /** creates a new array with the correct order of keywords based on how many times
+
+  /** creates a new array of values with the correct order of keywords based on how many times
    * they appeared in the initial array, `cardKeywords`. Result: an array of keywords. */
   const entriesArray = results.map(function(word) {
     return word[0];
