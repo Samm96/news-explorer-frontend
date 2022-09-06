@@ -48,7 +48,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
   const handleFormChange = () => {
     isValid ? setIsFormValid(true) : setIsFormValid(false);
   };
- 
+
   useEffect(() => {
     if (!isValid && errors["register-email"]) {
       setEmailError("modal-form__error-message_visible");
@@ -73,10 +73,22 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
     } else if (isFormValid === true) {
       setButtonDisabled("");
     }
-  }, [errors, errors.email, errors.password, errors.username, isFormValid, isValid, submitError]);
+  }, [
+    errors,
+    errors.email,
+    errors.password,
+    errors.username,
+    isFormValid,
+    isValid,
+    submitError,
+  ]);
 
   const handleReset = useCallback(() => {
-    resetForm({...initialValuesRef.current}, {...initialValuesRef.current}, true);
+    resetForm(
+      { ...initialValuesRef.current },
+      { ...initialValuesRef.current },
+      true
+    );
     setFormError("");
   }, [initialValuesRef, resetForm]);
 
@@ -84,7 +96,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
     if (onClose) {
       handleReset();
     }
-  }, [handleReset, onClose])
+  }, [handleReset, onClose]);
 
   return (
     <ModalWithForm

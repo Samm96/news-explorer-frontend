@@ -22,12 +22,15 @@ export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
-      Accept: "application/json",
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": BASE_URL,
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => res.json());
+  }).then((res) => {
+    if (res.status === 201 || 409 || 400 || 429 || 500 || 401) {
+      return res.json();
+    }
+  }).catch((res) => { return res })
 };
 
 export const checkToken = (token) => {
