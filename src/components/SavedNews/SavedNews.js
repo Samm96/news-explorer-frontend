@@ -15,13 +15,13 @@ const SavedNews = ({ cards, onDeleteClick, onSaveClick, user }) => {
 
   let findDuplicates = [...new Set(cardKeywords)];
 
-  let keywords;
+let keywords;
 
   if (findDuplicates.length > 3) {
     keywords =
       findDuplicates.slice(0, 2).toString().split(",").join(", ") +
       ` and ${findDuplicates.length - 2} other(s)`;
-  } else if (findDuplicates.length === 3) {
+  } else if (findDuplicates.length === 3 || 2) {
     keywords = findDuplicates.toString().split(",").join(" and ");
   } else if (findDuplicates.length === 1) {
     keywords = findDuplicates.toString();
