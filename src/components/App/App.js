@@ -110,7 +110,6 @@ const userHistory = useNavigate();
     const newsArticles = cardData.articles;
     newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
     setCards(newsArticles);
-    setResults(""); // placeholder
   };
 
   /******************************************************************************************** */
