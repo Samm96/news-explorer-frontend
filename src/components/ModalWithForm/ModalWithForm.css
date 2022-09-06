@@ -87,6 +87,8 @@
 .modal-form__error-message_type_form {
     position: absolute;
     top: -20px;
+    width: 360px;
+
 }
 
 .modal-form__button {
@@ -170,6 +172,11 @@
     .modal-form__input {
         padding: 0 0 10px;
     }
+
+    .modal-form__button-container {
+        width: 288px;
+        margin: 23px auto 0;
+    }
     
     .modal-form__button {
         width: 288px;
@@ -177,6 +184,7 @@
     }
 
     .modal-form__error-message_type_form {
+        width: 288px;
         top: 5%;
     }
 }
