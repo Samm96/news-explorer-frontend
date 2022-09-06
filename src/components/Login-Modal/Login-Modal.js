@@ -10,7 +10,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
   const [formError, setFormError] = useState("");
 
   const { values, isValid, errors, handleChange, resetForm } = useFormValidator(
-    ["login-email", "login-password", "login-name"]
+    ["login-email", "login-password"]
   );
 
   const { "login-email": email, "login-password": password } = values;
