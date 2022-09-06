@@ -28,6 +28,7 @@ const App = () => {
   });
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
+  const [submitError, setSubmitError] = useState(null);
 
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
@@ -138,9 +139,13 @@ const userHistory = useNavigate();
     auth
       .register(email, password, name)
       .then((res) => {
-        if (res) {
+        if (res.status === 201) {
           setIsRegisterOpen(false);
           setIsSuccessOpen(true);
+        }
+
+        if (res.status === 409 || 500 || 400) {
+          setSubmitError(res.message);
         }
       })
       .catch((err) => console.log(err));
@@ -150,18 +155,21 @@ const userHistory = useNavigate();
     auth
       .login(email, password)
       .then((res) => {
+        console.log(res)
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
           setCurrentUser(res.data.name);
+          closeAllPopups();
+        }
+
+        if (!res.token && (res.status === 409 || 500 || 400)) {
+          setSubmitError(res.message)
         }
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        closeAllPopups();
-      });
   };
 
   const onLogout = () => {
@@ -323,6 +331,7 @@ const userHistory = useNavigate();
             setIsLoginOpen(true);
           }}
           onRegister={onRegister}
+          submitError={submitError}
           onClose={closeAllPopups}
         />
         <LoginModal
@@ -332,6 +341,7 @@ const userHistory = useNavigate();
             setIsRegisterOpen(true);
           }}
           onLogin={onLogin}
+          submitError={submitError}
           onClose={closeAllPopups}
         />
         <RegisterSuccess
