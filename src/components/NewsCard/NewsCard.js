@@ -41,7 +41,7 @@ const NewsCard = ({
         : convertedPublishedDate,
     source: card.source.name || card.source.id || card.source,
     link: card.url || card.link,
-    image: card.urlToImage || card.image,
+    image: card.urlToImage || card.image || NotFoundIcon,
   };
 
   switch (buttonType) {
@@ -102,7 +102,7 @@ const NewsCard = ({
         <a href={newCard.link} target="__blank">
           <img
             className="news-card__image"
-            src={newCard.image === "" ? NotFoundIcon : newCard.image}
+            src={newCard.image}
             alt="Card"
           />
         </a>
