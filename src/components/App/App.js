@@ -20,6 +20,7 @@ import NothingFound from "../NothingFound/NothingFound";
 import SomethingWentWrong from "../SomethingWentWrong/SomethingWentWrong";
 import * as auth from "../../utils/auth";
 import { api } from "../../utils/Api";
+import { submitErrorMsgs } from "../../utils/constants";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,7 +47,7 @@ const App = () => {
   /******************************************************************************************** */
   /** ************************ Check for token & Get Saved Articles Info ********************** */
 
-const userHistory = useNavigate();
+  const userHistory = useNavigate();
 
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
@@ -62,7 +63,6 @@ const userHistory = useNavigate();
     }
   }, [isLoggedIn]);
 
-
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
     if (userToken) {
@@ -72,7 +72,7 @@ const userHistory = useNavigate();
           if (res) {
             setCurrentUser(res.data.name);
             setIsLoggedIn(true);
-            userHistory({"/" : "/saved-news"});
+            userHistory({ "/": "/saved-news" });
           } else {
             localStorage.removeItem("jwt");
           }
@@ -141,20 +141,22 @@ const userHistory = useNavigate();
         if (res.status === 201) {
           setIsRegisterOpen(false);
           setIsSuccessOpen(true);
-        }
-
-        if (res.status === 409 || 500 || 400) {
-          setSubmitError(res.message);
+          setSubmitError("");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err === "Error: 409") setSubmitError(submitErrorMsgs.conflict);
+        if (err === "Error: 500") setSubmitError(submitErrorMsgs.internal);
+        if (err === "Error: 429") setSubmitError(submitErrorMsgs.tooMany);
+        if (err === "Error: 400") setSubmitError(submitErrorMsgs.invalidData);
+      });
   };
 
   const onLogin = ({ email, password }) => {
     auth
       .login(email, password)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
@@ -163,12 +165,12 @@ const userHistory = useNavigate();
         }
 
         if (!res.token && (res.status === 409 || 500 || 400)) {
-          setSubmitError(res.message)
+          setSubmitError(res.message);
         }
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   const onLogout = () => {

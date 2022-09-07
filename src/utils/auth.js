@@ -1,5 +1,9 @@
 const BASE_URL = "https://api.sam-news-explorer.students.nomoredomainssbs.ru";
 
+function handleServerResponse(res) {
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+}
+
 
 export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -9,11 +13,7 @@ export const register = (email, password, name) => {
       "Access-Control-Allow-Origin": BASE_URL,
     },
     body: JSON.stringify({ email, password, name }),
-  }).then((res) => {
-    if (res.status === 201 || 409 || 400 || 429 || 500) {
-      return res.json();
-    }
-  }).then((res) => { return res })
+  }).then(handleServerResponse)
 };
 
 export const login = (email, password) => {
@@ -24,11 +24,7 @@ export const login = (email, password) => {
       "Access-Control-Allow-Origin": BASE_URL,
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => {
-    if (res.status === 201 || 409 || 400 || 429 || 500 || 401) {
-      return res.json();
-    }
-  }).catch((res) => { return res })
+  }).then(handleServerResponse)
 };
 
 export const checkToken = (token) => {
@@ -41,12 +37,5 @@ export const checkToken = (token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-    })
-    .catch((res) => {
-      return res;
-    });
+    .then(handleServerResponse)
 };
