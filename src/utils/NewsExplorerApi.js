@@ -30,6 +30,8 @@ class NewsExplorerApi {
 }
 
 export const NewsApi = new NewsExplorerApi({
-  baseURL: "https://newsapi.org/v2",
+  baseURL: process.env.NODE_ENV === "production"
+  ? "https://nomoreparties.co/news/v2"
+  : "https://newsapi.org/v2",
   key: "5e69260d0afd4eb383a753b851075b27",
 });
