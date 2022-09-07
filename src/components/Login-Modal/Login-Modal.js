@@ -4,7 +4,9 @@ import { useFormValidator } from "../../hooks/useFormValidation";
 
 const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
   const [emailError, setEmailError] = useState("");
+  const [emailUnderline, setEmailUnderline] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [passwordUnderline, setPasswordUnderline] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const [isButtonDisabled, setButtonDisabled] = useState("");
   const [formError, setFormError] = useState("");
@@ -35,6 +37,8 @@ const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
     } else {
       setFormError("modal-form__error-message_visible");
       setButtonDisabled("modal-form__button_disabled");
+      setEmailUnderline("modal-form__input_type_error");
+      setPasswordUnderline("modal-form__input_type_error");
     }
   };
 
@@ -45,14 +49,18 @@ const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
   useEffect(() => {
     if (!isValid && errors["login-email"]) {
       setEmailError("modal-form__error-message_visible");
+      setEmailUnderline("modal-form__input_type_error");
     } else {
       setEmailError("");
+      setEmailUnderline("");
     }
 
     if (!isValid && errors["login-password"]) {
       setPasswordError("modal-form__error-message_visible");
+      setPasswordUnderline("modal-form__input_type_error");
     } else {
       setPasswordError("");
+      setPasswordUnderline("");
     }
 
     if (isFormValid === false) {
@@ -76,6 +84,8 @@ const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
       true
     );
     setFormError("");
+    setEmailUnderline("");
+    setPasswordUnderline("");
   }, [initialValuesRef, resetForm]);
 
   useEffect(() => {
@@ -101,7 +111,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
           Email
         </label>
         <input
-          className="modal-form__input"
+          className={`modal-form__input ${emailUnderline} login-email`}
           id="login-email"
           type="email"
           name="login-email"
@@ -123,7 +133,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
           Password
         </label>
         <input
-          className="modal-form__input"
+          className={`modal-form__input ${passwordUnderline} login-password`}
           id="login-password"
           type="password"
           name="login-password"

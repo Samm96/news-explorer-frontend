@@ -6,6 +6,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isButtonDisabled, setButtonDisabled] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [emailUnderline, setEmailUnderline] = useState("");
+  const [passwordUnderline, setPasswordUnderline] = useState("");
+  const [nameUnderline, setNameUnderline] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [formError, setFormError] = useState("");
@@ -42,6 +45,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
     } else {
       setFormError("modal-form__error-message_visible");
       setButtonDisabled("modal-form__button_disabled");
+      setEmailUnderline("modal-form__input_type_error");
+      setPasswordUnderline("modal-form__input_type_error");
+      setNameUnderline("modal-form__input_type_error");
     }
   };
 
@@ -52,20 +58,26 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
   useEffect(() => {
     if (!isValid && errors["register-email"]) {
       setEmailError("modal-form__error-message_visible");
+      setEmailUnderline("modal-form__input_type_error");
     } else {
       setEmailError("");
+      setEmailUnderline("");
     }
 
     if (!isValid && errors["register-password"]) {
       setPasswordError("modal-form__error-message_visible");
+      setPasswordUnderline("modal-form__input_type_error");
     } else {
       setPasswordError("");
+      setPasswordUnderline("");
     }
 
     if (!isValid && errors["register-name"]) {
       setUsernameError("modal-form__error-message_visible");
+      setNameUnderline("modal-form__input_type_error");
     } else {
       setUsernameError("");
+      setNameUnderline("");
     }
 
     if (isFormValid === false) {
@@ -90,6 +102,9 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
       true
     );
     setFormError("");
+    setEmailUnderline("");
+    setPasswordUnderline("");
+    setNameUnderline("");
   }, [initialValuesRef, resetForm]);
 
   useEffect(() => {
@@ -114,7 +129,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
           Email
         </label>
         <input
-          className="modal-form__input register-email"
+          className={`modal-form__input ${emailUnderline} register-email`}
           id="register-email"
           type="email"
           name="register-email"
@@ -138,7 +153,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
           Password
         </label>
         <input
-          className="modal-form__input register-password"
+          className={`modal-form__input ${passwordUnderline} register-password`}
           id="register-password"
           type="password"
           name="register-password"
@@ -161,7 +176,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
           Username
         </label>
         <input
-          className="modal-form__input register-name"
+          className={`modal-form__input ${nameUnderline} register-name`}
           id="register-name"
           type="text"
           name="register-name"
