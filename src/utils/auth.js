@@ -1,7 +1,7 @@
 const BASE_URL =
-  process.env.NODE_ENV !== "production"
+  process.env.NODE_ENV === "production"
     ? "https://api.sam-news-explorer.students.nomoredomainssbs.ru"
-    : "https://localhost:3000";
+    : "localhost:3000";
 
 export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -15,6 +15,7 @@ export const register = (email, password, name) => {
     if (res.status === 201 || 409 || 400 || 429 || 500) {
       return res.json();
     }
+    debugger
   }).catch((res) => { return res })
 };
 
