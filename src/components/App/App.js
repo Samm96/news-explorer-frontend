@@ -20,7 +20,6 @@ import NothingFound from "../NothingFound/NothingFound";
 import SomethingWentWrong from "../SomethingWentWrong/SomethingWentWrong";
 import * as auth from "../../utils/auth";
 import { api } from "../../utils/Api";
-import { submitErrorMsgs } from "../../utils/constants";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
