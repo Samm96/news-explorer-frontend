@@ -39,10 +39,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
       name: name,
     };
     onRegister(userRegisterData);
-    if (!submitError) {
-      handleReset();
-      setFormError("");
-    } else {
+    if (submitError) {
       setFormError("modal-form__error-message_visible");
       setButtonDisabled("modal-form__button_disabled");
       setEmailUnderline("modal-form__input_type_error");
@@ -96,22 +93,22 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
   ]);
 
   const handleReset = useCallback(() => {
+    setFormError("");
+    setEmailUnderline("");
+    setPasswordUnderline("");
+    setNameUnderline("");
     resetForm(
       { ...initialValuesRef.current },
       { ...initialValuesRef.current },
       true
     );
-    setFormError("");
-    setEmailUnderline("");
-    setPasswordUnderline("");
-    setNameUnderline("");
   }, [initialValuesRef, resetForm]);
 
   useEffect(() => {
-    if (onClose) {
+    if (isOpen) {
       handleReset();
     }
-  }, [handleReset, onClose]);
+  }, [handleReset, isOpen, submitError]);
 
   return (
     <ModalWithForm

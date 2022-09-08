@@ -29,7 +29,7 @@ const App = () => {
   });
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
-  const [submitError, setSubmitError] = useState(null);
+  const [submitError, setSubmitError] = useState('');
 
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
@@ -133,7 +133,7 @@ const App = () => {
 
   /******************************************************************************************** */
   /** ***************************** Handles `Register` & `Login` Logic *************************** */
-
+  
   const onRegister = ({ email, password, name }) => {
     auth
       .register(email, password, name)
@@ -141,14 +141,11 @@ const App = () => {
         if (res.status === 201) {
           setIsRegisterOpen(false);
           setIsSuccessOpen(true);
-          setSubmitError("");
+          setSubmitError(null);
         }
       })
-      .catch((err) => {
-        if (err === "Error: 409") setSubmitError(submitErrorMsgs.conflict);
-        if (err === "Error: 500") setSubmitError(submitErrorMsgs.internal);
-        if (err === "Error: 429") setSubmitError(submitErrorMsgs.tooMany);
-        if (err === "Error: 400") setSubmitError(submitErrorMsgs.invalidData);
+      .catch(() => {
+        setSubmitError("Invalid email or password");
       });
   };
 
@@ -163,13 +160,9 @@ const App = () => {
           setCurrentUser(res.data.name);
           closeAllPopups();
         }
-
-        if (!res.token && (res.status === 409 || 500 || 400)) {
-          setSubmitError(res.message);
-        }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+          setSubmitError("Invalid email or password");
       });
   };
 
