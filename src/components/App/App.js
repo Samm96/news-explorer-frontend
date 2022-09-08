@@ -64,7 +64,7 @@ const App = () => {
 
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
-    if (userToken) {
+    if (userToken && isLoggedIn) {
       auth
         .checkToken(userToken)
         .then((res) => {
@@ -78,7 +78,7 @@ const App = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [userHistory]);
+  }, [isLoggedIn, userHistory]);
 
   /******************************************************************************************** */
   /** **************************************** News API **************************************** */
