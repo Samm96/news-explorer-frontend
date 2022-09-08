@@ -23,9 +23,9 @@ import { api } from "../../utils/Api";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    name: "",
-  });
+  const [currentUser, setCurrentUser] = useState([]);
+  const [username, setUsername] = useState("");
+
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
   const [submitError, setSubmitError] = useState('');
@@ -50,12 +50,12 @@ const App = () => {
 
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
-    if (userToken && isLoggedIn) {
+    if (isLoggedIn && userToken) {
       api
         .getAppInfo(userToken)
         .then(([userData, savedArticleData]) => {
-          const user = userData.data;
-          setCurrentUser(user.name);
+          const user = Object.values(userData.data);
+          setCurrentUser(user);
           setSavedCards(savedArticleData.reverse());
         })
         .catch((err) => console.log(err));
@@ -64,21 +64,21 @@ const App = () => {
 
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
-    if (userToken && isLoggedIn) {
+    if (userToken) {
       auth
         .checkToken(userToken)
         .then((res) => {
           if (res) {
-            setCurrentUser(res.data.name);
+            setUsername(res.data.name);
             setIsLoggedIn(true);
-            userHistory({ "/": "/saved-news" });
+            userHistory("/");
           } else {
             localStorage.removeItem("jwt");
           }
         })
         .catch((err) => console.log(err));
     }
-  }, [isLoggedIn, userHistory]);
+  }, [userHistory]);
 
   /******************************************************************************************** */
   /** **************************************** News API **************************************** */
@@ -257,7 +257,7 @@ const App = () => {
           isLoggedIn={isLoggedIn}
           openLoginModal={() => setIsLoginOpen(true)}
           onLogout={onLogout}
-          user={currentUser}
+          user={username}
           onClose={closeAllPopups}
         />
         <Routes>
@@ -274,7 +274,7 @@ const App = () => {
                     openLoginModal={() => setIsLoginOpen(true)}
                     openMobileModal={() => setIsMobileNavOpen(true)}
                     onLogout={onLogout}
-                    user={currentUser}
+                    user={username}
                   />
                 </SearchForm>
                 <Main>
@@ -306,13 +306,13 @@ const App = () => {
                   openLoginModal={() => setIsLoginOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                   onLogout={onLogout}
-                  user={currentUser}
+                  user={username}
                 />
                 <SavedNews
                   onDeleteClick={onDelete}
                   onSaveClick={null}
                   cards={savedCards}
-                  user={currentUser}
+                  user={username}
                 />
               </ProtectedRoute>
             }
