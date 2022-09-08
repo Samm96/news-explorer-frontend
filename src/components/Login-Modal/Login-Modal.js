@@ -30,10 +30,9 @@ const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
       email: email,
       password: password,
     };
-    onLogin(userLoginData);
+    setFormError("");
     if (!submitError) {
-      handleReset();
-      setFormError("");
+      onLogin(userLoginData);
     } else {
       setFormError("modal-form__error-message_visible");
       setButtonDisabled("modal-form__button_disabled");

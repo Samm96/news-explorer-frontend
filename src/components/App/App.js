@@ -143,8 +143,8 @@ const App = () => {
           setSubmitError(null);
         }
       })
-      .catch(() => {
-        setSubmitError("Invalid email or password");
+      .catch((err) => {
+        if (err) setSubmitError("Invalid email or password");
       });
   };
 
@@ -157,11 +157,12 @@ const App = () => {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
           setCurrentUser(res.data.name);
+          setSubmitError("");
           closeAllPopups();
         }
       })
-      .catch(() => {
-          setSubmitError("Invalid email or password");
+      .catch((err) => {
+          if(err) setSubmitError("Invalid email or password");
       });
   };
 
