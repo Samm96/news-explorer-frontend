@@ -22,6 +22,9 @@
 * HTML/CSS
 * JSX
 * REACT
+* Mongo DB
+* Express
+
 ## Available Scripts
 
 In the project directory, you can run:
