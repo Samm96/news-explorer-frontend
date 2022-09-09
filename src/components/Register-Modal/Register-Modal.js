@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormValidator } from "../../hooks/useFormValidation";
 
-const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
+const Register = ({ isOpen, openModal, onClose, onRegister, submitError, isLoading }) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isButtonDisabled, setButtonDisabled] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -38,11 +38,8 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
       password: password,
       name: name,
     };
-    onRegister(userRegisterData);
-    if (!submitError) {
-      handleReset();
-      setFormError("");
-    } else {
+    onRegister(userRegisterData)
+    if (submitError) {
       setFormError("modal-form__error-message_visible");
       setButtonDisabled("modal-form__button_disabled");
       setEmailUnderline("modal-form__input_type_error");
@@ -96,22 +93,22 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
   ]);
 
   const handleReset = useCallback(() => {
+    setFormError("");
+    setEmailUnderline("");
+    setPasswordUnderline("");
+    setNameUnderline("");
     resetForm(
       { ...initialValuesRef.current },
       { ...initialValuesRef.current },
       true
     );
-    setFormError("");
-    setEmailUnderline("");
-    setPasswordUnderline("");
-    setNameUnderline("");
   }, [initialValuesRef, resetForm]);
 
   useEffect(() => {
-    if (onClose) {
+    if (isOpen) {
       handleReset();
     }
-  }, [handleReset, onClose]);
+  }, [handleReset, isOpen, submitError]);
 
   return (
     <ModalWithForm
@@ -201,7 +198,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
           {submitError}
         </span>
         <button className={`modal-form__button ${isButtonDisabled}`}>
-          Sign up
+          {isLoading ? "Loading..." : "Sign up"}
         </button>
       </div>
     </ModalWithForm>

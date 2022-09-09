@@ -23,17 +23,22 @@ import { api } from "../../utils/Api";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    name: "",
-  });
+  const [currentUser, setCurrentUser] = useState([]);
+  const [username, setUsername] = useState("");
+
+  const [isRegisterLoad, setIsRegisterLoad] = useState(false);
+  const [isLoginLoad, setIsLoginLoad] = useState(false);
+
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
-  const [submitError, setSubmitError] = useState(null);
+  const [submitError, setSubmitError] = useState("");
 
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
   const [isResults, setResults] = useState("_hidden");
   const [isInternalIssue, setIsInternalIssue] = useState("_hidden");
+
+  const userHistory = useNavigate();
 
   /******************************************************************************************** */
   /** **************************************** Modals *******************************************/
@@ -46,40 +51,34 @@ const App = () => {
   /******************************************************************************************** */
   /** ************************ Check for token & Get Saved Articles Info ********************** */
 
-const userHistory = useNavigate();
-
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
-    if (userToken && isLoggedIn) {
-      api
-        .getAppInfo(userToken)
-        .then(([userData, savedArticleData]) => {
-          const user = userData.data;
-          setCurrentUser(user.name);
-          setSavedCards(savedArticleData.reverse());
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [isLoggedIn]);
 
-
-  useEffect(() => {
-    const userToken = localStorage.getItem("jwt");
     if (userToken) {
       auth
         .checkToken(userToken)
         .then((res) => {
           if (res) {
-            setCurrentUser(res.data.name);
+            setUsername(res.data.name);
             setIsLoggedIn(true);
-            userHistory({"/" : "/saved-news"});
-          } else {
-            localStorage.removeItem("jwt");
           }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+
+    if (userToken && isLoggedIn) {
+      api
+        .getAppInfo(userToken)
+        .then(([userData, savedArticleData]) => {
+          const user = userData.data;
+          setCurrentUser(user);
+          setSavedCards(savedArticleData.reverse());
         })
         .catch((err) => console.log(err));
     }
-  }, [userHistory]);
+  }, [isLoggedIn]);
 
   /******************************************************************************************** */
   /** **************************************** News API **************************************** */
@@ -89,13 +88,16 @@ const userHistory = useNavigate();
     setIsLoading("");
     NewsApi.getNews(userKeyword)
       .then((cardData) => {
-        cardData["keyword"] = userKeyword;
-        localStorage.setItem("cards", JSON.stringify(cardData));
-      })
-      .then(() => {
-        handleSearchSuccess();
+        const newsArticles = cardData.articles;
+        newsArticles.forEach((article) => (article["keyword"] = userKeyword));
+        if (cardData.status === "ok") {
+          setCards(newsArticles);
+          handleSearchSuccess();
+        }
       })
       .catch((err) => {
+        setResults("_hidden");
+
         if (err.status === 404) {
           handleNothingFound();
         } else {
@@ -105,20 +107,12 @@ const userHistory = useNavigate();
       });
   };
 
-  const handleSearchResults = () => {
-    const cardData = JSON.parse(localStorage.getItem("cards"));
-    const newsArticles = cardData.articles;
-    newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
-    setCards(newsArticles);
-  };
-
   /******************************************************************************************** */
   /************************************* Handles `Main` behavior *******************************/
 
   const handleSearchSuccess = () => {
     setResults("");
     setIsLoading("_hidden");
-    handleSearchResults();
   };
 
   const handleNothingFound = () => {
@@ -135,39 +129,44 @@ const userHistory = useNavigate();
   /** ***************************** Handles `Register` & `Login` Logic *************************** */
 
   const onRegister = ({ email, password, name }) => {
+    setIsRegisterLoad(true);
     auth
       .register(email, password, name)
       .then((res) => {
-        if (res.status === 201) {
-          setIsRegisterOpen(false);
+        if (res.data) {
           setIsSuccessOpen(true);
-        }
-
-        if (res.status === 409 || 500 || 400) {
-          setSubmitError(res.message);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const onLogin = ({ email, password }) => {
-    auth
-      .login(email, password)
-      .then((res) => {
-        console.log(res)
-        if (res.token) {
-          localStorage.setItem("jwt", res.token);
-          setIsLoggedIn(true);
-          setCurrentUser(res.data.name);
-          closeAllPopups();
-        }
-
-        if (!res.token && (res.status === 409 || 500 || 400)) {
-          setSubmitError(res.message)
+          setIsRegisterOpen(false);
+          setSubmitError(null);
         }
       })
       .catch((err) => {
-        console.log(err);
+        if (err) setSubmitError("Invalid email or password");
+        setIsRegisterLoad(false);
+      })
+      .finally(() => {
+        setIsRegisterLoad(false);
+      })
+  };
+
+  const onLogin = ({ email, password }) => {
+    setIsLoginLoad(true);
+    auth
+      .login(email, password)
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setIsLoggedIn(true);
+          setUsername(res.data.name);
+          setSubmitError("");
+          closeAllPopups();
+        }
+      })
+      .catch((err) => {
+        if (err) setSubmitError("Invalid email or password");
+        setIsLoginLoad(false);
+      })
+      .finally(() => {
+        setIsLoginLoad(false);
       })
   };
 
@@ -262,7 +261,7 @@ const userHistory = useNavigate();
           isLoggedIn={isLoggedIn}
           openLoginModal={() => setIsLoginOpen(true)}
           onLogout={onLogout}
-          user={currentUser}
+          user={username}
           onClose={closeAllPopups}
         />
         <Routes>
@@ -279,7 +278,7 @@ const userHistory = useNavigate();
                     openLoginModal={() => setIsLoginOpen(true)}
                     openMobileModal={() => setIsMobileNavOpen(true)}
                     onLogout={onLogout}
-                    user={currentUser}
+                    user={username}
                   />
                 </SearchForm>
                 <Main>
@@ -289,6 +288,7 @@ const userHistory = useNavigate();
                     isLoggedIn={isLoggedIn}
                     onSaveClick={onSave}
                     onDeleteClick={onDelete}
+                    openSignin={() => setIsLoginOpen(true)}
                   />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />
@@ -311,13 +311,13 @@ const userHistory = useNavigate();
                   openLoginModal={() => setIsLoginOpen(true)}
                   openMobileModal={() => setIsMobileNavOpen(true)}
                   onLogout={onLogout}
-                  user={currentUser}
+                  user={username}
                 />
                 <SavedNews
                   onDeleteClick={onDelete}
                   onSaveClick={null}
                   cards={savedCards}
-                  user={currentUser}
+                  user={username}
                 />
               </ProtectedRoute>
             }
@@ -325,6 +325,7 @@ const userHistory = useNavigate();
         </Routes>
         <RegisterModal
           isOpen={isRegisterOpen}
+          isLoading={isRegisterLoad}
           openModal={() => {
             setIsRegisterOpen(false);
             setIsLoginOpen(true);
@@ -335,6 +336,7 @@ const userHistory = useNavigate();
         />
         <LoginModal
           isOpen={isLoginOpen}
+          isLoading={isLoginLoad}
           openModal={() => {
             setIsLoginOpen(false);
             setIsRegisterOpen(true);

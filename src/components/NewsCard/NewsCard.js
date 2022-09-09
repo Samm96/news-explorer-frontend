@@ -15,6 +15,7 @@ const NewsCard = ({
   onSaveClick,
   onDeleteClick,
   card,
+  openSignin,
 }) => {
   const [isShown, setIsShown] = useState("_hidden");
   const [isSaved, setIsSaved] = useState("");
@@ -79,9 +80,11 @@ const NewsCard = ({
           {message}
         </span>
         <button
-          onClick={handleButtonClick}
+          onClick={isLoggedIn ? handleButtonClick : openSignin}
           onMouseEnter={() => {
-            isLoggedIn && buttonType === "save" ? setIsShown("_hidden") : setIsShown("");
+            isLoggedIn && buttonType === "save"
+              ? setIsShown("_hidden")
+              : setIsShown("");
           }}
           onMouseLeave={() => setIsShown("_hidden")}
           className={
@@ -100,11 +103,7 @@ const NewsCard = ({
           {newCard.keyword}
         </span>
         <a href={newCard.link} target="__blank">
-          <img
-            className="news-card__image"
-            src={newCard.image}
-            alt="Card"
-          />
+          <img className="news-card__image" src={newCard.image} alt="Card" />
         </a>
         <div className="news-card__text-container">
           <p className="news-card__date">{newCard.date}</p>

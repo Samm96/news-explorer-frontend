@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormValidator } from "../../hooks/useFormValidation";
 
-const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
+const Login = ({ isOpen, openModal, onClose, onLogin, submitError, isLoading }) => {
   const [emailError, setEmailError] = useState("");
   const [emailUnderline, setEmailUnderline] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -31,10 +31,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
       password: password,
     };
     onLogin(userLoginData);
-    if (!submitError) {
-      handleReset();
-      setFormError("");
-    } else {
+    if (submitError) {
       setFormError("modal-form__error-message_visible");
       setButtonDisabled("modal-form__button_disabled");
       setEmailUnderline("modal-form__input_type_error");
@@ -158,7 +155,7 @@ const Login = ({ isOpen, openModal, onClose, onLogin, submitError }) => {
           {submitError}
         </span>
         <button className={`modal-form__button ${isButtonDisabled}`}>
-          Sign in
+        {isLoading ? "Loading..." : "Sign in"}
         </button>
       </div>
     </ModalWithForm>

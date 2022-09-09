@@ -1,7 +1,7 @@
 import "./SearchResults.css";
 import NewsCardList from "../NewsCardList/NewsCardList";
 
-const SearchResults = ({ isLoggedIn, cards, hideResults, onSaveClick, onDeleteClick }) => {
+const SearchResults = ({ isLoggedIn, cards, hideResults, onSaveClick, onDeleteClick, openSignin }) => {
   return (
     <section className={`results results${hideResults}`}>
       <div className="results__container">
@@ -12,6 +12,7 @@ const SearchResults = ({ isLoggedIn, cards, hideResults, onSaveClick, onDeleteCl
           onDeleteClick={onDeleteClick}
           cards={cards}
           buttonType={"save"}
+          openSignin={openSignin}
         />
       </div>
     </section>

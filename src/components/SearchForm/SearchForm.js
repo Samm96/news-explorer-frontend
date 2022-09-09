@@ -37,6 +37,7 @@ const SearchForm = ({ onSubmit, children }) => {
               type="text"
               name="keyword"
               id="keyword"
+              value={keyword}
               placeholder="Enter topic"
               onChange={(e) => setKeyword(e.target.value)}
             ></input>
