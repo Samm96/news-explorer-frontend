@@ -66,6 +66,7 @@ class Api {
 
 export const api = new Api({
   baseURL: "https://api.sam-news-explorer.students.nomoredomainssbs.ru",
+
   headers: {
     "Access-Control-Allow-Origin":
       process.env.NODE_ENV === "production"
