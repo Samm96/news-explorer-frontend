@@ -38,9 +38,8 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
       password: password,
       name: name,
     };
-    if (!submitError) {
-      onRegister(userRegisterData);
-    } else {
+    onRegister(userRegisterData)
+    if (submitError) {
       setFormError("modal-form__error-message_visible");
       setButtonDisabled("modal-form__button_disabled");
       setEmailUnderline("modal-form__input_type_error");

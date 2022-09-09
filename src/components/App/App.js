@@ -129,9 +129,9 @@ const App = () => {
     auth
       .register(email, password, name)
       .then((res) => {
-        if (res.status === 201) {
-          setIsRegisterOpen(false);
+        if (res.data) {
           setIsSuccessOpen(true);
+          setIsRegisterOpen(false);
           setSubmitError(null);
         }
       })
@@ -144,6 +144,7 @@ const App = () => {
     auth
       .login(email, password)
       .then((res) => {
+        debugger
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
