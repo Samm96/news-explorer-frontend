@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# NewsExplorer | What's going on in the world?
+## Final Project for Practicum
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+*The frontend code of a responsive, React app called, "NewsExplorer." Coded based on a Figma design provided by the Software Engineering bootcamp, Practicum.*
 
+*The [backend](https://github.com/Samm96/news-explorer-backend/tree/stage-back-end) code is in a separate repository and handles login, registration, authorization, schemas and more using the M.E.R.N stack.*
+
+## Features of Frontend
+
+* Fetches news article data from a third-party API, [NewsApi](https://newsapi.org/), and allows the user to save their favorite articles as well as delete them if they no longer want them saved.
+* A custom API which handles the user login, register and JSON token checks.
+* Has a custom validation hook for validating the register and login forms.
+
+## Screen Sizes
+
+* 1280
+* 768
+* 480
+
+## Built with:
+
+* HTML/CSS
+* JSX
+* REACT
 ## Available Scripts
 
 In the project directory, you can run:
-
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the app in the development mode on [http://localhost:3000](http://localhost:3000).
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `npm run deploy`
 
-### `npm run eject`
+Runs `npm build` and uploads changes to the server if one has the correct ssh key.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Links
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*<a href="https://sam-news-explorer.students.nomoredomainssbs.ru/">Deployed App</a>
+*<a href="https://github.com/Samm96/news-explorer-backend/tree/stage-back-end">Backend code of NewsExplorer</a>
