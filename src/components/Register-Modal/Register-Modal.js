@@ -38,7 +38,6 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
       password: password,
       name: name,
     };
-    setFormError("");
     if (!submitError) {
       onRegister(userRegisterData);
     } else {
