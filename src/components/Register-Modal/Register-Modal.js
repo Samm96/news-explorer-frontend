@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormValidator } from "../../hooks/useFormValidation";
 
-const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
+const Register = ({ isOpen, openModal, onClose, onRegister, submitError, isLoading }) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isButtonDisabled, setButtonDisabled] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -198,7 +198,7 @@ const Register = ({ isOpen, openModal, onClose, onRegister, submitError }) => {
           {submitError}
         </span>
         <button className={`modal-form__button ${isButtonDisabled}`}>
-          Sign up
+          {isLoading ? "Loading..." : "Sign up"}
         </button>
       </div>
     </ModalWithForm>

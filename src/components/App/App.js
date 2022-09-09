@@ -26,6 +26,9 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState([]);
   const [username, setUsername] = useState("");
 
+  const [isRegisterLoad, setIsRegisterLoad] = useState(false);
+  const [isLoginLoad, setIsLoginLoad] = useState(false);
+
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
   const [submitError, setSubmitError] = useState("");
@@ -126,6 +129,7 @@ const App = () => {
   /** ***************************** Handles `Register` & `Login` Logic *************************** */
 
   const onRegister = ({ email, password, name }) => {
+    setIsRegisterLoad(true);
     auth
       .register(email, password, name)
       .then((res) => {
@@ -137,14 +141,18 @@ const App = () => {
       })
       .catch((err) => {
         if (err) setSubmitError("Invalid email or password");
-      });
+        setIsRegisterLoad(false);
+      })
+      .finally(() => {
+        setIsRegisterLoad(false);
+      })
   };
 
   const onLogin = ({ email, password }) => {
+    setIsLoginLoad(true);
     auth
       .login(email, password)
       .then((res) => {
-        debugger
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
@@ -155,7 +163,11 @@ const App = () => {
       })
       .catch((err) => {
         if (err) setSubmitError("Invalid email or password");
-      });
+        setIsLoginLoad(false);
+      })
+      .finally(() => {
+        setIsLoginLoad(false);
+      })
   };
 
   const onLogout = () => {
@@ -312,6 +324,7 @@ const App = () => {
         </Routes>
         <RegisterModal
           isOpen={isRegisterOpen}
+          isLoading={isRegisterLoad}
           openModal={() => {
             setIsRegisterOpen(false);
             setIsLoginOpen(true);
@@ -322,6 +335,7 @@ const App = () => {
         />
         <LoginModal
           isOpen={isLoginOpen}
+          isLoading={isLoginLoad}
           openModal={() => {
             setIsLoginOpen(false);
             setIsRegisterOpen(true);
