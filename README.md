@@ -41,5 +41,5 @@ Runs `npm build` and uploads changes to the server if one has the correct ssh ke
 
 ## Links
 
-*<a href="https://sam-news-explorer.students.nomoredomainssbs.ru/">Deployed App</a>
-*<a href="https://github.com/Samm96/news-explorer-backend/tree/stage-back-end">Backend code of NewsExplorer</a>
+<a href="https://sam-news-explorer.students.nomoredomainssbs.ru/">Deployed App</a> <br/>
+<a href="https://github.com/Samm96/news-explorer-backend/tree/stage-back-end">Backend code of NewsExplorer</a>
