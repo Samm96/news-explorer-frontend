@@ -28,12 +28,14 @@ const App = () => {
 
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
-  const [submitError, setSubmitError] = useState('');
+  const [submitError, setSubmitError] = useState("");
 
   const [isLoading, setIsLoading] = useState("_hidden");
   const [isNotFound, setIsNotFound] = useState("_hidden");
   const [isResults, setResults] = useState("_hidden");
   const [isInternalIssue, setIsInternalIssue] = useState("_hidden");
+
+  const userHistory = useNavigate();
 
   /******************************************************************************************** */
   /** **************************************** Modals *******************************************/
@@ -46,39 +48,35 @@ const App = () => {
   /******************************************************************************************** */
   /** ************************ Check for token & Get Saved Articles Info ********************** */
 
-  const userHistory = useNavigate();
-
   useEffect(() => {
     const userToken = localStorage.getItem("jwt");
-    if (isLoggedIn && userToken) {
-      api
-        .getAppInfo(userToken)
-        .then(([userData, savedArticleData]) => {
-          const user = Object.values(userData.data);
-          setCurrentUser(user);
-          setSavedCards(savedArticleData.reverse());
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [isLoggedIn]);
 
-  useEffect(() => {
-    const userToken = localStorage.getItem("jwt");
     if (userToken) {
       auth
         .checkToken(userToken)
-        .then((res) => {
-          if (res) {
-            setUsername(res.data.name);
-            setIsLoggedIn(true);
-            userHistory("/");
-          } else {
-            localStorage.removeItem("jwt");
+        .then(() => {
+          if (isLoggedIn) {
+            api
+              .getAppInfo(userToken)
+              .then(([userData, savedArticleData]) => {
+                const user = Object.values(userData.data);
+                setCurrentUser(user);
+                localStorage.setItem("name", userData.data.name);
+                setSavedCards(savedArticleData.reverse());
+              })
+              .catch((err) => console.log(err));
           }
         })
-        .catch((err) => console.log(err));
+        .then(() => {
+          setIsLoggedIn(true);
+          setUsername(localStorage.getItem("name"));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  }, [userHistory]);
+  }, [isLoggedIn]);
+
 
   /******************************************************************************************** */
   /** **************************************** News API **************************************** */
@@ -88,13 +86,16 @@ const App = () => {
     setIsLoading("");
     NewsApi.getNews(userKeyword)
       .then((cardData) => {
-        cardData["keyword"] = userKeyword;
-        localStorage.setItem("cards", JSON.stringify(cardData));
-      })
-      .then(() => {
-        handleSearchSuccess();
+        const newsArticles = cardData.articles;
+        newsArticles.forEach((article) => (article["keyword"] = userKeyword));
+        if (cardData.status === "ok") {
+          setCards(newsArticles);
+          handleSearchSuccess();
+        }
       })
       .catch((err) => {
+        setResults("_hidden");
+
         if (err.status === 404) {
           handleNothingFound();
         } else {
@@ -104,20 +105,12 @@ const App = () => {
       });
   };
 
-  const handleSearchResults = () => {
-    const cardData = JSON.parse(localStorage.getItem("cards"));
-    const newsArticles = cardData.articles;
-    newsArticles.forEach((article) => (article["keyword"] = cardData.keyword));
-    setCards(newsArticles);
-  };
-
   /******************************************************************************************** */
   /************************************* Handles `Main` behavior *******************************/
 
   const handleSearchSuccess = () => {
     setResults("");
     setIsLoading("_hidden");
-    handleSearchResults();
   };
 
   const handleNothingFound = () => {
@@ -132,7 +125,7 @@ const App = () => {
 
   /******************************************************************************************** */
   /** ***************************** Handles `Register` & `Login` Logic *************************** */
-  
+
   const onRegister = ({ email, password, name }) => {
     auth
       .register(email, password, name)
@@ -152,17 +145,16 @@ const App = () => {
     auth
       .login(email, password)
       .then((res) => {
-        console.log(res);
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
-          setCurrentUser(res.data.name);
+          setUsername(res.data.name);
           setSubmitError("");
           closeAllPopups();
         }
       })
       .catch((err) => {
-          if(err) setSubmitError("Invalid email or password");
+        if (err) setSubmitError("Invalid email or password");
       });
   };
 

@@ -1,9 +1,10 @@
-const BASE_URL = "https://api.sam-news-explorer.students.nomoredomainssbs.ru";
+const BASE_URL = process.env.NODE_ENV === "production"
+? "https://api.sam-news-explorer.students.nomoredomainssbs.ru"
+: "http://localhost:3000";
 
 function handleServerResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
-
 
 export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -25,6 +26,7 @@ export const login = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   }).then(handleServerResponse)
+  .then(data => data)
 };
 
 export const checkToken = (token) => {
@@ -38,4 +40,5 @@ export const checkToken = (token) => {
     },
   })
     .then(handleServerResponse)
+    .then(data => data)
 };
