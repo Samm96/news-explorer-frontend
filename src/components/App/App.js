@@ -288,6 +288,7 @@ const App = () => {
                     isLoggedIn={isLoggedIn}
                     onSaveClick={onSave}
                     onDeleteClick={onDelete}
+                    openSignin={() => setIsLoginOpen(true)}
                   />
                   <Preloader hideLoader={isLoading} />
                   <NothingFound hideNotFound={isNotFound} />
