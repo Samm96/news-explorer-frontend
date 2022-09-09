@@ -54,29 +54,28 @@ const App = () => {
     if (userToken) {
       auth
         .checkToken(userToken)
-        .then(() => {
-          if (isLoggedIn) {
-            api
-              .getAppInfo(userToken)
-              .then(([userData, savedArticleData]) => {
-                const user = Object.values(userData.data);
-                setCurrentUser(user);
-                localStorage.setItem("name", userData.data.name);
-                setSavedCards(savedArticleData.reverse());
-              })
-              .catch((err) => console.log(err));
+        .then((res) => {
+          if (res) {
+            setUsername(res.data.name);
+            setIsLoggedIn(true);
           }
-        })
-        .then(() => {
-          setIsLoggedIn(true);
-          setUsername(localStorage.getItem("name"));
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+    }
+
+    if (userToken && isLoggedIn) {
+      api
+        .getAppInfo(userToken)
+        .then(([userData, savedArticleData]) => {
+          const user = userData.data;
+          setCurrentUser(user);
+          setSavedCards(savedArticleData.reverse());
+        })
+        .catch((err) => console.log(err));
     }
   }, [isLoggedIn]);
-
 
   /******************************************************************************************** */
   /** **************************************** News API **************************************** */
