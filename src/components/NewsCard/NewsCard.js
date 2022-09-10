@@ -57,6 +57,10 @@ const NewsCard = ({
   }
 
   const handleButtonClick = () => {
+    if (!isLoggedIn && buttonType === "save") {
+      openSignin();
+    }
+
     if (isLoggedIn && buttonType === "save") {
       if (isSaved === "") {
         setIsSaved("save-button__active");
@@ -80,7 +84,7 @@ const NewsCard = ({
           {message}
         </span>
         <button
-          onClick={isLoggedIn ? handleButtonClick : openSignin}
+          onClick={handleButtonClick}
           onMouseEnter={() => {
             isLoggedIn && buttonType === "save"
               ? setIsShown("_hidden")
