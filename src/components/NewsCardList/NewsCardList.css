@@ -18,11 +18,20 @@
 
     display: block;
     margin: 64px auto 0;
+    visibility: visible;
 }
 
 .card-list__button:hover {
     cursor: pointer;
     background-color: #E8E8E8;
+}
+
+.card-list__button_type_hidden {
+    visibility: hidden;
+}
+
+.card-list__button_type_hidden:hover {
+    cursor: default;
 }
 
 @media screen and (max-width: 768px) {

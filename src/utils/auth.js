@@ -1,30 +1,30 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://api.sam-news-explorer.students.nomoredomainssbs.ru";
 
-export const register = (email, password, username) => {
+function handleServerResponse(res) {
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+}
+
+export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": BASE_URL,
     },
-    body: JSON.stringify({ email, password, username }),
-  }).then((res) => {
-    if (res.status === 201) {
-      return res.json();
-    }
-  });
+    body: JSON.stringify({ email, password, name }),
+  }).then(handleServerResponse)
 };
 
-export const login = (email, password, username) => {
+export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
-      Accept: "application/json",
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": BASE_URL,
     },
-    body: JSON.stringify({ email, password, username }),
-  }).then((res) => res.json());
+    body: JSON.stringify({ email, password }),
+  }).then(handleServerResponse)
+  .then(data => data)
 };
 
 export const checkToken = (token) => {
@@ -37,12 +37,6 @@ export const checkToken = (token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-    })
-    .catch((res) => {
-      return res;
-    });
+    .then(handleServerResponse)
+    .then(data => data)
 };

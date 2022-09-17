@@ -9,7 +9,7 @@ const Header = ({
   openLoginModal,
   openMobileModal,
   onLogout,
-  username
+  user,
 }) => {
   return (
     <header className="header">
@@ -21,7 +21,7 @@ const Header = ({
           onLogout={onLogout}
           openLoginModal={openLoginModal}
           openMobileModal={openMobileModal}
-          username={username}
+          user={user}
         />
       </div>
     </header>

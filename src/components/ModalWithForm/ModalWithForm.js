@@ -10,6 +10,7 @@ const ModalWithForm = ({
   onClose,
   onSubmit,
   children,
+  onChange,
 }) => {
   return (
     <Modal
@@ -20,7 +21,12 @@ const ModalWithForm = ({
       onClose={onClose}
     >
       <div className="modal-form">
-        <form name={formName} onSubmit={onSubmit}>
+        <form
+          name={formName}
+          onSubmit={onSubmit}
+          onChange={onChange}
+          noValidate
+        >
           {children}
         </form>
         <p className={`modal-form__text`}>
